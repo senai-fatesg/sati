@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+
+		<h2 style="margin-top: 0" align="center">Atualizar Dados do
+			Cliente</h2>
+		<h:form prependId="false">
+			<p:panel>
+				<p:tabView>
+					<p:tab title="Dados Pessoais">
+						<h:panelGrid columns="2">
+							<p:outputLabel value="Nome: " />
+							<p:inputText id="Nome"
+								value="#{ClienteControl.cliente.nomecliente}" size="70"
+								required="true" requiredMessage="Campo nome é Obrigatório!"
+								onkeyup="this.value = this.value.toUpperCase();" />
+							<p:outputLabel for="cpf-cnpj" value="Tipo de Cliente: *" />
+							<h:panelGroup>
+								<h:selectOneRadio id="cpf-cnpj"
+									value="#{ClienteControl.tipocliente}"
+									title="Selecione qual item deseja inserir CNPJ ou CPF.">
+									<f:selectItem itemLabel="CNPJ" itemValue="#{true}" />
+									<f:selectItem itemLabel="CPF" itemValue="#{false}" />
+									<p:ajax update="CNPJ, CPF, RZS" event="change" />
+								</h:selectOneRadio>
+							</h:panelGroup>
+						</h:panelGrid>
+						<h:panelGrid columns="4">
+							<h:outputLabel value="CNPJ: *" />
+							<p:inputMask id="CNPJ" mask="99.999.999/9999-99"
+								disabled="#{ClienteControl.tipocliente ? false : true}"
+								required="true" requiredMessage="Campo CNPJ é Obrigatório!"
+								title="CNPJ se houver."
+								value="#{ClienteControl.cliente.cpfCnpj}">
+								<!--<f:validator validatorId="ValidadorCNPJ" />-->
+							</p:inputMask>
+							<h:outputLabel value="Razao Social:" />
+							<p:inputText id="RZS"
+								disabled="#{ClienteControl.tipocliente ? false : true}"
+								value="#{ClienteControl.cliente.razaoSocial}" size="70" />
+							<h:outputLabel value="CPF: *" />
+							<p:inputMask id="CPF" mask="999.999.999-99"
+								disabled="#{!ClienteControl.tipocliente ? false : true}"
+								required="true" requiredMessage="Campo CPF é Obrigatório!"
+								title="CPF se houver." value="#{ClienteControl.cliente.cpfCnpj}">
+								<!-- <f:validator validatorId="ValidadorCPF" />-->
+							</p:inputMask>
+							<p:outputLabel />
+							<p:outputLabel />
+							<h:outputLabel value="Telefone: *" />
+							<p:inputMask id="telefone"
+								value="#{ClienteControl.cliente.telefone}" mask="(99)9999-9999"
+								required="true"
+								requiredMessage="Campo Telefone Residencial é Obrigatório!" />
+
+							<p:outputLabel for="celular" value="Telefone Celular: " />
+							<p:inputMask id="celular"
+								value="#{ClienteControl.cliente.celular}" mask="(99)9999-9999"
+								required="true"
+								requiredMessage="Campo Telefone Celular é Obrigatório!" />
+							<h:outputLabel value="Email:" />
+							<p:inputText id="email" value="#{ClienteControl.cliente.email}"
+								size="70" validatorMessage="Formato de Email inválido">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+							<p:outputLabel />
+							<p:outputLabel />
+						</h:panelGrid>
+					</p:tab>
+
+					<p:tab title="Endereço" id="endedt">
+						<h:panelGrid id="pnCEP" columns="3">
+							<h:outputText value="CEP: " />
+							<p:inputMask mask="99999-999" value="#{ClienteControl.cep}" />
+
+							<p:commandButton value="Pesquisar" icon="ui-icon-search"
+								actionListener="#{ClienteControl.encontraCEP}" update="@all">
+							</p:commandButton>
+						</h:panelGrid>
+
+						<p:outputPanel id="buscaend">
+							<h:panelGrid columns="2">
+								<h:outputText for="logradouro" value="Logradouro: " />
+								<p:inputText id="logradouro"
+									value="#{ClienteControl.cliente.endereco.logradouro}" size="40"
+									required="false"
+									requiredMessage="Logradouro: Campo Obrigatório!" />
+								<h:outputText for="bairro" value="Bairro: " />
+								<p:inputText id="bairro"
+									value="#{ClienteControl.cliente.endereco.setor}"
+									required="false" requiredMessage="Bairro: Campo Obrigatório!" />
+								<h:outputText for="complemento" value="Complemento: " />
+								<p:inputText id="complemento"
+									value="#{ClienteControl.cliente.endereco.complemento}"
+									size="40" required="false"
+									requiredMessage="Complemento: Campo Obrigatório!" />
+								<h:outputText value="Número: " />
+								<p:inputText id="numero"
+									onkeypress="return SomenteNumero(event);"
+									value="#{ClienteControl.cliente.endereco.numero}" />
+								<h:outputText for="municipio" value="Municipio" />
+								<p:inputText id="municipio"
+									value="#{ClienteControl.cliente.endereco.cidade}"
+									required="false"
+									requiredMessage="Municipio: Campo Obrigatório!" />
+								<h:outputText for="estado" value="Estado: " />
+								<p:inputText id="estado" onkeyup="this.value = this.value.toUpperCase();"
+									value="#{ClienteControl.cliente.endereco.uf}" required="false"
+									requiredMessage="Estado: Campo Obrigatório!" maxlength="2"/>
+							</h:panelGrid>
+						</p:outputPanel>
+					</p:tab>
+				</p:tabView>
+				<h:panelGrid columns="2">
+					<p:commandButton actionListener="#{ClienteControl.confirmar }"
+						value="Confirmar"></p:commandButton>
+					<p:commandButton actionListener="#{ClienteControl.inicialize}"
+						value="Cancelar" action="cliente.jsf" immediate="true"/>
+				</h:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

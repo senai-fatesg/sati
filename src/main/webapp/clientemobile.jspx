@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="CLIENTES" id="panel">
+			<h:outputLabel value="Buscar Cliente: " />
+			<a:newLine></a:newLine>
+			<p:inputText value="#{ClienteControl.nomedoCliente}"
+				id="filtrocliente" size="50" maxlength="50"
+				onkeyup="this.value = this.value.toUpperCase();">
+				<f:ajax event="keyup" render="clientes"
+					listener="#{ClienteControl.filtrarCliente}" />
+			</p:inputText>
+			<p:watermark for="filtrocliente"
+				value="Digite o nome do cliente para filtrar" id="wtfc"></p:watermark>
+			<a:newLine></a:newLine>
+			<p:dataTable id="clientes" value="#{ClienteControl.clientes}"
+				var="cli" emptyMessage="Sem registro(s)" width="100%"
+				style="min-width: 140px;" rows="10" paginator="true"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
+				{PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+
+				<f:facet name="header">
+					<h:outputText value="Lista de Clientes" />
+				</f:facet>
+
+				<p:column headerText="Nome"
+					style="max-width:50px; min-width: 60px;overflow: hidden;">
+					<f:facet name="header">
+						<h:outputText value="Nome"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{cli.nomecliente}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="CPF/CNPJ"
+					style="max-width:60px; min-width: 30px;">
+					<f:facet name="header">
+						<h:outputText value="CPF/CNPJ"></h:outputText>
+					</f:facet>
+					<h:outputText value="#{cli.cpfCnpj}"></h:outputText>
+				</p:column>
+
+				<p:column headerText="Detalhes"
+					style="max-width:60px; min-width: 30px;">
+					<p:commandButton value="Detalhar" ajax="false"
+						action="clientemobiledetalhes.jsf">
+						<f:setPropertyActionListener target="#{ClienteControl.cliente}"
+							value="#{cli}"></f:setPropertyActionListener>
+					</p:commandButton>
+				</p:column>
+
+			</p:dataTable>
+		</p:panel>
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

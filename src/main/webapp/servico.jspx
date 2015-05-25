@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="SERVIÇOS" id="panel">
+			<h:panelGrid columns="2">
+				<p:commandButton value="Novo Serviço" id="cadserviço"
+					immediate="true" image="ui-icon-document"
+					actionListener="#{ServicoControl.inicialize}"
+					onclick="dlservico.show(),document.formCorpo.reset();" />
+
+				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
+					action="inicio.jsf" />
+			</h:panelGrid>
+
+		</p:panel>
+
+		<p:dataTable id="dtServico" var="servico"
+			value="#{ServicoControl.servicos}"
+			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15">
+			<f:facet name="header">
+						Lista de Serviços
+			</f:facet>
+			<p:column headerText="Descrição" sortBy="#{servico.descricao}"
+				filterBy="#{servico.descricao}" footerText="resultado"
+				filterMatchMode="contains">
+				<h:outputText value="#{servico.descricao}" />
+			</p:column>
+
+			<p:column headerText="Valor">
+				<h:outputText value="#{servico.valor}">
+					<f:convertNumber />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Editar">
+				<p:commandButton icon="ui-icon-pencil" title="Alterar Marca"
+					immediate="true" actionListener="#{ServicoControl.preparaAlterar}"
+					ajax="false">
+					<f:attribute name="servico" value="#{servico}" />
+				</p:commandButton>
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton icon="ui-icon-closethick"
+					title="Remover Serviço" immediate="true"
+					actionListener="#{ServicoControl.excluir}" ajax="false">
+					<f:attribute name="servico" value="#{servico}" />
+				</p:commandButton>
+			</p:column>
+			<f:facet name="footer">
+				<p:outputLabel value="# Registro(s)" />
+			</f:facet>
+		</p:dataTable>
+
+		<!-- Tela de Dialog de inclusao de Marca -->
+		<p:dialog widgetVar="dlservico" resizable="false"
+			header="Incluir Serviço" hideEffect="fade" wappendToBody="true"
+			width="500" modal="true" id="dialogs">
+			<!-- JAVA SCRIPT PARA VALIDAÇÃO DE CAMPOS NUMERICOS -->
+			<script>
+				function mascara(o, f) {
+					v_obj = o;
+					v_fun = f;
+					setTimeout("execmascara()", 1);
+				}
+
+				function execmascara() {
+					v_obj.value = v_fun(v_obj.value);
+				}
+
+				function valor(v) {
+					v = v.replace(/\D/g, "");
+					v = v.replace(/[0-9]{15}/, "inválido");
+					v = v.replace(/(\d{1})(\d{11})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 11 digitos  
+					v = v.replace(/(\d{1})(\d{8})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 8 digitos  
+					v = v.replace(/(\d{1})(\d{5})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 5 digitos  
+					v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2"); // coloca virgula antes dos  
+					// Ãºltimos 2 digitos  
+					return v;
+				}
+			</script>
+			<!-- END -->
+
+			<p:tabView>
+				<p:tab title="Descrição">
+					<h:panelGrid columns="2">
+						<p:outputLabel for="descricao" value="Descriçao: " />
+						<p:inputText id="descricao"
+							value="#{ServicoControl.servico.descricao}" size="70"
+							required="true" requiredMessage="Campo descricao Obrigatório!" />
+
+						<p:outputLabel for="valor" value="Valor: " />
+						<p:inputText id="valor" required="true"
+							requiredMessage="Informe o valor do Serviço"
+							value="#{ServicoControl.servico.valor}"
+							onkeypress="mascara(this, valor);">
+							<f:convertNumber />
+						</p:inputText>
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Confirmar"
+					actionListener="#{ServicoControl.confirmar}" icon="ui-icon-check"
+					title="Salvar Serviço" update=":formCorpo:dtServico" />
+
+				<p:commandButton value="Cancelar" immediate="true"
+					action="servico.jsf?faces-redirect=true"
+					onclick="dlservico.close(),document.formCorpo.reset();"
+					title="Cancelar" />
+			</h:panelGrid>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

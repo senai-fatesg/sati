@@ -1,0 +1,44 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+
+<body>
+
+<br/><br/><br/><br/><br/>
+  <div class="gallery autoplay items-3">
+    <div id="item-1" class="control-operator"></div>
+    <div id="item-2" class="control-operator"></div>
+    <div id="item-3" class="control-operator"></div>
+    <div id="item-4" class="control-operator"></div>
+
+    <figure class="item">
+      <img src="imagens/slider001.jpg"/>
+
+    </figure>
+
+    <figure class="item">
+      <img src="imagens/slider002.jpg"/>
+
+    </figure>
+
+    <figure class="item">
+       <img src="imagens/slider003.jpg"/>
+      
+    </figure>
+    
+    <figure class="item">
+       <img src="imagens/slider004.jpg"/>
+    </figure>
+
+    <div class="controls">
+      <a href="#item-1" class="control-button">•</a>
+      <a href="#item-2" class="control-button">•</a>
+      <a href="#item-3" class="control-button">•</a>
+      <a href="#item-4" class="control-button">•</a>
+    </div>
+  </div>
+
+</body>
+</html>
+<!-- By Silas A. -->

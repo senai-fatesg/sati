@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<h2 style="margin-top: 0" align="center">Atualizar Dados do
+			Técnico</h2>
+		<h:form prependId="false">
+			<p:panel>
+				<p:tabView>
+					<p:tab title="Dados do Técnico">
+						<h:panelGrid columns="2">
+							<p:outputLabel for="nome" value="Nome:" />
+							<p:inputText id="nome" value="#{TecnicoControl.tecnico.nome}"
+								size="50" required="true"
+								requiredMessage="Nome: Campo Obrigátorio!"
+								onkeyup="this.value = this.value.toUpperCase();" />
+							<p:outputLabel value="Apelido: *" />
+							<p:inputText value="#{TecnicoControl.tecnico.apelido}" size="30" />
+							<p:outputLabel for="telefone1" value="Telefone (1): " />
+							<p:inputMask id="telefone1"
+								value="#{TecnicoControl.tecnico.telefone}" mask="(99)9999-9999"
+								required="true"
+								requiredMessage="Telefone(1): Campo Obrigátorio!" />
+							<p:outputLabel value="Telefone (2): " />
+							<p:inputMask value="#{TecnicoControl.tecnico.telefone_dois}"
+								mask="(99)9999-9999" />
+							<p:outputLabel for="celular" value="Telefone Celular: " />
+							<p:inputMask id="celular"
+								value="#{TecnicoControl.tecnico.celular}" mask="(99)9999-9999"
+								required="true" requiredMessage="Celular: Campo Obrigátorio!" />
+							<p:outputLabel for="email" value="Email: " />
+							<p:inputText id="email" value="#{TecnicoControl.tecnico.email}"
+								size="50" required="true" validatorMessage="Formato de Email inválido"
+								requiredMessage="Email: Campo Obrigátorio!">
+								<f:validateRegex
+									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+							</p:inputText>
+						</h:panelGrid>
+					</p:tab>
+					<p:tab title="Dados do Login">
+						<p:messages id="messages" showDetail="true" autoUpdate="true" />
+						<h:panelGrid columns="2">
+							<p:outputLabel for="CPF" value="Usuario: " />
+							<p:outputLabel id="CPF" readonly="true"
+								value="#{TecnicoControl.usuario.login}" />
+							<p:outputLabel for="pass1" value="Nova Senha: " />
+							<p:password id="pass1" value="#{TecnicoControl.usuario.senha}"
+								match="pass2"
+								validatorMessage="Os campos 'Senha' e 'Confirmação' não são iguais" />
+							<p:outputLabel for="pass2" value="Confirmação: " />
+							<p:password id="pass2" value="#{TecnicoControl.usuario.senha}"
+								match="pass2" />
+						</h:panelGrid>
+					</p:tab>
+				</p:tabView>
+				<p:panelGrid columns="2">
+					<p:commandButton value="Alterar"
+						actionListener="#{TecnicoControl.alterar}" icon="ui-icon-check"
+						process="" title="Salvar Técnico" />
+					<p:commandButton value="Cancelar"
+						actionListener="#{TecnicoControl.inicialize}" immediate="true"
+						action="tecnico.jsf" title="Cancelar alteração" />
+				</p:panelGrid>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

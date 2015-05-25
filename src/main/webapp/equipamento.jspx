@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p:panel header="Equipamentos" id="panel">
+			<h:panelGrid columns="2">
+				<p:commandButton value="Novo Equipamento" id="cadeqp"
+					immediate="true" image="ui-icon-document"
+					actionListener="#{EquipamentoControl.inicialize}"
+					onclick="dlgequip.show(),document.formCorpo.reset();" />
+
+				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
+					action="inicio.jsf" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable id="dtEquipamento" var="equipamento"
+			value="#{EquipamentoControl.equipamentos}"
+			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15">
+			<f:facet name="header">
+						Lista de Equipamentos
+				</f:facet>
+			<p:column headerText="Nome">
+				<h:outputText value="#{equipamento.nome}" />
+			</p:column>
+
+			<p:column headerText="Marca">
+				<h:outputText value="#{equipamento.marca.nome}" />
+			</p:column>
+
+			<p:column headerText="Modelo">
+				<h:outputText value="#{equipamento.marca.modelo}" />
+			</p:column>
+
+			<p:column headerText="Valor">
+				<h:outputText value="#{equipamento.valor}">
+					<f:convertNumber />
+				</h:outputText>
+			</p:column>
+
+			<p:column headerText="Editar">
+				<p:commandButton icon="ui-icon-pencil" title="Alterar Equipamento"
+					immediate="true"
+					actionListener="#{EquipamentoControl.preparaAlterar}" ajax="false">
+					<f:attribute name="equipamento" value="#{equipamento}" />
+				</p:commandButton>
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton icon="ui-icon-closethick"
+					title="Remover Equimanento" immediate="true"
+					actionListener="#{EquipamentoControl.excluir}" ajax="false">
+					<f:attribute name="equipamento" value="#{equipamento}" />
+				</p:commandButton>
+			</p:column>
+			<f:facet name="footer">
+				<p:outputLabel value="# Registro(s)" />
+			</f:facet>
+		</p:dataTable>
+
+
+		<!-- Tela de Dialog de inclusao de Equipamento -->
+		<p:dialog widgetVar="dlgequip" resizable="false"
+			header="Incluir Equipamento" hideEffect="fade" wappendToBody="true"
+			width="500" modal="true" id="dialequip">
+
+			<script>
+				function mascara(o, f) {
+					v_obj = o;
+					v_fun = f;
+					setTimeout("execmascara()", 1);
+				}
+
+				function execmascara() {
+					v_obj.value = v_fun(v_obj.value);
+				}
+
+				function valor(v) {
+					v = v.replace(/\D/g, "");
+					v = v.replace(/[0-9]{15}/, "inválido");
+					v = v.replace(/(\d{1})(\d{11})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 11 digitos  
+					v = v.replace(/(\d{1})(\d{8})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 8 digitos  
+					v = v.replace(/(\d{1})(\d{5})$/, "$1.$2"); // coloca ponto antes dos  
+					// Ãºltimos 5 digitos  
+					v = v.replace(/(\d{1})(\d{1,2})$/, "$1,$2"); // coloca virgula antes dos  
+					// Ãºltimos 2 digitos  
+					return v;
+				}
+			</script>
+
+			<p:tabView id="tbEquipamento">
+				<!-- 			DESCRIÇÃO -->
+				<p:tab title="Descrição Equipamento">
+					<h:panelGrid columns="3">
+						<p:outputLabel for="nome" value="Nome: " />
+						<p:inputText id="nome"
+							value="#{EquipamentoControl.equipamento.nome}" size="70"
+							required="true" requiredMessage="Campo nome é Obrigatório!" />
+						<p:outputLabel />
+						<p:outputLabel for="marcanome" value="Marca: " />
+						<p:autoComplete id="marcanome"
+							value="#{EquipamentoControl.equipamento.marca}"
+							completeMethod="#{EquipamentoControl.buscaMarcaporNome}"
+							var="marca" itemLabel="#{marca.nome}" minQueryLength="1"
+							maxResults="10" itemValue="#{marca}" forceSelection="true"
+							required="true" requiredMessage="Campo Marca-nome é Obrigatório!"
+							onkeyup="this.value = this.value.toLowerCase();"
+							converter="marcaConverter">
+							<f:facet name="itemtip">
+								<h:panelGrid columns="2" cellpadding="10">
+									<h:outputText id="nomedamarca" value="#{marca.nome}" />
+									<h:outputText id="modelodamarca" value="#{marca.modelo}" />
+								</h:panelGrid>
+							</f:facet>
+							<p:ajax event="itemSelect" update="modelm" />
+						</p:autoComplete>
+						<p:watermark value="pesquise pelo nome" for="marcanome"></p:watermark>
+
+						<p:outputLabel value="Modelo: " />
+						<p:inputText id="modelm"
+							value="#{EquipamentoControl.equipamento.marca.modelo}"
+							readonly="true" />
+						<p:outputLabel />
+
+						<p:outputLabel for="custoUni" value="Valor: " />
+						<p:inputText id="custoUni" required="true"
+							requiredMessage="Informe o valor do equipamento"
+							value="#{EquipamentoControl.equipamento.valor}"
+							onkeypress="mascara(this, valor);">
+							<f:convertNumber />
+						</p:inputText>
+						<p:outputLabel />
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Confirmar"
+					actionListener="#{EquipamentoControl.confirmar}"
+					icon="ui-icon-check" title="Salvar Equipamento"
+					update=":formCorpo:dtEquipamento" />
+
+				<p:commandButton value="Cancelar" immediate="true"
+					actionListener="#{EquipamentoControl.inicialize}"
+					action="equipamento.jsf?faces-redirect=true"
+					onclick="dlgequip.close(),document.formCorpo.reset();"
+					title="Cancelar" />
+			</h:panelGrid>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

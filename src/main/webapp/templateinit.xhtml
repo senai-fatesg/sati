@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>Sati System</title>
+	<link rel="shortcut icon" href="imagens/favicon.ico" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<link href="css/styles.css" rel="stylesheet" />
+	<!-- CSS DO SLIDER -->
+	<link rel="stylesheet" href="css/normalize.css" />
+	<link rel="stylesheet" href="css/gallery.prefixed.css" />
+	<link rel="stylesheet" href="css/dist/gallery.theme.css" />
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control"
+		content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+</h:head>
+<h:body>
+
+	<ui:insert name="menu">
+		<ui:include src="menu.jspx" />
+	</ui:insert>
+
+	<ui:insert name="slider">
+		<ui:include src="slider.jspx" />
+	</ui:insert>
+
+	<h:form id="formCorpo">
+		<p:growl autoUpdate="true"></p:growl>
+		<ui:insert name="corpo" />
+	</h:form>
+
+</h:body>
+</html>
+<!-- By Silas A. -->

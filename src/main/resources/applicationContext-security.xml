@@ -11,11 +11,15 @@
 
 	</global-method-security>
 
-	<http auto-config="true" access-denied-page="/acessoNegado.jsf" access-decision-manager-ref="accessDecisionManager">
-	    <intercept-url pattern="/javax.faces.resource/*" filters="none" />
+	<http auto-config="true" access-denied-page="/acessoNegado.jsf"
+		access-decision-manager-ref="accessDecisionManager">
+
+		<intercept-url pattern="/javax.faces.resource/*"
+			filters="none" />
 		<intercept-url pattern="/login.jsp*" filters="none" />
 		<intercept-url pattern="/**.jsf" access="USUARIO" />
-		<form-login authentication-failure-url="/login.jsp?msg=erro" login-page="/login.jsp" />
+		<form-login authentication-failure-url="/login.jsp?msg=erro"
+			login-page="/login.jsp" />
 		<logout logout-success-url="/inicio.jsf" />
 	</http>
 
@@ -38,12 +42,13 @@
 	</beans:bean>
 
 
-	<beans:bean id="usuarioService" class="br.com.ambientinformatica.sati.sati.util.UsuarioService">
+	<beans:bean id="usuarioService"
+		class="br.com.ambientinformatica.sati.util.UsuarioService">
 		<beans:property name="dataSource" ref="dataSource"></beans:property>
 	</beans:bean>
 
 	<authentication-provider user-service-ref="usuarioService">
-		<password-encoder hash="md5"/>
+		<password-encoder hash="md5" />
 	</authentication-provider>
 
 </beans:beans>

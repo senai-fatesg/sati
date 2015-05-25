@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="corpo">
+
+		<p:panel header="TÉCNICOS" id="panel">
+
+			<h:panelGrid columns="2">
+				<p:commandButton value="Novo Técnico" id="cadtecnico"
+					immediate="true" image="ui-icon-document"
+					actionListener="#{TecnicoControl.inicialize}"
+					onclick="dlgtecnico.show(),this.form.reset();" />
+
+				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
+					action="inicio.jsf" />
+			</h:panelGrid>
+
+		</p:panel>
+
+		<p:dataTable id="dtTecnico" var="tecnico"
+			value="#{TecnicoControl.tecnicos}"
+			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15">
+			<f:facet name="header">
+						Lista de Técnicos
+			</f:facet>
+
+			<p:column headerText="Nome" sortBy="#{tecnico.nome }"
+				filterBy="#{tecnico.nome}" footerText="resultado"
+				filterMatchMode="contains">
+				<h:outputText value="#{tecnico.nome}" id="nometec" />
+			</p:column>
+			<p:column headerText="Apelido">
+				<h:outputText value="#{tecnico.apelido}" />
+			</p:column>
+			<p:column headerText="Telefone">
+				<h:outputText value="#{tecnico.telefone}" />
+			</p:column>
+			<p:column headerText="Telefone2">
+				<h:outputText value="#{tecnico.telefone_dois}" />
+			</p:column>
+			<p:column headerText="Celular">
+				<h:outputText value="#{tecnico.celular}" />
+			</p:column>
+			<p:column headerText="Email">
+				<h:outputText value="#{tecnico.email}" />
+			</p:column>
+			<p:column headerText="Editar">
+				<p:commandButton icon="ui-icon-pencil" title="Alterar Técnico"
+					immediate="true" actionListener="#{TecnicoControl.preparaAlterar}"
+					ajax="false">
+					<f:attribute name="tecnico" value="#{tecnico}" />
+				</p:commandButton>
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton icon="ui-icon-closethick" title="Remover Técnico"
+					immediate="true" actionListener="#{TecnicoControl.excluir}"
+					ajax="false">
+					<f:attribute name="tecnico" value="#{tecnico}" />
+				</p:commandButton>
+			</p:column>
+			<f:facet name="footer">
+				<p:outputLabel value="# Registro(s)" />
+			</f:facet>
+		</p:dataTable>
+
+		<!-- Tela de Dialog de inclusao de Tecnico -->
+		<p:dialog widgetVar="dlgtecnico" resizable="false"
+			header="Incluir Tecnico" hideEffect="fade" wappendToBody="true"
+			width="700" height="350" modal="true" id="dialog">
+
+			<!-- WIZARD CADASTRO DE TECNICO -->
+			<p:wizard flowListener="#{ClienteControl.proximaTela}"
+				widgetVar="wiz" nextLabel="Próximo" backLabel="Anterior" id="wizard">
+				<p:tab id="personal" title="Pessoal">
+					<h:panelGrid columns="2">
+						<p:outputLabel for="nome" value="Nome:" />
+						<p:inputText id="nome" value="#{TecnicoControl.tecnico.nome}"
+							size="50" required="true"
+							requiredMessage="Campo nome é Obrigatório!"
+							onkeyup="this.value = this.value.toUpperCase();" />
+						<p:outputLabel value="Apelido: *" />
+						<p:inputText value="#{TecnicoControl.tecnico.apelido}" size="30" />
+						<p:outputLabel for="telefone1" value="Telefone (1): " />
+						<p:inputMask id="telefone1"
+							value="#{TecnicoControl.tecnico.telefone}" mask="(99)9999-9999"
+							required="true" requiredMessage="Campo Telefone é Obrigatório!" />
+						<p:outputLabel value="Telefone (2): " />
+						<p:inputMask value="#{TecnicoControl.tecnico.telefone_dois}"
+							mask="(99)9999-9999" />
+						<p:outputLabel for="celular" value="Telefone Celular: " />
+						<p:inputMask id="celular"
+							value="#{TecnicoControl.tecnico.celular}" mask="(99)9999-9999"
+							required="true" requiredMessage="Campo Celular é Obrigatório!" />
+						<p:outputLabel for="email" value="Email: " />
+						<p:inputText id="email" value="#{TecnicoControl.tecnico.email}"
+							size="50" required="true"
+							validatorMessage="Formato de Email inválido"
+							requiredMessage="Campo email é Obrigatório!">
+							<f:validateRegex
+								pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+						</p:inputText>
+					</h:panelGrid>
+				</p:tab>
+				<p:tab id="loginpersonal" title="Dados do Login">
+					<p:messages id="messages" showDetail="true" autoUpdate="true" />
+					<h:panelGrid columns="2">
+						<p:outputLabel for="CPF" value="Usuario: " />
+						<p:inputMask mask="99999999999" id="CPF"
+							onkeypress="return SomenteNumero(event);" required="true"
+							maxlength="11" requiredMessage="Campo Login é Obrigatório!"
+							title="CPF se houver." value="#{TecnicoControl.usuario.login}" />
+						<p:outputLabel for="pass1" value="Senha: " />
+						<p:password id="pass1" value="#{TecnicoControl.usuario.senha}"
+							match="pass2" required="true" maxlength="4"
+							validatorMessage="Os campos 'Senha' e 'Confirmação' não são iguais"
+							requiredMessage="Campo senha é Obrigatório!" />
+						<p:outputLabel for="pass2" value="Confirmação: " />
+						<p:password id="pass2" value="#{TecnicoControl.usuario.senha}"
+							match="pass2" required="true" maxlength="4"
+							requiredMessage="Campo confirmaçao da senha é Obrigatório!" />
+						<p:watermark value="informe somente numeros" id="wcpf" for="CPF"></p:watermark>
+					</h:panelGrid>
+					<p:separator />
+					<h:panelGrid>
+						<p:outputLabel
+							value="#Campo Usuario Preencha com o Cpf do Técnico" />
+						<p:outputLabel
+							value="#Campo Senha Preencha com os 4 primeiros numeros do Rg" />
+					</h:panelGrid>
+				</p:tab>
+				<p:tab id="confirm" title="Confirmação">
+					<p:accordionPanel>
+						<p:tab title="Dados Pessoais">
+
+							<h:panelGrid columns="4" cellpadding="5">
+								<h:outputText style="font-weight: bold;" value="NOME: " />
+								<h:outputText value="#{TecnicoControl.tecnico.nome}"
+									styleClass="outputLabel" />
+
+								<h:outputText style="font-weight: bold;" value="Apelido " />
+								<h:outputText value="#{TecnicoControl.tecnico.apelido}"
+									styleClass="outputLabel" />
+
+								<h:outputText style="font-weight: bold;" value="Telefone:" />
+								<h:outputText value="#{TecnicoControl.tecnico.telefone}"
+									styleClass="outputLabel" />
+
+								<h:outputText style="font-weight: bold;" value="Telefone 2°:" />
+								<h:outputText value="#{TecnicoControl.tecnico.telefone_dois}"
+									styleClass="outputLabel" />
+
+								<h:outputText style="font-weight: bold;" value="Celular:" />
+								<h:outputText value="#{TecnicoControl.tecnico.email}"
+									styleClass="outputLabel" />
+
+							</h:panelGrid>
+
+						</p:tab>
+						<p:tab title="Dados do Login">
+							<h:panelGrid columns="2">
+								<h:outputText style="font-weight: bold;" value="Usuário:" />
+								<h:outputText value="#{TecnicoControl.usuario.login}"
+									styleClass="outputLabel" />
+
+							</h:panelGrid>
+						</p:tab>
+					</p:accordionPanel>
+					<h:panelGrid columns="2">
+						<p:commandButton value="Confirmar"
+							actionListener="#{TecnicoControl.confirmar}" icon="ui-icon-check"
+							title="Salvar Técnico" update=":formCorpo:dtTecnico" />
+
+						<p:commandButton value="Cancelar" immediate="true"
+							title="Cancelar" actionListener="#{TecnicoControl.inicialize}" action="tecnico.jsf?faces-redirect=true"/>
+
+						<p:messages id="meslogin" showDetail="true" autoUpdate="true" />
+					</h:panelGrid>
+				</p:tab>
+			</p:wizard>
+			<!-- FIM DO WIZARD -->
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

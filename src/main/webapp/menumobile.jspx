@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<body>
+	<div id="page">
+		<div class="header">
+			<a href="#menu"></a> SATI MOBILE
+		</div>
+
+		<nav id="menu">
+			<ul>
+				<li><a href="iniciomobile.jsf">Home</a></li>
+				<li><a href="clientemobile.jsf">Clientes</a></li>
+				<li><a href="loginmobileepi.jsf">Nova O.S</a></li>
+				<li><a href="ordemdeservicomobilelista.jsf">Consultar O.S</a></li>
+				<li><p:commandLink value="Sair" id="exit" immediate="true"
+						oncomplete="javascript:location.reload(true)"
+						actionListener="#{LoginControl.logout}" /></li>
+				<li><p:commandLink style="background-color: #580000"
+						value="#{LoginControl.primeiroNome}" title="Usuario Logado" immediate="true"/></li>
+			</ul>
+		</nav>
+	</div>
+</body>
+</html>
+<!-- By Silas A. -->

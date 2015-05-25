@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="Consultar OrdemServico">
+
+			<p:outputLabel value="Data Inicial: " style="font-weight: bold;" />
+			<p:inputMask id="dataHoraInicio"
+				value="#{OrdemServicoControl.dataHoraInicio }" mask="99/99/9999">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</p:inputMask>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Data Final: " style="font-weight: bold;" />
+			<p:inputMask id="dataHoraFim"
+				value="#{OrdemServicoControl.dataHoraFim }" mask="99/99/9999">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</p:inputMask>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Status O.S: " style="font-weight: bold;" />
+			<a:newLine></a:newLine>
+			<p:selectOneMenu value="#{OrdemServicoControl.estadoOsSelecionado }"
+				style="width:150px;" id="estadoOs">
+				<f:selectItem itemLabel="Todas" />
+				<f:selectItems value="#{OrdemServicoControl.statusOrdemServicos }" />
+			</p:selectOneMenu>
+			<a:newLine></a:newLine>
+			<a:newLine></a:newLine>
+			<p:commandButton actionListener="#{OrdemServicoControl.listar }"
+				value="Listar" update="ordemServicosList" icon="ui-icon-note"
+				ajax="false" style="width: 100%;" />
+		</p:panel>
+
+		<!-- LISTAGEM DAS OS DE ACORDO COM STATUS -->
+		<p:dataTable id="ordemServicosList"
+			value="#{OrdemServicoControl.ordensServico }" var="os"
+			emptyMessage="Sem registro(s)" width="100%" style="min-width: 140px;"
+			rows="10" paginator="true"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} 
+				{PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+			<f:facet name="header">
+				<h:outputText value="Ordem de Serviço" />
+			</f:facet>
+
+			<p:column sortBy="#{os.id }"
+				style="max-width:50px; min-width: 15px;overflow: hidden;">
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText id="id" value="#{os.id }"></h:outputText>
+			</p:column>
+
+			<p:column sortBy="#{os.cliente.nomecliente }"
+				style="max-width:50px; min-width: 60px;overflow: hidden;">
+				<f:facet name="header">
+					<h:outputText value="Cliente" />
+				</f:facet>
+				<h:outputText id="cliente" value="#{os.cliente.nomecliente }"></h:outputText>
+			</p:column>
+
+			<p:column headerText="Detalhes"
+				style="max-width:60px; min-width: 30px;">
+				<p:commandButton value="Detalhar"
+					actionListener="#{OrdemServicoControl.prepararDetalhesOs}">
+					<f:attribute name="ordeserv" value="#{os}" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->
