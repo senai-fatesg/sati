@@ -138,12 +138,6 @@
 			<url>http://solutioin.com/nexus/content/groups/public</url>
 			<layout>default</layout>
 		</repository>
-		<repository>
-			<id>prime-repo</id>
-			<name>Prime Repo</name>
-			<url>http://repository.primefaces.org</url>
-		</repository>
-
 	</repositories>
 
 	<build>
@@ -153,7 +147,7 @@
 				<configuration>
 					<source>1.6</source>
 					<target>1.6</target>
-					<encoding>UTF-8</encoding>
+					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
 		</plugins>
