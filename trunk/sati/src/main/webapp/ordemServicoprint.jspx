@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<html template="template.xhtml" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Sati System</title>
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="Cache-Control"
+		content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<meta name="viewport" content="initial-scale=1" />
+</h:head>
+
+<h:form>
+	<p:panel header="VISUALIZAÇÃO DE IMPRESSAO DA ORDEM DE SERVIÇO">
+		<h:panelGrid columns="2">
+			<p:commandButton value="Imprimir" ajax="false">
+				<p:printer target="osprint" />
+			</p:commandButton>
+			<p:commandButton value="Voltar" action="ordemServicolista.jsf" />
+		</h:panelGrid>
+		<!-- PAINEL DE IMPRESSAO -->
+		<p:panel id="osprint">
+			<!-- LOGOMARCA OS -->
+			<h:graphicImage url="imagens/satilogomarca.png"></h:graphicImage>
+			<h:panelGrid columns="2">
+				<h:outputLabel value="ORDEM DE SERVIÇO N°" style="font-size: large;"></h:outputLabel>
+				<p:outputLabel value="#{OrdemServicoControl.ordemServico.id}"
+					style="font-size: large;" />
+			</h:panelGrid>
+			<!-- PAINEL CLIENTE -->
+			<p:separator />
+			<h:outputLabel value="CLIENTE"
+				style="font-size: large; text-align: center;"></h:outputLabel>
+			<a:newLine />
+			<a:field spaceLeft="5px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Cliente: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.nomecliente}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="CPF/CNPJ: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.cpfCnpj}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Telefone: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.telefone}" />
+				</h:panelGrid>
+			</a:field>
+			<a:newLine />
+			<a:field spaceLeft="5px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Endereço: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.endereco.logradouro}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Complemento: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.endereco.complemento}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Setor: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.endereco.setor}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Cidade: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.endereco.cidade}" />
+				</h:panelGrid>
+			</a:field>
+			<a:field spaceLeft="30px">
+				<h:panelGrid columns="2" cellpadding="4px">
+					<h:outputLabel value="Uf: " style="font-weight: bolder;" />
+					<h:outputLabel
+						value="#{OrdemServicoControl.ordemServico.cliente.endereco.uf}" />
+				</h:panelGrid>
+			</a:field>
+			<a:newLine></a:newLine>
+			<h:panelGroup rendered="#{OrdemServicoControl.ativaServicoOs}">
+				<p:separator />
+				<!-- PAINEL DE ITENS DE SERVICO -->
+				<h:outputLabel value="SERVIÇOS"
+					style="font-size: large; text-align: center;"></h:outputLabel>
+				<a:newLine />
+				<p:dataTable id="servicos"
+					value="#{OrdemServicoControl.ordemServico.itensServicoList }"
+					var="serv" style="max-width: 780px; min-width: 140px"
+					emptyMessage="Não foi utilizado serviços">
+					<p:column headerText="Descrição do Serviço"
+						style="max-width:70px; min-width: 60px;overflow: hidden;">
+						<h:outputText value="#{serv.servico.descricao}" />
+					</p:column>
+					<p:column headerText="Valor"
+						style="max-width: 50px; min-width: 20px; overflow: hidden">
+						<h:outputText value="#{serv.servico.valor}">
+							<f:convertNumber />
+						</h:outputText>
+					</p:column>
+					<p:column headerText="Quantidade"
+						style="max-width:50px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{serv.quantidade}" />
+					</p:column>
+				</p:dataTable>
+				<!-- CAMPO TOTAL DE Serviços -->
+				<a:field spaceLeft="0px">
+					<h:panelGrid columns="2">
+						<h:outputLabel style="font-weight: bold;"
+							value="Valor Total dos Serviços:" />
+						<h:outputLabel value="#{OrdemServicoControl.totalServicos}">
+							<f:convertNumber />
+						</h:outputLabel>
+					</h:panelGrid>
+				</a:field>
+				<a:newLine />
+			</h:panelGroup>
+			<h:panelGroup rendered="#{OrdemServicoControl.ativaEquipamentoOs}">
+				<p:separator />
+				<!-- PAINEL DE ITENS DE EQUIPAMENTOS -->
+				<h:outputLabel value="EQUIPAMENTOS"
+					style="font-size: large; text-align: center;"></h:outputLabel>
+				<a:newLine />
+				<p:dataTable id="equipamentos"
+					value="#{OrdemServicoControl.ordemServico.itensEquipamentoList }"
+					var="equip" style="max-width: 750px; min-width: 140px"
+					emptyMessage="Não foi utilizado equipamentos">
+					<p:column headerText="Descrição dos Equipamentos"
+						style="max-width:70px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{equip.equipamento.nome }" />
+					</p:column>
+					<p:column headerText="Valor"
+						style="max-width:50px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{equip.equipamento.valor}" />
+					</p:column>
+					<p:column headerText="Quantidade"
+						style="max-width:50px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{equip.quantidade }">
+							<f:convertNumber />
+						</h:outputText>
+					</p:column>
+				</p:dataTable>
+				<!-- Campo Total dos Equipamentos -->
+				<a:field spaceLeft="0px">
+					<h:panelGrid columns="2">
+						<h:outputLabel style="font-weight: bold;"
+							value="Valor Total dos Equipamentos:" />
+						<h:outputLabel value="#{OrdemServicoControl.totalEquipamentos}">
+							<f:convertNumber />
+						</h:outputLabel>
+					</h:panelGrid>
+				</a:field>
+				<a:newLine></a:newLine>
+				<p:separator />
+				<!-- TOTAL DA ORDEM DE SERVIÇO -->
+				<a:field spaceLeft="0px">
+					<h:panelGrid columns="2">
+						<h:outputLabel style="font-weight: bold;" value="Valor Total:" />
+						<h:outputLabel value="#{OrdemServicoControl.totalOrdemServico}">
+							<f:convertNumber />
+						</h:outputLabel>
+					</h:panelGrid>
+				</a:field>
+				<a:newLine></a:newLine>
+			</h:panelGroup>
+			<p:separator />
+			<!--PAINEL DO TECNICO -->
+			<h:outputLabel value="TECNICO RESPONSÁVEL"
+				style="font-size: large; text-align: center;"></h:outputLabel>
+			<a:newLine />
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Técnico: " style="font-weight: bold;" />
+				<p:outputLabel
+					value="#{OrdemServicoControl.ordemServico.tecnico.nome}"></p:outputLabel>
+			</h:panelGrid>
+			<a:newLine></a:newLine>
+			<p:separator />
+			<!--PAINEL DO OBSERVAÇOES -->
+			<h:outputLabel value="Observações"
+				style="font-size: large; text-align: center;"></h:outputLabel>
+			<a:newLine />
+			<h:panelGrid columns="2">
+				<p:outputLabel value="Informações Complementares: "
+					style="font-weight: bold;" />
+				<p:outputLabel
+					value="#{OrdemServicoControl.ordemServico.descricaoProblema}"></p:outputLabel>
+			</h:panelGrid>
+			<a:newLine />
+			<a:newLine />
+		</p:panel>
+	</p:panel>
+</h:form>
+</html>
+<!-- By Silas A. -->

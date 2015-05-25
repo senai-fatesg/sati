@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="cabecalho">
+		<style>
+.ui-autocomplete input {
+	width: 90%;
+}
+</style>
+	</ui:define>
+	<ui:define name="corpo">
+
+		<p:panel header="ALTERAR DADOS - ORDEM DE SERVIÇO"
+			id="OrdemServicoForm">
+			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+			<a:newLine></a:newLine>
+			<p:accordionPanel>
+				<!-- PAINEL COM O NOME DO CLIENTE -->
+				<p:tab title="Cliente">
+					<h:panelGrid columns="4" id="camponome">
+						<p:outputLabel for="clientenome" value="Cliente:" />
+						<p:inputText id="clientenome" forceSelection="true" size="42"
+							value="#{OrdemServicoControl.ordemServico.cliente.nomecliente}"
+							required="true" requiredMessage="O Campo Cliente é Obrigatório!"
+							disabled="#{OrdemServicoControl.ativabotao ? false : true}" />
+						<p:commandButton immediate="true" icon="ui-icon-search"
+							title="Clique pra buscar o Cliente"
+							actionListener="#{OrdemServicoControl.listarCliente}"
+							update=":formCorpo:clientes" oncomplete="dlgcliente.show()" />
+						<p:message for="clientenome" />
+						<p:watermark for="clientenome" value="Busque um cliente"
+							id="watermark" />
+						<p:tooltip for="clientenome" value="Busque pelo nome do cliente."
+							showEffect="fade" hideEffect="fade" />
+					</h:panelGrid>
+				</p:tab>
+
+				<!-- PAINEL DE SERVICO -->
+				<p:tab title="Serviços"
+					rendered="#{OrdemServicoControl.ativaServicoOs}">
+					<a:field label="Serviço" width="250px" for="consServico">
+						<p:autoComplete id="consServico" maxResults="10"
+							minQueryLength="1" effect="fade"
+							value="#{OrdemServicoControl.servico}" var="ser"
+							itemLabel="#{ser.descricao}" itemValue="#{ser}"
+							completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
+							forceSelection="true" size="42"
+							onkeyup="this.value = this.value.toLowerCase();"
+							converter="servicoConverter" />
+						<p:tooltip for="consServico"
+							value="Informe o Serviço que foi executado." showEffect="fade"
+							hideEffect="fade" />
+						<p:outputLabel for="itservico" value="Quantidade:" />
+						<p:inputText id="itservico"
+							value="#{OrdemServicoControl.itemServico.quantidade}" />
+						<p:tooltip for="itservico"
+							value="Informe a quantidade de Serviços feito." showEffect="fade"
+							hideEffect="fade" />
+						<p:watermark for="consServico" value="Digite o nome do serviço"
+							id="wate22" />
+					</a:field>
+					<a:field spaceLeft="5px">
+						<p:commandButton id="addServico" ajax="false"
+							actionListener="#{OrdemServicoControl.addServico }"
+							value="Add Serviço" update="@form" icon="ui-icon-plusthick" />
+					</a:field>
+					<a:newLine />
+					<!-- CAMPO TOTAL DE Serviços -->
+					<a:field spaceLeft="700px">
+						<h:panelGrid columns="2">
+							<h:outputText style="font-weight: bold;"
+								value="Valor Total dos Serviços:" />
+							<p:outputLabel value="#{OrdemServicoControl.totalServicos}">
+								<f:convertNumber />
+							</p:outputLabel>
+						</h:panelGrid>
+					</a:field>
+					<a:newLine />
+
+					<!-- LISTA DE SERVIÇOS -->
+					<p:dataTable id="servicos"
+						value="#{OrdemServicoControl.ordemServico.itensServicoList }"
+						var="servAdd" editable="true" width="100%"
+						emptyMessage="Adicione ao menos um Serviço">
+						<f:facet name="header">
+							<h:outputText value="Lista de Serviços Realizados"></h:outputText>
+						</f:facet>
+
+						<p:column sortBy="#{servAdd.servico.descricao }">
+							<f:facet name="header">
+								<h:outputText value="Serviço" />
+							</f:facet>
+							<h:outputText value="#{servAdd.servico.descricao }" />
+						</p:column>
+
+						<p:column headerText="Quantidade" sortBy="#{servAdd.quantidade }">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{servAdd.quantidade }" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{servAdd.quantidade }" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Excluir">
+							<p:commandButton icon="ui-icon-closethick"
+								title="Remover Item de Serviço" immediate="true"
+								actionListener="#{OrdemServicoControl.excluirItemServico}"
+								ajax="false">
+								<f:attribute name="itemServicoExcluir" value="#{servAdd}" />
+							</p:commandButton>
+						</p:column>
+					</p:dataTable>
+				</p:tab>
+
+				<!-- PAINEL DE EQUIPAMENTO -->
+				<p:tab title="Equipamentos"
+					rendered="#{OrdemServicoControl.ativaEquipamentoOs}">
+					<a:field label="Equipamento" width="250px" for="consEquipamento">
+						<p:autoComplete id="consEquipamento" maxResults="10"
+							minQueryLength="1" effect="fade"
+							value="#{OrdemServicoControl.equipamento}" var="equipa"
+							itemLabel="#{equipa.nome}" itemValue="#{equipa}"
+							completeMethod="#{OrdemServicoControl.buscaEquipamentoporNome}"
+							forceSelection="true" size="42"
+							onkeyup="this.value = this.value.toLowerCase();"
+							converter="equipamentoConverter" />
+						<p:tooltip for="consEquipamento"
+							value="Informe o equipamento que foi utilizado" showEffect="fade"
+							hideEffect="fade" />
+						<p:outputLabel for="qtdequip" value="Quantidade:" />
+						<p:inputText id="qtdequip"
+							value="#{OrdemServicoControl.itemEquipamento.quantidade}" />
+						<p:tooltip for="qtdequip"
+							value="Informe a quantidade de itens utilizados"
+							showEffect="fade" hideEffect="fade" />
+						<p:watermark for="consEquipamento"
+							value="Digite o nome do equipamento" id="wate23" />
+					</a:field>
+					<a:field spaceLeft="5px">
+						<p:commandButton id="addEquipamento"
+							actionListener="#{OrdemServicoControl.adicionarItem }"
+							value="Add Equipamento" update="@form" icon="ui-icon-plusthick" />
+					</a:field>
+					<a:newLine />
+					<!-- CAMPO TOTAL DE EQUIPAMENTOS -->
+					<a:field spaceLeft="700px">
+						<h:panelGrid columns="2">
+							<h:outputText style="font-weight: bold;"
+								value="Valor Total dos Equipamentos:" />
+							<p:outputLabel value="#{OrdemServicoControl.totalEquipamentos}">
+								<f:convertNumber />
+							</p:outputLabel>
+						</h:panelGrid>
+					</a:field>
+					<a:newLine />
+					<!-- LISTA DE EQUIPAMENTOS UTILIZADOS -->
+					<p:dataTable id="equipamentos"
+						value="#{OrdemServicoControl.ordemServico.itensEquipamentoList}"
+						var="equipeAdd" editable="true" width="100%"
+						emptyMessage="Adicione ao menos um equipamento">
+						<f:facet name="header">
+							<h:outputText value="Lista de Equipamentos Utilizados"></h:outputText>
+						</f:facet>
+
+						<p:column sortBy="#{equipeAdd.equipamento.nome}">
+							<f:facet name="header">
+								<h:outputText value="Equipamento" />
+							</f:facet>
+							<h:outputText value="#{equipeAdd.equipamento.nome }" />
+						</p:column>
+
+						<p:column headerText="Quantidade"
+							sortBy="#{equipeAdd.quantidade }">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{equipeAdd.quantidade }" />
+								</f:facet>
+								<f:facet name="input">
+									<h:inputText value="#{equipeAdd.quantidade }" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="Excluir">
+							<p:commandButton icon="ui-icon-closethick"
+								title="Remover Item de Equipamento" immediate="true"
+								actionListener="#{OrdemServicoControl.excluirItemEquipamento}"
+								ajax="false">
+								<f:attribute name="itemEquipamentoExcluir" value="#{equipeAdd}" />
+							</p:commandButton>
+						</p:column>
+
+					</p:dataTable>
+				</p:tab>
+
+				<!-- PAINEL DE DESCRICAO DO PROBLEMA -->
+				<p:tab title="Informações Complementares">
+					<a:field>
+						<p:outputLabel for="desc" value="Observação:"></p:outputLabel>
+						<p:inputTextarea style="width: 100%" cols="150" maxlength="255"
+							rows="3" id="desc"
+							value="#{OrdemServicoControl.ordemServico.descricaoProblema}"
+							queryDelay="1000" minQueryLength="4" label="Descrição"
+							counter="display" counterTemplate="{0} caracteres restantes."
+							autoResize="false"
+							onkeypress="if(event.keyCode==13){return false;}" />
+						<h:outputText id="display" />
+						<p:message for="desc" />
+						<p:watermark for="desc"
+							value="Digite as informações complementares" id="watdesc" />
+					</a:field>
+				</p:tab>
+
+			</p:accordionPanel>
+			<h:panelGrid columns="2" id="totalos">
+				<h:outputText style="font-weight: bold; padding-left: 450px;"
+					value="VALOR TOTAL OS:" />
+				<h:outputText value="#{OrdemServicoControl.totalOrdemServico}">
+					<f:convertNumber />
+				</h:outputText>
+			</h:panelGrid>
+			<p:outputLabel />
+			<p:outputLabel />
+			<h:panelGrid columns="2">
+				<p:commandButton id="btnConfirmar" onclick="emitirOs.show();"
+					value="Confirmar" icon="ui-icon-disk" />
+				<p:commandButton value="Cancelar" immediate="true" title="Cancelar"
+					actionListener="#{OrdemServicoControl.inicialize}" ajax="false"
+					action="ordemServicolista.jsf" />
+			</h:panelGrid>
+		</p:panel>
+
+		<!-- DIALOGO DE CONFIRMACAO DE ALTERACAO -->
+		<p:confirmDialog
+			message="Verifique os dados informados . Alterar O.S.?"
+			header="Atenção" severity="alert" widgetVar="emitirOs">
+			<h:panelGrid columns="2">
+				<h:outputLabel style="font-weight: bold;" value="Cliente:" />
+				<p:outputLabel
+					value="#{OrdemServicoControl.ordemServico.cliente.nomecliente}" />
+				<h:outputLabel style="font-weight: bold;" value="Valor Total:" />
+				<p:outputLabel value="#{OrdemServicoControl.totalOrdemServico}" />
+			</h:panelGrid>
+			<p:commandButton value="Sim"
+				actionListener="#{OrdemServicoControl.alterar }"
+				oncomplete="emitirOs.hide();" />
+			<p:commandButton value="Não" onclick="emitirOs.hide();" type="button" />
+		</p:confirmDialog>
+		<!-- FIM DIALOGO DE CONFIRMACAO DE ALTERACAO -->
+
+		<!-- DIALOGO DE  BUSCA DE CLIENTE -->
+		<p:dialog widgetVar="dlgcliente" resizable="false"
+			header="Buscar Cliente" wappendToBody="true" width="900" modal="true"
+			id="busccliente">
+			<h:panelGrid columns="2">
+				<h:outputLabel style="font-weight: bold;" value="Cliente:" />
+				<p:inputText value="#{OrdemServicoControl.nomedoCliente}"
+					id="filtrocliente" size="50" maxlength="50"
+					onkeyup="this.value = this.value.toUpperCase();">
+					<f:ajax event="keyup" render="clientes"
+						listener="#{OrdemServicoControl.filtrarCliente}" />
+				</p:inputText>
+				<p:tooltip for="filtrocliente"
+					value="Digite o nome do Cliente para encontrar." showEffect="fade"
+					hideEffect="fade" />
+			</h:panelGrid>
+
+			<!-- tabela lista de clientes -->
+			<p:dataTable id="clientes" value="#{OrdemServicoControl.clientes}"
+				var="cli" width="100%" emptyMessage="Sem registros" paginator="true"
+				rows="5"
+				paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}">
+				<f:facet name="header">
+					<h:outputText value="Lista de Clientes"></h:outputText>
+				</f:facet>
+				<p:column headerText="Nome">
+					<h:outputText value="#{cli.nomecliente}"></h:outputText>
+				</p:column>
+				<p:column headerText="CPF/CNPJ">
+					<h:outputText value="#{cli.cpfCnpj}"></h:outputText>
+				</p:column>
+				<p:column headerText="Selecione">
+					<p:commandButton icon="ui-icon-check" immediate="true"
+						title="clique pra selecionar o cliente"
+						actionListener="#{OrdemServicoControl.selecionarCliente}"
+						update=":formCorpo:camponome" onclick="dlgcliente.close()"
+						ajax="false">
+						<f:attribute name="cliente" value="#{cli}" />
+						<p:ajax update="clientenome" event="change" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</p:dialog>
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

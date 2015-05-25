@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p:panel header="Nova Ordem de Serviço">
+			<!-- PAINEL TIPO DE OS MOBILE -->
+			<h:outputLabel value="Tipo de O.S: " style="font-weight: bolder;" />
+			<a:newLine></a:newLine>
+			<p:selectOneMenu id="cbTipoos" value="#{OrdemServicoControl.tipoOs}"
+				disabled="#{OrdemServicoControl.ativacbTipoos}" style="width:250px;">
+				<f:selectItem itemLabel="Equipamentos" itemValue="Equipamentos" />
+				<f:selectItem itemLabel="Serviços" itemValue="Serviços" />
+				<f:selectItem itemLabel="Ambos" itemValue="Ambos" />
+				<f:ajax event="change"
+					listener="#{OrdemServicoControl.ativarTipoOs}" render=":formCorpo" />
+			</p:selectOneMenu>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+		</p:panel>
+
+		<p:accordionPanel>
+			<!-- PAINEL COM O NOME DO CLIENTE -->
+			<p:tab title="Cliente">
+
+				<p:autoComplete id="clientenome" maxResults="10" minQueryLength="1"
+					effect="fade" value="#{OrdemServicoControl.ordemServico.cliente}"
+					var="cli" itemLabel="#{cli.nomecliente}" itemValue="#{cli}"
+					forceSelection="true" converter="clienteConverter"
+					onkeyup="this.value = this.value.toLowerCase();"
+					completeMethod="#{OrdemServicoControl.buscaClienteporNome }"
+					size="55" required="true"
+					requiredMessage="É necessário Adicionar um Cliente" />
+
+				<p:message for="clientenome" />
+				<p:watermark for="clientenome" value="Digite o nome do Cliente"
+					id="watermark" />
+
+			</p:tab>
+			<!-- PAINEL DE SERVICO -->
+			<p:tab title="Serviços"
+				rendered="#{OrdemServicoControl.ativaServicoOs}">
+
+				<p:autoComplete id="consServico" maxResults="10" minQueryLength="1"
+					effect="fade" value="#{OrdemServicoControl.servico}" var="ser"
+					itemLabel="#{ser.descricao}" itemValue="#{ser}"
+					completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
+					forceSelection="true"
+					onkeyup="this.value = this.value.toLowerCase();"
+					converter="servicoConverter" />
+				<a:newLine></a:newLine>
+				<p:outputLabel for="itservico" style="font-weight: bold;"
+					value="Quantidade:" />
+				<a:newLine></a:newLine>
+				<p:inputText id="itservico" type="number"
+					value="#{OrdemServicoControl.itemServico.quantidade}" />
+				<a:newLine></a:newLine>
+				<a:newLine></a:newLine>
+				<p:slider for="itservico" />
+				<p:watermark for="consServico" value="Digite o nome do serviço"
+					id="wate22" />
+
+				<a:field spaceLeft="5px">
+					<p:commandButton id="addServico"
+						actionListener="#{OrdemServicoControl.addServico }"
+						value="Add Serviço" update="@form" icon="ui-icon-plusthick" />
+				</a:field>
+				<a:newLine />
+				<!-- CAMPO TOTAL DE Serviços -->
+				<h:panelGrid width="100%" style="text-align:center">
+					<h:outputText style="font-weight: bold;"
+						value="Valor Total dos Serviços:" />
+					<p:outputLabel value="#{OrdemServicoControl.totalServicos}">
+						<f:convertNumber />
+					</p:outputLabel>
+				</h:panelGrid>
+				<a:newLine />
+
+				<!-- LISTA DE SERVIÇOS -->
+				<p:dataTable id="servicos"
+					value="#{OrdemServicoControl.ordemServico.itensServicoList }"
+					var="servAdd" editable="true" width="100%"
+					emptyMessage="Adicione ao menos um Serviço"
+					style="min-width: 140px;">
+					<f:facet name="header">
+						<h:outputText value="Lista de Serviços Realizados"></h:outputText>
+					</f:facet>
+
+					<p:column sortBy="#{servAdd.servico.descricao }"
+						style="max-width:50px; min-width: 60px;overflow: hidden;">
+						<f:facet name="header">
+							<h:outputText value="Serviço" />
+						</f:facet>
+						<h:outputText value="#{servAdd.servico.descricao }" />
+					</p:column>
+
+					<p:column headerText="Quantidade" sortBy="#{servAdd.quantidade }"
+						style="max-width:50px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{servAdd.quantidade }" />
+					</p:column>
+					<p:column headerText="Excluir"
+						style="min-width: 40px;overflow: hidden;">
+						<p:commandButton icon="ui-icon-closethick"
+							title="Remover Item de Serviço" immediate="true"
+							actionListener="#{OrdemServicoControl.excluirItemServico}"
+							ajax="false">
+							<f:attribute name="itemServicoExcluir" value="#{servAdd}" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</p:tab>
+
+			<!-- PAINEL DE EQUIPAMENTO -->
+			<p:tab title="Equipamentos"
+				rendered="#{OrdemServicoControl.ativaEquipamentoOs}">
+
+				<p:autoComplete id="consEquipamento" maxResults="10"
+					minQueryLength="1" effect="fade"
+					value="#{OrdemServicoControl.equipamento}" var="equipa"
+					itemLabel="#{equipa.nome}" itemValue="#{equipa}"
+					completeMethod="#{OrdemServicoControl.buscaEquipamentoporNome}"
+					forceSelection="true" size="42"
+					onkeyup="this.value = this.value.toLowerCase();"
+					converter="equipamentoConverter" />
+				<a:newLine></a:newLine>
+				<p:outputLabel for="qtdequip" style="font-weight: bold;"
+					value="Quantidade:" />
+				<a:newLine></a:newLine>
+				<p:inputText id="qtdequip" type="number"
+					value="#{OrdemServicoControl.itemEquipamento.quantidade}" />
+				<a:newLine></a:newLine>
+				<a:newLine></a:newLine>
+				<p:slider for="qtdequip" />
+				<p:watermark for="consEquipamento"
+					value="Digite o nome do equipamento" id="wate23" />
+
+				<a:field spaceLeft="5px">
+					<p:commandButton id="addEquipamento"
+						actionListener="#{OrdemServicoControl.adicionarItem }"
+						value="Add Equipamento" update="@form" icon="ui-icon-plusthick" />
+				</a:field>
+				<a:newLine />
+				<!-- CAMPO TOTAL DE EQUIPAMENTOS -->
+				<h:panelGrid width="100%" style="text-align:center">
+					<h:outputText style="font-weight: bold;"
+						value="Valor Total dos Equipamentos:" />
+					<p:outputLabel value="#{OrdemServicoControl.totalEquipamentos}">
+						<f:convertNumber />
+					</p:outputLabel>
+				</h:panelGrid>
+				<a:newLine />
+				<!-- LISTA DE EQUIPAMENTOS UTILIZADOS -->
+				<p:dataTable id="equipamentos"
+					value="#{OrdemServicoControl.ordemServico.itensEquipamentoList}"
+					var="equipeAdd" editable="true" width="100%"
+					emptyMessage="Adicione ao menos um equipamento"
+					style="min-width: 140px;">
+					<f:facet name="header">
+						<h:outputText value="Lista de Equipamentos Utilizados"></h:outputText>
+					</f:facet>
+
+					<p:column sortBy="#{equipeAdd.equipamento.nome}"
+						style="max-width:50px; min-width: 60px;overflow: hidden;">
+						<f:facet name="header">
+							<h:outputText value="Equipamento" />
+						</f:facet>
+						<h:outputText value="#{equipeAdd.equipamento.nome }" />
+					</p:column>
+
+					<p:column headerText="Quantidade" sortBy="#{equipeAdd.quantidade }"
+						style="max-width:50px ;min-width: 20px;overflow: hidden;">
+						<h:outputText value="#{equipeAdd.quantidade }" />
+					</p:column>
+					<p:column headerText="Excluir"
+						style="min-width: 40px;overflow: hidden;">
+						<p:commandButton icon="ui-icon-closethick"
+							title="Remover Item de Equipamento" immediate="true"
+							actionListener="#{OrdemServicoControl.excluirItemEquipamento}"
+							ajax="false">
+							<f:attribute name="itemEquipamentoExcluir" value="#{equipeAdd}" />
+						</p:commandButton>
+					</p:column>
+
+				</p:dataTable>
+			</p:tab>
+
+			<!-- PAINEL DE DESCRICAO DO PROBLEMA -->
+			<p:tab title="Informações Complementares">
+
+				<p:inputTextarea id="desc"
+					value="#{OrdemServicoControl.ordemServico.descricaoProblema}"
+					queryDelay="1000" minQueryLength="4" label="Descrição"
+					style="width: 100%" maxlength="255" rows="3" counter="display"
+					counterTemplate="{0} caracteres restantes." autoResize="false"
+					onkeypress="if(event.keyCode==13){return false;}" />
+				<h:outputText id="display" />
+				<p:message for="desc" />
+				<p:watermark for="desc" value="Digite as informações complementares"
+					id="watdesc" />
+			</p:tab>
+		</p:accordionPanel>
+		<h:panelGrid width="100%" style="text-align:center">
+			<h:outputText style="font-weight: bold;" value="VALOR TOTAL OS:" />
+			<h:outputText value="#{OrdemServicoControl.totalOrdemServico}">
+				<f:convertNumber />
+			</h:outputText>
+		</h:panelGrid>
+		<a:newLine></a:newLine>
+		<!-- BOTOES DE CONFIRMACAO E CANCELAMENTO DE INCLUSAO DE OS -->
+		<h:panelGrid>
+			<p:commandButton id="btnConfirmar" onclick="emitirOs.show();"
+				value="Confirmar" icon="ui-icon-disk" style="width: 100%;" />
+			<p:commandButton value="Cancelar" immediate="true" title="Cancelar"
+				actionListener="#{OrdemServicoControl.inicialize}"
+				style="width: 100%;"
+				action="ordemdeservicomobilelista?faces-redirect=true" ajax="false" />
+		</h:panelGrid>
+		<!-- DIALOGO DE CONFIRMACAO DE INCLUSAO -->
+		<p:confirmDialog message="Verifique os dados informados. Emitir O.S.?"
+			header="Atenção" severity="alert" widgetVar="emitirOs">
+			<h:panelGrid columns="2">
+				<h:outputLabel style="font-weight: bold;" value="Cliente:" />
+				<p:outputLabel
+					value="#{OrdemServicoControl.ordemServico.cliente.nomecliente}" />
+				<h:outputLabel style="font-weight: bold;" value="Valor Total:" />
+				<p:outputLabel value="#{OrdemServicoControl.totalOrdemServico}" />
+			</h:panelGrid>
+			<p:commandButton value="Sim"
+				actionListener="#{OrdemServicoControl.confirmar }"
+				oncomplete="emitirOs.hide();" />
+			<p:commandButton value="Não" onclick="emitirOs.hide();" type="button" />
+		</p:confirmDialog>
+		<!-- FIM DIALOGO DE CONFIRMACAO DE INCLUSAO -->
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

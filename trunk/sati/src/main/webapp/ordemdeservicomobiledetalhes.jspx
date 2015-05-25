@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="Detalhes da Ordem de Servico">
+			<p align="right">
+				<p:commandButton value="Voltar"
+					actionListener="#{OrdemServicoControl.inicialize}"
+					action="ordemdeservicomobilelista?faces-redirect=true" ajax="false" />
+			</p>
+			<p:outputLabel value="N° da O.S: " style="font-weight: bold;" />
+			<p:outputLabel value="#{OrdemServicoControl.ordemServico.id}" />
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Cliente: " style="font-weight: bold;" />
+			<p:outputLabel
+				value="#{OrdemServicoControl.ordemServico.cliente.nomecliente}" />
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Data de Abertura: " style="font-weight: bold;" />
+			<h:outputLabel
+				value="#{OrdemServicoControl.ordemServico.dataEmissao }">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputLabel>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Data de Fechamento:" style="font-weight: bold;" />
+			<h:outputLabel
+				value="#{OrdemServicoControl.ordemServico.dataFechamento }">
+				<f:convertDateTime pattern="dd/MM/yyyy" />
+			</h:outputLabel>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Status: " style="font-weight: bold;" />
+			<p:outputLabel value="#{OrdemServicoControl.ordemServico.estado}" />
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Valor total dos Serviços: "
+				style="font-weight: bold;" />
+			<p:outputLabel value="#{OrdemServicoControl.totalServicos}">
+				<f:convertNumber></f:convertNumber>
+			</p:outputLabel>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Valor total dos Equipamentos: "
+				style="font-weight: bold;" />
+			<p:outputLabel value="#{OrdemServicoControl.totalEquipamentos}">
+				<f:convertNumber></f:convertNumber>
+			</p:outputLabel>
+			<a:newLine></a:newLine>
+			<p:outputLabel value="Valor total da OS: " style="font-weight: bold;" />
+			<p:outputLabel value="#{OrdemServicoControl.totalOrdemServico}">
+				<f:convertNumber></f:convertNumber>
+			</p:outputLabel>
+			<a:newLine></a:newLine>
+			<h5>Ações</h5>
+			<p:separator></p:separator>
+			<h:panelGrid>
+				<p:commandButton id="btnEditar" value="Editar O.S." ajax="false"
+					rendered="#{OrdemServicoControl.ordemServico.editavel}"
+					icon="ui-icon-pencil"
+					actionListener="#{OrdemServicoControl.preparaAlterar}">
+					<f:attribute name="ordemservico"
+						value="#{OrdemServicoControl.ordemServico}" />
+				</p:commandButton>
+
+				<h:panelGroup
+					rendered="#{!OrdemServicoControl.ordemServico.cancelada}">
+					<p:commandButton id="btnFechar" value="Fechar O.S"
+						onclick="fecharOS.show();"
+						rendered="#{!OrdemServicoControl.ordemServico.fechada}"
+						icon="ui-icon-disk">
+						<f:setPropertyActionListener
+							value="#{OrdemServicoControl.ordemServico}"
+							target="#{OrdemServicoControl.osFechar}" id="osclose" />
+					</p:commandButton>
+				</h:panelGroup>
+
+				<p:commandButton id="btnImprimir"
+					actionListener="#{OrdemServicoControl.imprimir }" value="Imprimir"
+					ajax="false"
+					rendered="#{OrdemServicoControl.ordemServico.imprimivel }"
+					icon="ui-icon-print" action="ordemServicoprint.jsf">
+					<f:attribute name="osimprimir"
+						value="#{OrdemServicoControl.ordemServico}" />
+				</p:commandButton>
+
+				<h:panelGroup
+					rendered="#{!OrdemServicoControl.ordemServico.fechada}">
+					<p:commandButton id="btnCancelar" onclick="cancelarOS.show();"
+						value="Cancelar O.S."
+						rendered="#{!OrdemServicoControl.ordemServico.cancelada}"
+						icon="ui-icon-cancel">
+						<f:setPropertyActionListener
+							value="#{OrdemServicoControl.ordemServico}"
+							target="#{OrdemServicoControl.osCancelar }" id="os" />
+					</p:commandButton>
+				</h:panelGroup>
+			</h:panelGrid>
+			<a:newLine></a:newLine>
+		</p:panel>
+
+		<!-- DIALOGO DE CANCELAMENTO DE OS -->
+		<p:confirmDialog message="Confirmar cancelamento?" header="Atenção"
+			severity="alert" widgetVar="cancelarOS">
+			<h:outputLabel value="Após o cancelamento não poderá reabrir a O.S"
+				style="font-weight: bolder;" />
+			<p:commandButton value="Sim"
+				actionListener="#{OrdemServicoControl.cancelar }" update="@all"
+				oncomplete="cancelarOS.hide()"
+				action="ordemdeservicomobilelista?faces-redirect=true" />
+			<p:commandButton value="Não" onclick="cancelarOS.hide();"
+				type="button" />
+		</p:confirmDialog>
+
+		<!-- DIALOG DE FECHAMENTO DE OS -->
+		<p:confirmDialog message="Confirmar fechamento?" header="Atenção"
+			severity="alert" widgetVar="fecharOS">
+			<h:outputLabel value="Após o fechamento não poderá alterar a O.S"
+				style="font-weight: bolder;" />
+			<p:commandButton value="Sim" action="ordemdeservicomobilelista?faces-redirect=true"
+				actionListener="#{OrdemServicoControl.fechar }" update="@all"
+				oncomplete="fecharOS.hide()" />
+			<p:commandButton value="Não" onclick="fecharOS.hide();" type="button" />
+		</p:confirmDialog>
+
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

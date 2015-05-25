@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="Detalhes do Cliente">
+			<p align="right">
+				<p:commandButton value="Voltar"
+					actionListener="#{ClienteControl.inicialize}"
+					action="clientemobile?faces-redirect=true" ajax="false" />
+			</p>
+			<h5>Dados Pessoais</h5>
+			<p:separator />
+			<h:outputText value="Nome:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.nomecliente}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="CPF/CNPJ:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.cpfCnpj}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Telefone:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.telefone}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Celular:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.celular}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Email:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.email}" />
+			<a:newLine></a:newLine>
+			<h5>Endereço</h5>
+			<p:separator />
+			<h:outputText value="Logradouro:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.logradouro}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Complemento:" style="font-weight: bolder;"/>
+			<h:outputText value="#{ClienteControl.cliente.endereco.complemento}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Numero:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.numero}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Setor:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.setor}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Cidade:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.cidade}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Estado:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.uf}" />
+			<a:newLine></a:newLine>
+			<h:outputText value="Cep:" style="font-weight: bolder;"/>
+			<a:newLine></a:newLine>
+			<h:outputText value="#{ClienteControl.cliente.endereco.cep}" />
+
+		</p:panel>
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

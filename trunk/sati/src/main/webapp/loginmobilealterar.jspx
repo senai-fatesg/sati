@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="Primeiro Acesso ao Sistema">
+			<p:outputLabel value="#Altere sua senha Padrao de usuário" />
+			<a:newLine></a:newLine>
+			<p:outputLabel value="#Coloque na senha letras e números" />
+			<a:newLine></a:newLine>
+			<a:newLine></a:newLine>
+			<p:messages id="messages" showDetail="true" autoUpdate="true" />
+				<p:outputLabel value="Nova Senha:" for="pass1" style="font-weight: bolder;" />
+				<a:newLine></a:newLine>
+				<p:password id="pass1" match="pass2"
+					value="#{TecnicoControl.usuario.senha}" required="true"
+					maxlength="12"
+					validatorMessage="Os campos 'Senha' e 'Confirmação' não são iguais"
+					requiredMessage="Campo senha é Obrigatório!" />
+				<a:newLine></a:newLine>
+				<p:outputLabel for="pass2" value="Confirmação: "
+					style="font-weight: bolder;" />
+				<a:newLine></a:newLine>
+				<p:password id="pass2" value="#{TecnicoControl.usuario.senha}"
+					match="pass2" required="true" maxlength="12"
+					requiredMessage="Campo confirmaçao da senha é Obrigatório!" />
+				<a:newLine></a:newLine><a:newLine></a:newLine>
+				<p:commandButton value="Confirmar"
+					actionListener="#{TecnicoControl.atualizarSenha}" />
+
+				<p:watermark value="Informe sua nova senha" id="wps1" for="pass1"/>
+				<p:watermark value="Confirme sua nova senha" id="wps2" for="pass2"/>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->

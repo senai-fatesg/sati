@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+		<p:panel header="INFO">
+			<h:panelGrid width="100%"
+				style="text-align: center;font-weight: bolder;">
+				<p:outputLabel value="ATENÇÃO" />
+			</h:panelGrid>
+			<a:newLine></a:newLine>
+			<p:outputLabel
+				value="#Ao inicar uma atividade se certifique ao uso dos EPI´s" />
+			<a:newLine></a:newLine>
+			<p:outputLabel value="#Sua segurança está em primeiro lugar" />
+		</p:panel>
+		<h3 align="center">
+			<h:graphicImage url="imagens/epi-itens.jpg" alt="Sati System"
+				style="padding-top: 3px" width="230" border="0" align="center" />
+
+		</h3>
+		<p align="center">
+		<p:commandButton value="OK" actionListener="#{OrdemServicoControl.redirecionaOs}"/>
+		</p>
+
+	</ui:define>
+</ui:composition>
+
+<!-- By Silas A. -->

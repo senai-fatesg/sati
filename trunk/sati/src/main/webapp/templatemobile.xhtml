@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<title>Sati Mobile</title>
+		<meta charset="utf-8" />
+		<meta name="author" content="www.frebsite.nl" />
+		<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=yes" />
+		<link type="text/css" rel="stylesheet" href="css/cssmobile/demo.css" />
+		<link type="text/css" rel="stylesheet" href="css/cssmobile/jquery.mmenu.all.css" />
+
+		
+		<script type="text/javascript" src="js/jquery.mmenu.min.all.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$('nav#menu').mmenu();
+			});
+		</script>
+
+
+</h:head>
+<h:body>
+
+	<ui:insert name="menu">
+		<ui:include src="menumobile.jspx" />
+	</ui:insert>
+
+	<h:form id="formCorpo">
+		<p:growl autoUpdate="true"></p:growl>
+		<ui:insert name="corpo" />
+	</h:form>
+
+</h:body>
+</html>
+<!-- By Silas A. -->

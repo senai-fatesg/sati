@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="templatemobile.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
+	<ui:define name="corpo">
+
+		<p align="center">
+			<h:graphicImage url="imagens/satilogomarca.jpg" alt="Sati System"
+				style="padding-top: 60px" width="220" border="0" align="center" />
+
+		</p>
+		<h3 align="center">Versão Mobile do Sati System</h3>
+
+
+		<h4 align="center">Gerenciador de Ordem de Servico</h4>
+		
+		<p align="center" style="font-weight: bold;">
+			Cadastro Ordem de Serviço <br /> Consulta de
+			O.S<br/>Consulta de Clientes
+		</p>
+
+
+
+	</ui:define>
+</ui:composition>
+<!-- By Silas A. -->
