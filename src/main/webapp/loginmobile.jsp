@@ -29,7 +29,7 @@
 				</div>
 				<h2 class="form-signin-heading">Acesso ao Sistema</h2>
 				<label for="inputEmail" class="sr-only">Login</label> <input
-					type="number"  id="inputEmail" class="form-control" 
+					  id="inputEmail" class="form-control" 
 					placeholder="Informe seu Cpf aqui! Somente números" required autofocus
 					name="j_username" onkeypress="if(this.value.length > 10) return false;" >
 				<label for="inputPassword" class="sr-only">Senha</label> <input
@@ -47,4 +47,3 @@
 	</form>
 </body>
 </html>
-<!-- By Silas A. -->

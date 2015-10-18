@@ -22,6 +22,7 @@ import br.com.ambientinformatica.sati.persistencia.MarcaDao;
 public class MarcaControl {
 
 	private List<Marca> marcas = new ArrayList<Marca>();
+	
 	private Marca marca = new Marca();
 
 	@Autowired
@@ -43,8 +44,7 @@ public class MarcaControl {
 				marcaDao.alterar(marca);
 				listar(evt);
 				inicialize(null);
-				FacesContext.getCurrentInstance().getExternalContext()
-						.redirect("marca.jsf");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("marca.jsf");
 			}
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
