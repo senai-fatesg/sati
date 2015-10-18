@@ -36,7 +36,7 @@ public class MarcaControl {
 		try {
 			if (evt == null) {
 				FacesContext.getCurrentInstance().addMessage(
-						"Sati Tecnologia em Informática",
+						"Ambient Informatica",
 						new FacesMessage(FacesMessage.SEVERITY_INFO,
 								"É preciso digitar o nome!", null));
 			} else {

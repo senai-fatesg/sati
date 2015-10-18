@@ -1,15 +1,14 @@
 package br.com.ambientinformatica.sati.entidade;
 
+import static javax.persistence.GenerationType.SEQUENCE;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
-
-import static javax.persistence.GenerationType.SEQUENCE;
-
+import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity

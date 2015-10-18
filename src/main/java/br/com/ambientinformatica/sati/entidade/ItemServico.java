@@ -1,7 +1,9 @@
 package br.com.ambientinformatica.sati.entidade;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+
 import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
