@@ -38,7 +38,7 @@ public class InicializadorSistema {
 				usu.addPapel(EnumPapelUsuario.USUARIO);
 				usuarioDao.incluir(usu);
 				UtilLog.getLog().info(
-						"*** USU�?RIO admin CRIADO com a senha 123456 ***");
+						"*** USUÁRIO admin CRIADO com a senha 123456 ***");
 			}
 		} catch (Exception e) {
 			UtilLog.getLog().error(e.getMessage(), e);

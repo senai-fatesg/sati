@@ -27,7 +27,6 @@ public class Endereco implements Serializable{
 	private String cep;
 	private String numero;
 	
-	//Const
 	public Endereco() {
 
 	}
@@ -44,7 +43,6 @@ public class Endereco implements Serializable{
 		this.numero = numero;
 	}
 
-	// GTT E STT
 	public Integer getId() {
 		return id;
 	}

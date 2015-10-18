@@ -141,7 +141,7 @@
 		<location>/inicio.jsf</location>
 	</error-page>
 
-	<security-constraint>
+	<!-- <security-constraint>
 		<web-resource-collection>
 			<web-resource-name>secured</web-resource-name>
 			<url-pattern>/*</url-pattern>
@@ -149,7 +149,7 @@
 		<user-data-constraint>
 			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
 		</user-data-constraint>
-	</security-constraint>
+	</security-constraint> -->
 
 	<context-param>
 		<param-name>javax.faces.STATE_SAVING_METHOD</param-name>

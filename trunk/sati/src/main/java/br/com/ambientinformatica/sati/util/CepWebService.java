@@ -62,8 +62,6 @@ public class CepWebService {
 	}
 
 	
-	//GTT E STT
-	
 	public String getEstado() {
 		return estado;
 	}
