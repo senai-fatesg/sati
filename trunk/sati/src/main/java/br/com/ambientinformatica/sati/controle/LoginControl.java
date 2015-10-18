@@ -12,12 +12,12 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
+import br.com.ambientinformatica.sati.entidade.Tecnico;
+import br.com.ambientinformatica.sati.entidade.Usuario;
 import br.com.ambientinformatica.sati.persistencia.TecnicoDao;
 import br.com.ambientinformatica.sati.persistencia.UsuarioDao;
 import br.com.ambientinformatica.sati.util.InicializadorSistema;
 import br.com.ambientinformatica.sati.util.SatiException;
-import br.com.ambientinformatica.sati.entidade.Tecnico;
-import br.com.ambientinformatica.sati.entidade.Usuario;
 
 @Controller("LoginControl")
 @Scope("conversation")
