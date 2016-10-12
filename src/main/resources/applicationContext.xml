@@ -15,8 +15,10 @@
 	<context:property-placeholder location="classpath:application.properties" />
 	<context:component-scan base-package="br.com.ambientinformatica.sati" />
 	<tx:annotation-driven transaction-manager="transactionManager" />
-
 	
+	<aop:aspectj-autoproxy />
+	<bean id="lazyInitialization" class="br.com.ambientinformatica.jpa.annotation.LazyInitializationReconnectAscpect" />
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="${persistenceUnit}" />
@@ -29,13 +31,6 @@
 			</bean>
 		</property>
 	</bean>
-
-
-	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
-		destroy-method="close"> <property name="driverClassName" value="${database.driver}"/> 
-		<property name="url" value="${database.url}"/> <property name="username" 
-		value="${database.username}"/> <property name="password" value="${database.password}"/> 
-		</bean> -->
 
 	<bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
 		<property name="jndiName">
