@@ -130,8 +130,4 @@ public class Cliente implements Serializable {
 		this.dataCadastramento = dataCadastramento;
 	}
 
-
-
-
 }
-//by Silas A.
