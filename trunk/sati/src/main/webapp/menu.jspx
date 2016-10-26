@@ -34,6 +34,7 @@
 								<ul class="submenu">
 									<li><a href="equipamento.jsf">Cadastro de Equipamentos</a></li>
 									<li><a href="marca.jsf">Cadastro de Marcas</a></li>
+									<li><a href="marca.jsf">Cadastro de Modelos</a></li>
 								</ul></li>
 							<li><a href="#">Serviços</a>
 								<ul class="submenu">
