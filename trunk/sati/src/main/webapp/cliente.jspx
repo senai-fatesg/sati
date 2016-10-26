@@ -16,7 +16,7 @@
 				<p:commandButton value="Novo Cliente" id="cadastrar"
 					image="ui-icon-document" immediate="true"
 					actionListener="#{ClienteControl.inicialize}"
-					onclick="dlgcliente.show(),this.form.reset();" />
+					onclick="PF('dlgcliente').show(),this.form.reset();" />
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
