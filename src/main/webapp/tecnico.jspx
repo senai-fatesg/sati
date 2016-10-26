@@ -15,7 +15,7 @@
 				<p:commandButton value="Novo Técnico" id="cadtecnico"
 					immediate="true" image="ui-icon-document"
 					actionListener="#{TecnicoControl.inicialize}"
-					onclick="dlgtecnico.show(),this.form.reset();" />
+					onclick="PF('dlgtecnico').show(),this.form.reset();" />
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
