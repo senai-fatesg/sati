@@ -6,13 +6,14 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
+
 	<ui:define name="corpo">
 		<p:panel header="MARCAS" id="panel">
 			<h:panelGrid columns="2">
 				<p:commandButton value="Nova Marca" id="cadmarca" immediate="true"
 					image="ui-icon-document"
 					actionListener="#{MarcaControl.inicialize}"
-					onclick="dlgmarca.show(),document.formCorpo.reset();"/>
+					onclick="PF('dlgmarca').show(),document.formCorpo.reset();"/>
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
