@@ -1,12 +1,92 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<?xml version="1.0" encoding="utf-8" ?>
+<ui:composition template="template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
+	xmlns:p="http://primefaces.org/ui">
 
-</body>
-</html>
+	<ui:define name="corpo">
+		<p:panel header="MARCAS" id="panel">
+			<h:panelGrid columns="2">
+				<p:commandButton value="Novo Modelo" id="cadmodelo" immediate="true"
+					image="ui-icon-document"
+					actionListener="#{MarcaControl.inicialize}"
+					onclick="PF('dlgmarca').show(),document.formCorpo.reset();"/>
+
+				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
+					action="inicio.jsf" />
+			</h:panelGrid>
+		</p:panel>
+
+		<p:dataTable id="dtMarca" var="marca" value="#{MarcaControl.marcas}"
+			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
+			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+			rowsPerPageTemplate="5,10,15">
+			<f:facet name="header">
+						Lista de Modelos
+			</f:facet>
+			<p:column headerText="Nome" sortBy="#{marca.nome}"
+				filterBy="#{marca.nome}" footerText="resultado"
+				filterMatchMode="contains">
+				<h:outputText value="#{marca.nome}" />
+			</p:column>
+
+			<p:column headerText="Modelo" sortBy="#{marca.modelo}"
+				filterBy="#{marca.modelo}" footerText="resultado"
+				filterMatchMode="contains">
+				<h:outputText value="#{marca.modelo}" />
+			</p:column>
+
+			<p:column headerText="Editar">
+				<p:commandButton icon="ui-icon-pencil" title="Alterar Marca"
+				immediate="true" actionListener="#{MarcaControl.preparaAlterar}" ajax="false">
+					<f:attribute name="marca" value="#{marca}" />
+				</p:commandButton>
+			</p:column>
+			<p:column headerText="Excluir">
+				<p:commandButton icon="ui-icon-closethick" title="Remover Marca"
+					immediate="true" actionListener="#{MarcaControl.excluir}"
+					ajax="false">
+					<f:attribute name="marca" value="#{marca}" />
+				</p:commandButton>
+			</p:column>
+			<f:facet name="footer">
+				<p:outputLabel value="# Registro(s)" />
+			</f:facet>
+		</p:dataTable>
+
+		<!-- Tela de Dialog de inclusao de Marca -->
+		<p:dialog widgetVar="dlgmarca" resizable="false"
+			header="Incluir Marca"  wappendToBody="true"
+			width="500" modal="true" id="dialog2" hideEffect="fade">
+			<!--DadosPessoais-->
+			<p:tabView id="tbMarca">
+				<!-- 			DESCRIÇÃO -->
+				<p:tab title="Descrição">
+					<h:panelGrid columns="2">
+						<p:outputLabel for="nome" value="Nome: " />
+						<p:inputText id="nome" value="#{MarcaControl.marca.nome}"
+							size="70" required="true"
+							requiredMessage="Campo nome Obrigatório!" />
+
+						<p:outputLabel for="modelo" value="Modelo: " />
+						<p:inputText id="modelo" value="#{MarcaControl.marca.modelo}"
+							size="70" required="true"
+							requiredMessage="Campo modelo Obrigatório!" />
+					</h:panelGrid>
+				</p:tab>
+			</p:tabView>
+			<h:panelGrid columns="2">
+				<p:commandButton value="Confirmar"
+					actionListener="#{MarcaControl.confirmar}" icon="ui-icon-check"
+					title="Salvar Marca" />
+
+				<p:commandButton value="Cancelar" immediate="true" action="marca.jsf?faces-redirect=true"
+					onclick="dlgmarca.close(),document.formCorpo.reset();" title="Cancelar" />
+			</h:panelGrid>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
+<!-- By Thayro Rodrigues -->
