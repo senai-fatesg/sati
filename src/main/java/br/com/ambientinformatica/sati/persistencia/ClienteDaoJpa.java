@@ -4,7 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 
+import org.eclipse.persistence.sessions.factories.SessionFactory;
+import org.hibernate.Criteria;
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.exception.PersistenciaException;
@@ -18,6 +27,8 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements
 		ClienteDao {
 
 	private static final long serialVersionUID = 1L;
+
+	private Session session;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -33,16 +44,29 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements
 			throw new PersistenciaException(e.getMessage());
 		}
 	}
-
+	
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Cliente> listarCliente() throws SatiException,
 			PersistenciaException {
 		List<Cliente> clientes = new ArrayList<Cliente>();
 		try {
-			String sql = "select c from Cliente c order by c.nomecliente asc";
-			Query query = em.createQuery(sql);
-			clientes = query.getResultList();
+//			String sql = "select c from Cliente c order by c.nomecliente asc";
+//			Query query = em.createQuery(sql);
+//			clientes = query.getResultList();
+			
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			CriteriaQuery<Cliente> query = builder.createQuery(Cliente.class);
+			 
+			TypedQuery<Cliente> typedQuery = em.createQuery(
+			    query.select(
+			       query.from(Cliente.class)
+			    )
+			);
+			
+			clientes = typedQuery.getResultList();
+			
 
 		} catch (Exception e) {
 			UtilLog.getLog().error(e.getMessage(), e);
