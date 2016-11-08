@@ -34,7 +34,6 @@
 				<h:outputText value="Lista de Clientes"></h:outputText>
 			</f:facet>
 
-
 			<p:column style="width:16px" headerText="Detalhes">
 				<p:rowToggler />
 			</p:column>
@@ -88,19 +87,14 @@
 
 					<h:outputText value="Nome:" />
 					<h:outputText value="#{cli.nomecliente}" />
-
 					<h:outputText value="CPF/CNPJ:" />
 					<h:outputText value="#{cli.cpfCnpj}" />
-
 					<h:outputText value="Telefone:" />
 					<h:outputText value="#{cli.telefone}" />
-
 					<h:outputText value="Celular:" />
 					<h:outputText value="#{cli.celular}" />
-
 					<h:outputText value="Email:" />
 					<h:outputText value="#{cli.email}" />
-
 					<h:outputText value="Endereço:" />
 					<h:outputText value="" />
 					<h:outputText value="Logradouro:" />
@@ -197,7 +191,7 @@
 				<p:tab id="address" title="Endereço">
 					<h:panelGrid id="pnCEP" columns="3">
 						<h:outputText value="CEP: " />
-						<p:inputMask mask="99999-999" value="#{ClienteControl.cep}" />
+						<p:inputMask mask="99999-999" value="#{ClienteControl.cliente.endereco.cep}" />
 
 						<p:commandButton value="Pesquisar" icon="ui-icon-search"
 							actionListener="#{ClienteControl.encontraCEP}"
