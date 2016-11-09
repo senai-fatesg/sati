@@ -9,7 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 
-import org.eclipse.persistence.sessions.factories.SessionFactory;
+//import org.eclipse.persistence.sessions.factories.SessionFactory;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
@@ -23,8 +23,7 @@ import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
 
 @Repository("clienteDao")
-public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements
-		ClienteDao {
+public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDao {
 
 	private static final long serialVersionUID = 1L;
 
@@ -99,6 +98,29 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements
 		return exist;
 
 	}
+
+
+	@Override
+	public Cliente selecionarPorId(Long id) throws SatiException {
+		// TODO Auto-generated method stub
+		
+		Cliente cliente = new Cliente();
+		
+		try {
+			String sql = "select cli form cliente cli where cli.Id = :id";
+			Query query = em.createQuery(sql);
+			query.setParameter("id", id);
+			cliente = (Cliente)query.getSingleResult();
+		} catch (Exception e) {
+			UtilLog.getLog().error(e.getMessage(), e);
+			throw new SatiException(e.getMessage(), e);
+		}
+		
+		return cliente;
+		
+	}
+	
+	
 
 }
 //by Silas A.

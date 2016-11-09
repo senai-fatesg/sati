@@ -24,14 +24,24 @@
 				<!-- PAINEL COM O NOME DO CLIENTE -->
 				<p:tab title="Cliente">
 					<p:outputLabel for="consCliente" value="Cliente:" />
-					<p:autoComplete id="consCliente" maxResults="10" minQueryLength="3"
-						effect="fade" value="#{OrdemServicoControl.cliente}" var="c"
-						itemLabel="#{c.nomecliente}" itemValue="#{c}"
-						completeMethod="#{OrdemServicoControl.buscaClienteporNome}"
-						forceSelection="true" size="42" required="true"
-						requiredMessage="O Campo Cliente é Obrigatório!"
-						onkeyup="this.value = this.value.toLowerCase();"
-						converter="clienteConverter" />
+					<p:autoComplete id="consCliente" 
+									size="42"
+									dropdown="false"
+									converter="objectConverter" 
+									value="#{OrdemServicoControl.cliente}" 
+									var="c"
+									itemValue="#{c}"
+									itemLabel="#{c.nomecliente}"
+									completeMethod="#{OrdemServicoControl.buscaClienteporNome}"
+									placeholder="Nome do cliente"
+									minQueryLength="3"									
+									maxResults="10" 
+									effect="fade" 																										
+									forceSelection="true"  
+									required="true"
+									requiredMessage="O Campo Cliente é Obrigatório!"
+									onkeyup="this.value = this.value.toLowerCase();"/>
+									
 					<p:message for="consCliente" />
 					<p:tooltip for="consCliente"
 						value="Informe o cliente que solicita o Serviço."
@@ -58,14 +68,21 @@
 				<!-- PAINEL DE SERVICO -->
 				<p:tab title="Serviço">
 					<a:field label="Serviço" width="350px" for="consServico">
-						<p:autoComplete id="consServico" maxResults="10"
-							minQueryLength="3" effect="fade"
-							value="#{OrdemServicoControl.servico}" var="ser"
-							itemLabel="#{ser.descricao}" itemValue="#{ser}"
-							completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
-							forceSelection="true" size="42"
-							onkeyup="this.value = this.value.toLowerCase();"
-							converter="servicoConverter" />
+						<p:autoComplete id="consServico"
+										size="42" 
+										dropdown="false"
+										converter="objectConverter"										
+										value="#{OrdemServicoControl.servico}" 
+										var="ser"
+										itemValue="#{ser}"
+										itemLabel="#{ser.descricao}"			
+										completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
+										placeholder="Descrição do serviço"										
+										minQueryLength="3" 
+										maxResults="10" 
+										effect="fade"
+										forceSelection="true" 
+										onkeyup="this.value = this.value.toLowerCase();"/>
 						<p:tooltip for="consServico"
 							value="Informe o Serviço que foi executado." showEffect="fade"
 							hideEffect="fade" />
@@ -137,7 +154,7 @@
 							completeMethod="#{OrdemServicoControl.buscaEquipamentoporNome}"
 							forceSelection="true" size="42"
 							onkeyup="this.value = this.value.toLowerCase();"
-							converter="equipamentoConverter" />
+							converter="objectConverter" />							
 						<p:tooltip for="consEquipamento"
 							value="Informe o equipamento que foi utilizado" showEffect="fade"
 							hideEffect="fade" />
@@ -214,7 +231,7 @@
 			<p:outputLabel />
 			<p:outputLabel />
 			<h:panelGrid columns="2">
-				<p:commandButton id="btnConfirmar" onclick="emitirOs.show();"
+				<p:commandButton id="btnConfirmar" onclick="PF('emitirOs').show();"
 					value="Emitir OS" icon="ui-icon-disk" />
 				<p:commandButton value="Cancelar" immediate="true" title="Cancelar"
 					actionListener="#{OrdemServicoControl.inicialize}" ajax="false"
