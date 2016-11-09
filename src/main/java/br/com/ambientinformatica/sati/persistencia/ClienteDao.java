@@ -15,4 +15,6 @@ public interface ClienteDao extends Persistencia<Cliente>{
 	
 	public boolean verificaCpfCnpjExistente(String cpfCnpj, String cpfCnpjPertence) throws SatiException;
 
+	public Cliente selecionarPorId(Long id) throws SatiException;
+	
 }

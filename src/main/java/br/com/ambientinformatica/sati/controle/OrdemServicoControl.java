@@ -328,6 +328,7 @@ public class OrdemServicoControl {
 
 	// /VERIFICA SE HA CAMPOS VAZIOS
 	public boolean verificaCamposOs() {
+		ordemServico.setCliente(cliente);
 		boolean exist = false;
 		if (ordemServico.getItensEquipamentoList().size() == 0
 				&& ativaEquipamentoOs == true) {
