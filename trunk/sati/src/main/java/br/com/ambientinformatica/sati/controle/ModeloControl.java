@@ -53,7 +53,7 @@ public class ModeloControl {
 	
 	public void listar(ActionEvent evt) {
 		try {
-			modeloList = modeloDao.listarModelo();
+			modeloList = modeloDao.listar();
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
 		}
@@ -91,18 +91,12 @@ public class ModeloControl {
 		modelo = new Modelo();
 	}
 
-	// GTT E STTS
 	public Modelo getModelo() {
 		return modelo;
 	}
 
-	public void setMarca(Modelo modelo) {
+	public void setModelo(Modelo modelo) {
 		this.modelo = modelo;
-	}
-
-	public List<Modelo> getModelo() {
-		return modelos;
-
 	}
 	
 }
