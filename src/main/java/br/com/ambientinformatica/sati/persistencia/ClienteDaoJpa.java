@@ -7,13 +7,11 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Path;
+import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
-//import org.eclipse.persistence.sessions.factories.SessionFactory;
-import org.hibernate.Criteria;
 import org.hibernate.Session;
-import org.hibernate.criterion.Restrictions;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.exception.PersistenciaException;
@@ -21,6 +19,7 @@ import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
 import br.com.ambientinformatica.sati.entidade.Cliente;
 import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
+//import org.eclipse.persistence.sessions.factories.SessionFactory;
 
 @Repository("clienteDao")
 public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDao {
@@ -80,7 +79,7 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 		Cliente cliente = new Cliente();
 		boolean exist = false;
 		try {
-			String sql = "select cli from Cliente cli where cli.cpfCnpj = :cpfCnpj";
+			/*String sql = "select cli from Cliente cli where cli.cpfCnpj = :cpfCnpj";
 			Query query = em.createQuery(sql);
 			query.setParameter("cpfCnpj", cpfCnpj);
 			cliente = (Cliente) query.getSingleResult();
@@ -89,13 +88,33 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 				exist = true;
 			} else {
 				exist = false;
-			}
+			}*/
+			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+			CriteriaQuery<Cliente> query = criteriaBuilder
+					.createQuery(Cliente.class);
+			Root<Cliente> root = query.from(Cliente.class);
 
+			Path<String> cnpj = root.<String> get("cpfCnpj");
+						
+			List<Predicate> predicates = new ArrayList<Predicate>();		
+
+			query.where((Predicate[]) predicates.toArray(new Predicate[0]));
+
+			TypedQuery<Cliente> typedQuery = em.createQuery(query);
+			typedQuery.setHint("org.hibernate.cacheable", "true");
+
+			if ( typedQuery.getResultList().size() != 0){
+				exist = true;
+			}else
+				exist = false;
+			
 		} catch (Exception e) {
 			UtilLog.getLog().error(e.getMessage(), e);
 			throw new SatiException(e.getMessage(), e);
 		}
 		return exist;
+			
+			
 
 	}
 
