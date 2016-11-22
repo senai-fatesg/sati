@@ -8,7 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="corpo">
-		<p:panel header="MARCAS" id="panel">
+		<p:panel header="MODELOS" id="panel">
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Modelo" id="cadmodelo" immediate="true"
 					image="ui-icon-document"
@@ -27,7 +27,7 @@
 			<f:facet name="header">
 						Lista de Modelos
 			</f:facet>
-			<p:column headerText="Nome" sortBy="#{marca.nome}"
+			<p:column headerText="Marca" sortBy="#{marca.nome}"
 				filterBy="#{marca.nome}" footerText="resultado"
 				filterMatchMode="contains">
 				<h:outputText value="#{marca.nome}" />
@@ -59,7 +59,7 @@
 
 		<!-- Tela de Dialog de inclusao de Marca -->
 		<p:dialog widgetVar="dlgmarca" resizable="false"
-			header="Incluir Marca"  wappendToBody="true"
+			header="Incluir Modelo"  wappendToBody="true"
 			width="500" modal="true" id="dialog2" hideEffect="fade">
 			<!--DadosPessoais-->
 			<p:tabView id="tbMarca">
@@ -73,7 +73,7 @@
 
 						<p:outputLabel for="console" value="Marca:" />
 						<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
-							style="width:125px">
+							style="width:125px" required="true" requiredMessage="Campo nome Obrigatório!">
 							<f:selectItem itemLabel="Select One" itemValue="" />
 							<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
 							<f:selectItem itemLabel="PS4" itemValue="PS4" />
