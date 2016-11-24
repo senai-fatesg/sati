@@ -13,7 +13,7 @@
 					icon="ui-icon-arrowrefresh-1-w" action="inicio.jsf"
 					actionListener="#{OrdemServicoControl.inicialize}" />
 				<p:commandButton value="Nova Consulta" icon="ui-icon-search"
-					onclick="dlgnconsulta.show(),this.form.reset();" immediate="true"
+					onclick="PF('dlgnconsulta').show(),this.form.reset();" immediate="true"
 					actionListener="#{OrdemServicoControl.inicialize }" />
 				<p:commandButton action="ordemServico" immediate="true"
 					actionListener="#{OrdemServicoControl.inicialize }"
