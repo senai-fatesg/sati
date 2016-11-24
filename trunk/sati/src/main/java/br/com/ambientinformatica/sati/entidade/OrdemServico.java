@@ -244,6 +244,7 @@ public class OrdemServico implements Serializable {
 	public void setDataFechamento(Date dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
-
+	
+	
 }
 //by Silas A.

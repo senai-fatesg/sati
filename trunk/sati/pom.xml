@@ -148,6 +148,26 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.6.0</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
+		<dependency>
+		    <groupId>javax.ws.rs</groupId>
+		    <artifactId>javax.ws.rs-api</artifactId>
+		    <version>2.0</version>
+		</dependency>		
+<!-- Jedi -->        
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <!-- if your container implements Servlet API older than 3.0, 
+                use "jersey-container-servlet-core" -->
+            <artifactId>jersey-container-servlet</artifactId>
+            <version>2.0</version>
+        </dependency>
+         <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-moxy</artifactId>
+            <version>2.0</version>
+        </dependency>        
+<!-- Jedi -->        		
 	</dependencies>
 
 	<repositories>
