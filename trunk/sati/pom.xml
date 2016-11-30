@@ -14,7 +14,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<webXmlPath>src/main/webapp/WEB-INF/web.xml</webXmlPath>
 	</properties>
-	
+
 
 	<dependencies>
 		<dependency>
@@ -27,7 +27,7 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
-		
+
 		<!-- Para o QRCode via JasperStudio -->
 		<dependency>
 			<groupId>net.sf.barcode4j</groupId>
@@ -73,7 +73,7 @@
 			<scope>compile</scope>
 		</dependency>
 
-<!-- Ambient JSF -->
+		<!-- Ambient JSF -->
 		<dependency>
 			<groupId>br.com.ambientinformatica</groupId>
 			<artifactId>ambient-jsf</artifactId>
@@ -121,7 +121,7 @@
 			<artifactId>httpclient-cache</artifactId>
 			<version>4.2.3</version>
 			<scope>compile</scope>
-		</dependency>	
+		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
@@ -150,24 +150,23 @@
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/javax.ws.rs/javax.ws.rs-api -->
 		<dependency>
-		    <groupId>javax.ws.rs</groupId>
-		    <artifactId>javax.ws.rs-api</artifactId>
-		    <version>2.0</version>
-		</dependency>		
-<!-- Jedi -->        
-        <dependency>
-            <groupId>org.glassfish.jersey.containers</groupId>
-            <!-- if your container implements Servlet API older than 3.0, 
-                use "jersey-container-servlet-core" -->
-            <artifactId>jersey-container-servlet</artifactId>
-            <version>2.0</version>
-        </dependency>
-         <dependency>
-            <groupId>org.glassfish.jersey.media</groupId>
-            <artifactId>jersey-media-moxy</artifactId>
-            <version>2.0</version>
-        </dependency>        
-<!-- Jedi -->        		
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<!-- Jedi -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<!-- if your container implements Servlet API older than 3.0, use "jersey-container-servlet-core" -->
+			<artifactId>jersey-container-servlet</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.media</groupId>
+			<artifactId>jersey-media-moxy</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<!-- Jedi -->
 	</dependencies>
 
 	<repositories>
@@ -179,84 +178,86 @@
 		</repository>
 	</repositories>
 	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.0</version>
-				<configuration>
-					<source>${jdk.version}</source>
-					<target>${jdk.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>2.2</version>
-				<configuration>
-					<locales>pt_BR</locales>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.codehaus.plexus</groupId>
-						<artifactId>plexus-utils</artifactId>
-						<version>1.5.9</version>
-					</dependency>
-					<dependency>
-						<groupId>org.codehaus.plexus</groupId>
-						<artifactId>plexus-interpolation</artifactId>
-						<version>1.12</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.eclipse.jetty</groupId>
-				<artifactId>jetty-maven-plugin</artifactId>
-				<version>9.2.6.v20141205</version>
-				<configuration>
-					<webAppConfig>
-						<contextPath>/${project.artifactId}</contextPath>
-					</webAppConfig>
-					<scanIntervalSeconds>5</scanIntervalSeconds>
-					<systemPropertiesFile>${user.home}/.m2/system.properties</systemPropertiesFile>
-				</configuration>
-				<dependencies>
-					<dependency>
-						<groupId>org.apache.tomcat</groupId>
-						<artifactId>tomcat-dbcp</artifactId>
-						<version>7.0.47</version>
-					</dependency>
-					<dependency>
-						<groupId>org.postgresql</groupId>
-						<artifactId>postgresql</artifactId>
-						<version>9.4-1200-jdbc41</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>jasperreports-maven-plugin</artifactId>
-				<version>1.0-beta-2</version>
-				<configuration>
-					<outputDirectory>${project.build.directory}/classes/jasper</outputDirectory>
-				</configuration>
-				<executions> 
-					<execution> 
-						<phase>compile</phase> 
-						<goals> 
-							<goal>compile-reports</goal> 
-						</goals> 
-					</execution> 
-				</executions>
-				<dependencies>
-					<dependency>
-						<groupId>net.sf.jasperreports</groupId>
-						<artifactId>jasperreports</artifactId>
-						<version>5.2.0</version>
-					</dependency>
-				</dependencies>
-			</plugin>
-		</plugins>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.0</version>
+					<configuration>
+						<source>${jdk.version}</source>
+						<target>${jdk.version}</target>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>2.2</version>
+					<configuration>
+						<locales>pt_BR</locales>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.codehaus.plexus</groupId>
+							<artifactId>plexus-utils</artifactId>
+							<version>1.5.9</version>
+						</dependency>
+						<dependency>
+							<groupId>org.codehaus.plexus</groupId>
+							<artifactId>plexus-interpolation</artifactId>
+							<version>1.12</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.jetty</groupId>
+					<artifactId>jetty-maven-plugin</artifactId>
+					<version>9.2.6.v20141205</version>
+					<configuration>
+						<webAppConfig>
+							<contextPath>/${project.artifactId}</contextPath>
+						</webAppConfig>
+						<scanIntervalSeconds>5</scanIntervalSeconds>
+						<systemPropertiesFile>${user.home}/.m2/system.properties</systemPropertiesFile>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.tomcat</groupId>
+							<artifactId>tomcat-dbcp</artifactId>
+							<version>7.0.47</version>
+						</dependency>
+						<dependency>
+							<groupId>org.postgresql</groupId>
+							<artifactId>postgresql</artifactId>
+							<version>9.4-1200-jdbc41</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>jasperreports-maven-plugin</artifactId>
+					<version>1.0-beta-2</version>
+					<configuration>
+						<outputDirectory>${project.build.directory}/classes/jasper</outputDirectory>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>compile</phase>
+							<goals>
+								<goal>compile-reports</goal>
+							</goals>
+						</execution>
+					</executions>
+					<dependencies>
+						<dependency>
+							<groupId>net.sf.jasperreports</groupId>
+							<artifactId>jasperreports</artifactId>
+							<version>5.2.0</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
 		<finalName>${project.artifactId}</finalName>
 	</build>
 	<reporting>
