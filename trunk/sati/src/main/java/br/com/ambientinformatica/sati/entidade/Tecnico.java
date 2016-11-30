@@ -10,11 +10,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
-
-
 @Entity
 public class Tecnico implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -23,33 +20,24 @@ public class Tecnico implements Serializable {
 	private Integer id;
 
 	private String nome;
-	
 	private String apelido;
-
 	private String telefone;
-	
 	private String telefone_dois;
-
 	private String celular;
-
 	private String email;
-	
-	@JoinColumn(name="userid")
+
+	@JoinColumn(name = "userid")
 	@OneToOne
 	private Usuario usuario;
 
-	
 	public Tecnico() {
-		super();
 		usuario = new Usuario();
 	}
 
-
 	@Override
 	public String toString() {
-		return nome ;
+		return nome;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -57,17 +45,13 @@ public class Tecnico implements Serializable {
 		int result = 1;
 		result = prime * result + ((apelido == null) ? 0 : apelido.hashCode());
 		result = prime * result + ((celular == null) ? 0 : celular.hashCode());
-	//	result = prime * result + ((cep == null) ? 0 : cep.hashCode());
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
-		result = prime * result
-				+ ((telefone == null) ? 0 : telefone.hashCode());
-		result = prime * result
-				+ ((telefone_dois == null) ? 0 : telefone_dois.hashCode());
+		result = prime * result + ((telefone == null) ? 0 : telefone.hashCode());
+		result = prime * result + ((telefone_dois == null) ? 0 : telefone_dois.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -88,11 +72,6 @@ public class Tecnico implements Serializable {
 				return false;
 		} else if (!celular.equals(other.celular))
 			return false;
-//		if (cep == null) {
-//			if (other.cep != null)
-//				return false;
-//		} else if (!cep.equals(other.cep))
-//			return false;
 		if (email == null) {
 			if (other.email != null)
 				return false;
@@ -120,7 +99,6 @@ public class Tecnico implements Serializable {
 			return false;
 		return true;
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -158,7 +136,6 @@ public class Tecnico implements Serializable {
 		return id;
 	}
 
-
 	public String getApelido() {
 		return apelido;
 	}
@@ -175,18 +152,13 @@ public class Tecnico implements Serializable {
 		this.telefone_dois = telefone_dois;
 	}
 
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
 
-
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-	
 
 }
-//by Silas A.
+// by Silas A.

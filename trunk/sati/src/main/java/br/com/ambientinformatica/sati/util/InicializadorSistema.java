@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
-import br.com.ambientinformatica.sati.entidade.EnumPapelUsuario;
+import br.com.ambientinformatica.sati.entidade.Perfil;
 import br.com.ambientinformatica.sati.entidade.Usuario;
 import br.com.ambientinformatica.sati.persistencia.UsuarioDao;
 import br.com.ambientinformatica.util.UtilLog;
@@ -34,8 +34,8 @@ public class InicializadorSistema {
 				usu.setNome("admin");
 				usu.setLogin("admin");
 				usu.setSenhaNaoCriptografada("123456");
-				usu.addPapel(EnumPapelUsuario.ADMIN);
-				usu.addPapel(EnumPapelUsuario.USUARIO);
+				usu.adicionar(Perfil.ADMIN);
+				usu.adicionar(Perfil.USUARIO);
 				usuarioDao.incluir(usu);
 				UtilLog.getLog().info("*** USUARIO admin CRIADO com a senha 123456 ***");
 			}

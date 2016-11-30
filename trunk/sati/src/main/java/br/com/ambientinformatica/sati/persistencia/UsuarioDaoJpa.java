@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
 import br.com.ambientinformatica.sati.entidade.HistoricoLogin;
-import br.com.ambientinformatica.sati.entidade.PapelUsuario;
+import br.com.ambientinformatica.sati.entidade.PerfilDoUsuario;
 import br.com.ambientinformatica.sati.entidade.Usuario;
 import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
@@ -90,10 +90,10 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 	@Override
 	public void excluirUsuario(Usuario usuario) throws SatiException {
 		try {
-			PapelUsuario papel = new PapelUsuario();
+			PerfilDoUsuario papel = new PerfilDoUsuario();
 			
-			for(int i=0; i< usuario.getPapeisList().size() ;i++){
-				papel = usuario.getPapeisList().get(i);			
+			for(int i=0; i< usuario.obterListaDePerfis().size() ;i++){
+				papel = usuario.obterListaDePerfis().get(i);			
 			}
 			//PRIMEIRA EXCLUSAO DO PAPEL DO USUARIO
 			String sql1 ="delete from PapelUsuario papel where papel.id = :idpapel";
@@ -110,7 +110,7 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 			int result = query.executeUpdate();
 			//INICIALIZANDO
 			usuario = new Usuario();
-			papel = new PapelUsuario();
+			papel = new PerfilDoUsuario();
 			
 		} catch (NoResultException e) {
 			e.getMessage();

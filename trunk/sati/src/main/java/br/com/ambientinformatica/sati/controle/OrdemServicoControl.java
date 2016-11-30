@@ -21,7 +21,7 @@ import org.springframework.stereotype.Controller;
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
 import br.com.ambientinformatica.jpa.exception.PersistenciaException;
 import br.com.ambientinformatica.sati.entidade.Cliente;
-import br.com.ambientinformatica.sati.entidade.EnumEstadoOrdemServico;
+import br.com.ambientinformatica.sati.entidade.Status;
 import br.com.ambientinformatica.sati.entidade.Equipamento;
 import br.com.ambientinformatica.sati.entidade.ItemEquipamento;
 import br.com.ambientinformatica.sati.entidade.ItemServico;
@@ -68,7 +68,7 @@ public class OrdemServicoControl {
 	private List<Cliente> clientes = new ArrayList<Cliente>();
 	private List<OrdemServico> ordensServico = new ArrayList<OrdemServico>();
 	// ENUM ESTADO PRA BUSCA DA OS
-	private EnumEstadoOrdemServico estadoOsSelecionado;
+	private Status estadoOsSelecionado;
 	// DATA DA CONSULTA DA OS
 	private Date dataHoraInicio = UtilData.getDataInicioMes(new Date());
 	private Date dataHoraFim = UtilData.getDataFimMes(new Date());
@@ -249,13 +249,13 @@ public class OrdemServicoControl {
 
 	// ENUM DA LISTAGEM DE OS
 	public List<SelectItem> getStatusOrdemServicos() {
-		return UtilFaces.getListEnum(EnumEstadoOrdemServico.values());
+		return UtilFaces.getListEnum(Status.values());
 	}
 
 	// ENUM DE TIPOS DE ESTADO DE ORDEM DE SERVIÇO
 	public List<SelectItem> getTiposOs() {
 		return new ArrayList<SelectItem>(
-				UtilFaces.getListEnum(EnumEstadoOrdemServico.values()));
+				UtilFaces.getListEnum(Status.values()));
 	}
 
 	// INCLUI UMA O.S
@@ -463,10 +463,10 @@ public class OrdemServicoControl {
 		try {
 			if (tecnico == null) {
 				ordensServico = ordemServicoDao
-						.listarPorOsAtendimentoAdmin(EnumEstadoOrdemServico.ATENDENDO);
+						.listarPorOsAtendimentoAdmin(Status.ATENDENDO);
 			} else {
 				ordensServico = ordemServicoDao.listarPorOsAtendimento(
-						EnumEstadoOrdemServico.ATENDENDO, tecnico.getId());
+						Status.ATENDENDO, tecnico.getId());
 			}
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
@@ -530,7 +530,7 @@ public class OrdemServicoControl {
 	public void cancelar(ActionEvent evt) {
 		try {
 			osCancelar = ordemServicoDao.consultar(osCancelar.getId());
-			osCancelar.cancelarOs();
+			osCancelar.cancelar();
 			ordemServicoDao.alterar(osCancelar);
 			listar(null);
 		} catch (Exception e) {
@@ -691,12 +691,12 @@ public class OrdemServicoControl {
 		this.cliente = cliente;
 	}
 
-	public EnumEstadoOrdemServico getEstadoOsSelecionado() {
+	public Status getEstadoOsSelecionado() {
 		return estadoOsSelecionado;
 	}
 
 	public void setEstadoOsSelecionado(
-			EnumEstadoOrdemServico estadoOsSelecionado) {
+			Status estadoOsSelecionado) {
 		this.estadoOsSelecionado = estadoOsSelecionado;
 	}
 

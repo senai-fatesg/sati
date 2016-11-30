@@ -13,7 +13,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import br.com.ambientinformatica.sati.entidade.EnumEstadoOrdemServico;
+import br.com.ambientinformatica.sati.entidade.Status;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 import br.com.ambientinformatica.sati.persistencia.OrdemServicoDao;
 
@@ -35,14 +35,14 @@ public class OrdemServicoRest {
 		//return getOrdens();
 	}
 		
-	private List<OrdemServico> getOrdens(){
+	private List<OrdemServico> getOrdens() {
 		
 		List<OrdemServico> listOS = new ArrayList<OrdemServico>();
 		OrdemServico Os = new OrdemServico();
 		Os.setDataEmissao(new Date(System.currentTimeMillis()));
 		Os.setDataFechamento(new Date(System.currentTimeMillis()));
 		Os.setDescricaoProblema("teste rest");
-		Os.setEstado(EnumEstadoOrdemServico.ATENDENDO);
+		Os.setEstado(Status.ATENDENDO);
 		
 		listOS.add(Os);		
 				
