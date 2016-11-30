@@ -7,43 +7,44 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-
 @Entity
 public class Cliente implements Serializable {
-
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(generator = "cliente_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "cliente_seq", sequenceName = "cliente_seq", allocationSize = 1, initialValue = 1)
 	private long id;
+
 	private String nomecliente;
 	private String razaoSocial;
 	private String telefone;
 	private String celular;
-	private String email ;
+	private String email;
 	private String cpfCnpj;
+
 	@OneToOne
 	private Endereco endereco;
+
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastramento = new Date();
-	
-	//Const
+
+	@JoinColumn(name = "userid")
+	@OneToOne
+	private Usuario usuario;
+
 	public Cliente() {
-		super();
 		endereco = new Endereco();
 	}
 
-	public Cliente(long id, String razaoSocial, String telefone,
-			String celular, String email, String cpfCnpj,
-			br.com.ambientinformatica.sati.entidade.Endereco endereco,
-			Date dataCadastramento) {
-		super();
+	public Cliente(long id, String razaoSocial, String telefone, String celular, String email, String cpfCnpj,
+			Endereco endereco, Date dataCadastramento) {
 		this.id = id;
 		this.razaoSocial = razaoSocial;
 		this.telefone = telefone;
@@ -54,9 +55,6 @@ public class Cliente implements Serializable {
 		this.dataCadastramento = dataCadastramento;
 	}
 
-	
-	//GTT E STT
-	
 	public long getId() {
 		return id;
 	}
@@ -64,7 +62,6 @@ public class Cliente implements Serializable {
 	public void setId(long id) {
 		this.id = id;
 	}
-
 
 	public String getNomecliente() {
 		return nomecliente;
@@ -128,6 +125,14 @@ public class Cliente implements Serializable {
 
 	public void setDataCadastramento(Date dataCadastramento) {
 		this.dataCadastramento = dataCadastramento;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

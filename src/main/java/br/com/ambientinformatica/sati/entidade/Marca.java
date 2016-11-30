@@ -10,13 +10,13 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Marca implements Serializable{
-
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(generator = "marca_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "marca_seq", sequenceName = "marca_seq", allocationSize = 1, initialValue = 1)
 	private Integer id;
+	
 	private String nome;
 	private String modelo;
  
@@ -73,8 +73,6 @@ public class Marca implements Serializable{
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
-	}
-	
-	
+	}	
 
 }

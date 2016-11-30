@@ -9,7 +9,7 @@ import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
-import br.com.ambientinformatica.sati.entidade.EnumEstadoOrdemServico;
+import br.com.ambientinformatica.sati.entidade.Status;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
@@ -40,7 +40,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	@Override
 	public List<OrdemServico> listarPorDataEmissao(long id,
 			Date dataHoraInicio, Date dataHoraFim,
-			EnumEstadoOrdemServico estadoOsSelecionado, int idTecnico)
+			Status estadoOsSelecionado, int idTecnico)
 			throws SatiException {
 		try {
 			String sql = "select distinct os from OrdemServico os " +
@@ -77,7 +77,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 			if (estadoOsSelecionado != null) {
 				query.setParameter("estado", estadoOsSelecionado);
 			} else {
-				query.setParameter("estado", EnumEstadoOrdemServico.CANCELADA);
+				query.setParameter("estado", Status.CANCELADA);
 			}
 			return query.getResultList();
 		} catch (Exception e) {
@@ -90,7 +90,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrdemServico> listarPorOsAtendimento(
-			EnumEstadoOrdemServico enumEstadoOrdemServico, int idTecnico)
+			Status enumEstadoOrdemServico, int idTecnico)
 			throws SatiException {
 		try {
 			String sql = "select distinct os from OrdemServico os "
@@ -122,7 +122,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrdemServico> listarPorOsAtendimentoAdmin(
-			EnumEstadoOrdemServico estadoOsSelecionado) throws SatiException {
+			Status estadoOsSelecionado) throws SatiException {
 		try {
 			String sql = "select distinct os from OrdemServico os "
 					+ "where 1 = 1";
@@ -148,7 +148,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	@Override
 	public List<OrdemServico> listarPorDataEmissaoSemTecnico(long id,
 			Date dataHoraInicio, Date dataHoraFim,
-			EnumEstadoOrdemServico estadoOsSelecionado) throws SatiException {
+			Status estadoOsSelecionado) throws SatiException {
 		try {
 			String sql = "select distinct os from OrdemServico os " +
 			// "left join fetch os.cliente c " +
@@ -180,7 +180,7 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 			if (estadoOsSelecionado != null) {
 				query.setParameter("estado", estadoOsSelecionado);
 			} else {
-				query.setParameter("estado", EnumEstadoOrdemServico.CANCELADA);
+				query.setParameter("estado", Status.CANCELADA);
 			}
 			return query.getResultList();
 		} catch (Exception e) {

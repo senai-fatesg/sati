@@ -2,15 +2,14 @@ package br.com.ambientinformatica.sati.entidade;
 
 import br.com.ambientinformatica.util.IEnum;
 
-public enum EnumEstadoOrdemServico implements IEnum{
-   
+public enum Status implements IEnum{
    ATENDENDO("Aberta"),
    ATENDIDA("Fechada"),
    CANCELADA("Cancelada");
    
    private String descricao;
 
-   EnumEstadoOrdemServico(String descricao){
+   Status(String descricao){
    	this.descricao = descricao;
    }
    

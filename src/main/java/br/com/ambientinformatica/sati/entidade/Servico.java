@@ -20,6 +20,7 @@ public class Servico implements Serializable {
 	@SequenceGenerator(name = "geradorServico", sequenceName = "gerador_servico", allocationSize = 1, initialValue = 1)
 	private Integer id = 0;
 	private String descricao;
+	
 	@Column(precision = 10, scale = 2)
 	private BigDecimal valor;
 

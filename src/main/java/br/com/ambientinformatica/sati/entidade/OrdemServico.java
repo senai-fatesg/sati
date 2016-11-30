@@ -24,7 +24,6 @@ import javax.persistence.TemporalType;
 
 @Entity
 public class OrdemServico implements Serializable {
-
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -55,11 +54,10 @@ public class OrdemServico implements Serializable {
 	private Set<ItemEquipamento> itensEquipamentos = new HashSet<ItemEquipamento>();
 
 	@Enumerated(EnumType.STRING)
-	private EnumEstadoOrdemServico estado;
+	private Status estado;
 
 	// /CONTRUTOR
 	public OrdemServico() {
-		super();
 		cliente = new Cliente();
 	}
 
@@ -116,41 +114,41 @@ public class OrdemServico implements Serializable {
 	}
 
 	// CANCELA A ORDEM DE SERVIÇO
-	public void cancelarOs() {
-		estado = EnumEstadoOrdemServico.CANCELADA;
+	public void cancelar() {
+		estado = Status.CANCELADA;
 	}
 
 	// DESABILITA A LISTAGEM DE ORDEM CANCELADA
 	public boolean isCancelada() {
-		return estado == EnumEstadoOrdemServico.CANCELADA;
+		return estado == Status.CANCELADA;
 
 	}
 
 	// EMITE A OS COM O STATUS ATENDENDO
 	public void emitirOs() {
 		dataEmissao = new Date(System.currentTimeMillis());
-		estado = EnumEstadoOrdemServico.ATENDENDO;
+		estado = Status.ATENDENDO;
 	}
 
 	// PERMITE A EDICAO DA O.S QUANDO EM ATENDIMENTO
 	public boolean isEditavel() {
-		return estado == EnumEstadoOrdemServico.ATENDENDO;
+		return estado == Status.ATENDENDO;
 	}
 
 	// PERMITE A IMPRESSAO QUANDO CONCLUIDA
 	public boolean isImprimivel() {
-		return estado == EnumEstadoOrdemServico.ATENDIDA;
+		return estado == Status.ATENDIDA;
 	}
 
 	// Fechar ordem de Serviço
 	public void fecharOrdemServico() {
 		dataFechamento = new Date(System.currentTimeMillis());
-		estado = EnumEstadoOrdemServico.ATENDIDA;
+		estado = Status.ATENDIDA;
 	}
 
 	// DESABILITA A LISGEM DA ORDEM DE SERVIÇO
 	public boolean isFechada() {
-		return estado == EnumEstadoOrdemServico.ATENDIDA;
+		return estado == Status.ATENDIDA;
 	}
 
 	// GTT E STT
@@ -225,11 +223,11 @@ public class OrdemServico implements Serializable {
 	}
 
 	// GET ENUM ESTADO ORDEM DE SERVICO
-	public EnumEstadoOrdemServico getEstado() {
+	public Status getEstado() {
 		return estado;
 	}
 
-	public void setEstado(EnumEstadoOrdemServico estado) {
+	public void setEstado(Status estado) {
 		this.estado = estado;
 	}
 
@@ -244,7 +242,6 @@ public class OrdemServico implements Serializable {
 	public void setDataFechamento(Date dataFechamento) {
 		this.dataFechamento = dataFechamento;
 	}
-	
 	
 }
 //by Silas A.
