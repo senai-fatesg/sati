@@ -16,7 +16,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import br.com.ambienteinformatica.sati.services.OrdemServicoService;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 
-@Path(value = "/servico")
+@Path(value = "/ordem")
 public class OrdemDeServicoResources {
 	
 	@Autowired
