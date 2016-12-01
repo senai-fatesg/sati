@@ -53,7 +53,7 @@ public class Usuario extends Entidade {
 	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "usuario_id")
 	@Cascade(value = org.hibernate.annotations.CascadeType.DELETE_ORPHAN)
-	private Set<PerfilDoUsuario> perfis = new HashSet<PerfilDoUsuario>();
+	private Set<PapelUsuario> papeis = new HashSet<PapelUsuario>();
 
 	public String getLogin() {
 		return login;
@@ -107,34 +107,31 @@ public class Usuario extends Entidade {
 		this.dataUltimoAcesso = dataUltimoAcesso;
 	}
 
-	public Set<PerfilDoUsuario> getPerfis() {
-		return perfis;
+	public Set<PapelUsuario> getPerfis() {
+		return papeis;
 	}
 
-	public List<PerfilDoUsuario> obterListaDePerfis() {
-		List<PerfilDoUsuario> result = new ArrayList<PerfilDoUsuario>(perfis);
+	public List<PapelUsuario> obterListaDePerfis() {
+		List<PapelUsuario> result = new ArrayList<PapelUsuario>(papeis);
 		Collections.sort(result);
 		return result;
 	}
 	
-	public void adicionar(Perfil pefil) {
+	public void adicionar(Papel pefil) {
 		if (!existe(pefil)) {
-			PerfilDoUsuario perfilDoUsuario = new PerfilDoUsuario();
+			PapelUsuario perfilDoUsuario = new PapelUsuario();
 			perfilDoUsuario.setPerfil(pefil);
-			perfis.add(perfilDoUsuario);
+			papeis.add(perfilDoUsuario);
 		}
 	}
 
-	public boolean existe(Perfil perfil) {
-		if (perfis.contains(perfil)) {
-			return true;
-		}
+	public boolean existe(Papel p) {
 		
-//		for (PerfilDoUsuario perfilDoUsuario : perfis) {
-//			if (perfilDoUsuario.getPerfil() == perfil) {
-//				return true;
-//			}
-//		}
+		for (PapelUsuario papel : papeis) {
+			if (papel.getPerfil() == p) {
+				return true;
+			}
+		}
 		
 		return false;
 	}

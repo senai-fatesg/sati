@@ -16,7 +16,7 @@ import org.springframework.stereotype.Controller;
 
 import br.com.ambientinformatica.ambientjsf.util.UtilFaces;
 import br.com.ambientinformatica.jpa.exception.PersistenciaException;
-import br.com.ambientinformatica.sati.entidade.Perfil;
+import br.com.ambientinformatica.sati.entidade.Papel;
 import br.com.ambientinformatica.sati.entidade.Tecnico;
 import br.com.ambientinformatica.sati.entidade.Usuario;
 import br.com.ambientinformatica.sati.persistencia.TecnicoDao;
@@ -50,7 +50,7 @@ public class TecnicoControl {
 				// INCLUIR TECNICO
 				usuario.setSenhaNaoCriptografada(usuario.getSenha());
 				usuario.setNome(usuario.getLogin());
-				usuario.adicionar(Perfil.USUARIO);
+				usuario.adicionar(Papel.USUARIO);
 				usuarioDao.incluir(usuario);
 				tecnico.setUsuario(usuario);
 				tecnicoDao.incluir(tecnico);

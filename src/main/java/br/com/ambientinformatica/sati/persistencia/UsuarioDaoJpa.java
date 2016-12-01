@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
 import br.com.ambientinformatica.sati.entidade.HistoricoLogin;
-import br.com.ambientinformatica.sati.entidade.PerfilDoUsuario;
+import br.com.ambientinformatica.sati.entidade.PapelUsuario;
 import br.com.ambientinformatica.sati.entidade.Usuario;
 import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
@@ -22,13 +22,13 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public Usuario buscarUsuariobyTecnico(String usuario) throws SatiException {
+	public Usuario buscarUsuariobyTecnico(String login) throws SatiException {
 		try {
 
-			String sql = "select usu from Usuario usu where usu.login =:user";
+			String sql = "select u from Usuario u where u.login =:login";
 
 			Query query = em.createQuery(sql);
-			query.setParameter("user", usuario);
+			query.setParameter("login", login);
 			return (Usuario) query.getSingleResult();
 
 		} catch (NoResultException e) {
@@ -66,7 +66,7 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 		Usuario usuario = new Usuario();
 		boolean exist = false;
 		try {
-			String sql = "select usu from Usuario usu where usu.login = :login";
+			String sql = "select u from Usuario u where u.login =:login";
 			Query query = em.createQuery(sql);
 			query.setParameter("login", login);
 			usuario = (Usuario) query.getSingleResult();
@@ -90,27 +90,29 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 	@Override
 	public void excluirUsuario(Usuario usuario) throws SatiException {
 		try {
-			PerfilDoUsuario papel = new PerfilDoUsuario();
+			PapelUsuario perfilDoUsuario = new PapelUsuario();
 			
-			for(int i=0; i< usuario.obterListaDePerfis().size() ;i++){
-				papel = usuario.obterListaDePerfis().get(i);			
+			for(int i = 0; i < usuario.obterListaDePerfis().size(); i++){
+				perfilDoUsuario = usuario.obterListaDePerfis().get(i);
+				
+				//PRIMEIRA EXCLUSAO DO PAPEL DO USUARIO
+				String sql1 ="delete from perfil_usuario p where p.id = :idPerfilDoUsuario";
+				Query query = em.createQuery(sql1);
+				query.setParameter("idPerfilDoUsuario", perfilDoUsuario.getId());
+				@SuppressWarnings("unused")
+				int pexc = query.executeUpdate();
 			}
-			//PRIMEIRA EXCLUSAO DO PAPEL DO USUARIO
-			String sql1 ="delete from perfildousuario papel where papel.id = :idpapel";
-			Query query = em.createQuery(sql1);
-			query.setParameter("idpapel", papel.getId());
-			@SuppressWarnings("unused")
-			int pexc = query.executeUpdate();
 			
 			//SEGUNDA EXCLUSAO DO USUARIO	
-			String sql2 = "delete from Usuario usu where usu.login = :login";
+			String sql2 = "delete from Usuario u where u.login = :login";
 			Query query2 = em.createQuery(sql2);
 			query2.setParameter("login", usuario.getLogin());
 			@SuppressWarnings("unused")
-			int result = query.executeUpdate();
+			int result = query2.executeUpdate();
+			
 			//INICIALIZANDO
 			usuario = new Usuario();
-			papel = new PerfilDoUsuario();
+			perfilDoUsuario = new PapelUsuario();
 			
 		} catch (NoResultException e) {
 			e.getMessage();

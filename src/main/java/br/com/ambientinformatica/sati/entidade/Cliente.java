@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
@@ -34,10 +33,6 @@ public class Cliente implements Serializable {
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastramento = new Date();
-
-	@JoinColumn(name = "userid")
-	@OneToOne
-	private Usuario usuario;
 
 	public Cliente() {
 		endereco = new Endereco();
@@ -125,14 +120,6 @@ public class Cliente implements Serializable {
 
 	public void setDataCadastramento(Date dataCadastramento) {
 		this.dataCadastramento = dataCadastramento;
-	}
-
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
 	}
 
 }
