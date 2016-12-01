@@ -9,32 +9,32 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
 @Entity
-public class PerfilDoUsuario implements Comparable<PerfilDoUsuario> {
+public class PapelUsuario implements Comparable<PapelUsuario> {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "perfil_usuario_seq")
-	@SequenceGenerator(name = "perfil_usuario_seq", sequenceName = "perfil_usuario_seq", allocationSize = 1, initialValue = 1)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "papelusuario_seq")
+	@SequenceGenerator(name = "papelusuario_seq", sequenceName = "papelusuario_seq", allocationSize = 1, initialValue = 1)
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	private Perfil perfil;
+	private Papel perfil;
 
 	public Long getId() {
 		return id;
 	}
 
-	public Perfil getPerfil() {
+	public Papel getPerfil() {
 		return perfil;
 	}
 
-	public void setPerfil(Perfil papel) {
+	public void setPerfil(Papel papel) {
 		this.perfil = papel;
 	}
 
 	@Override
-	public int compareTo(PerfilDoUsuario perfilDoUsuario) {
+	public int compareTo(PapelUsuario papel) {
 		try {
-			return perfil.toString().compareTo(perfilDoUsuario.perfil.toString());
+			return perfil.toString().compareTo(papel.perfil.toString());
 		} catch (Exception e) {
 			return 0;
 		}
