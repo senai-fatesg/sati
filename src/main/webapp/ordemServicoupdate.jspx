@@ -31,7 +31,7 @@
 						<p:commandButton immediate="true" icon="ui-icon-search"
 							title="Clique pra buscar o Cliente"
 							actionListener="#{OrdemServicoControl.listarCliente}"
-							update=":formCorpo:clientes" oncomplete="dlgcliente.show()" />
+							update=":formCorpo:clientes" oncomplete="PF('dlgcliente').show()" />
 						<p:message for="clientenome" />
 						<p:watermark for="clientenome" value="Busque um cliente"
 							id="watermark" />
@@ -44,14 +44,22 @@
 				<p:tab title="Serviços"
 					rendered="#{OrdemServicoControl.ativaServicoOs}">
 					<a:field label="Serviço" width="250px" for="consServico">
-						<p:autoComplete id="consServico" maxResults="10"
-							minQueryLength="1" effect="fade"
-							value="#{OrdemServicoControl.servico}" var="ser"
-							itemLabel="#{ser.descricao}" itemValue="#{ser}"
-							completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
-							forceSelection="true" size="42"
-							onkeyup="this.value = this.value.toLowerCase();"
-							converter="servicoConverter" />
+						<p:autoComplete id="consServico" 
+										size="42"
+										dropdown="false"
+										converter="objectConverter"
+										value="#{OrdemServicoControl.servico}" 
+										var="ser"
+										itemValue="#{ser}"
+										itemLabel="#{ser.descricao}" 
+										completeMethod="#{OrdemServicoControl.buscaServicoporNome}"
+										placeholder="Descrição do serviço"	
+										minQueryLength="3" 
+										maxResults="10"  
+										effect="fade"										
+										forceSelection="true"
+										onkeyup="this.value = this.value.toLowerCase();"/>
+										
 						<p:tooltip for="consServico"
 							value="Informe o Serviço que foi executado." showEffect="fade"
 							hideEffect="fade" />
@@ -124,13 +132,13 @@
 					rendered="#{OrdemServicoControl.ativaEquipamentoOs}">
 					<a:field label="Equipamento" width="250px" for="consEquipamento">
 						<p:autoComplete id="consEquipamento" maxResults="10"
-							minQueryLength="1" effect="fade"
+							minQueryLength="3" effect="fade"
 							value="#{OrdemServicoControl.equipamento}" var="equipa"
 							itemLabel="#{equipa.nome}" itemValue="#{equipa}"
 							completeMethod="#{OrdemServicoControl.buscaEquipamentoporNome}"
 							forceSelection="true" size="42"
 							onkeyup="this.value = this.value.toLowerCase();"
-							converter="equipamentoConverter" />
+							converter="objectConverter" />	
 						<p:tooltip for="consEquipamento"
 							value="Informe o equipamento que foi utilizado" showEffect="fade"
 							hideEffect="fade" />
@@ -228,7 +236,7 @@
 			<p:outputLabel />
 			<p:outputLabel />
 			<h:panelGrid columns="2">
-				<p:commandButton id="btnConfirmar" onclick="emitirOs.show();"
+				<p:commandButton id="btnConfirmar" onclick="PF('emitirOs').show();"
 					value="Confirmar" icon="ui-icon-disk" />
 				<p:commandButton value="Cancelar" immediate="true" title="Cancelar"
 					actionListener="#{OrdemServicoControl.inicialize}" ajax="false"
@@ -292,7 +300,7 @@
 						update=":formCorpo:camponome" onclick="dlgcliente.close()"
 						ajax="false">
 						<f:attribute name="cliente" value="#{cli}" />
-						<p:ajax update="clientenome" event="change" />
+						<!-- <p:ajax update="clientenome" event="change" />  -->
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
