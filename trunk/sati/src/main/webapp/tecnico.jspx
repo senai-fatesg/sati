@@ -77,7 +77,7 @@
 			width="700" height="350" modal="true" id="dialog">
 
 			<!-- WIZARD CADASTRO DE TECNICO -->
-			<p:wizard flowListener="#{ClienteControl.proximaTela}"
+			<p:wizard flowListener="#{TecnicoControl.proximaTela}"
 				widgetVar="wiz" nextLabel="Próximo" backLabel="Anterior" id="wizard">
 				<p:tab id="personal" title="Pessoal">
 					<h:panelGrid columns="2">
