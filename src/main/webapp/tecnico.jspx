@@ -23,13 +23,12 @@
 
 		</p:panel>
 
-		<p:dataTable id="dtTecnico" var="tecnico"
-			value="#{TecnicoControl.tecnicos}"
+		<p:dataTable id="dtTecnico" var="tecnico" value="#{TecnicoControl.tecnicos}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="5,10,15">
 			<f:facet name="header">
-						Lista de Técnicos
+				<h:outputText value="Lista de Técnicos"></h:outputText>
 			</f:facet>
 
 			<p:column headerText="Nome" sortBy="#{tecnico.nome }"
@@ -66,6 +65,27 @@
 					<f:attribute name="tecnico" value="#{tecnico}" />
 				</p:commandButton>
 			</p:column>
+			
+			<!-- CAMPO DE LINHA DE EXPANSAO -->
+			<p:rowExpansion>
+				<p:panelGrid columns="2" columnClasses="label,value"
+					style="width:300px">
+
+					<h:outputText value="Nome:" />
+					<h:outputText value="#{tecnico.nome}" />
+					<h:outputText value="Apelido:" />
+					<h:outputText value="#{tecnico.apelido}" />
+					<h:outputText value="Telefone:" />
+					<h:outputText value="#{tecnico.telefone}" />
+					<h:outputText value="Telefone2:" />
+					<h:outputText value="#{tecnico.telefone_dois}" />
+					<h:outputText value="Celular:" />
+					<h:outputText value="#{tecnico.celular}" />
+					<h:outputText value="Email:" />
+					<h:outputText value="#{tecnico.email}" />
+				</p:panelGrid>
+			</p:rowExpansion>			
+			
 			<f:facet name="footer">
 				<p:outputLabel value="# Registro(s)" />
 			</f:facet>
