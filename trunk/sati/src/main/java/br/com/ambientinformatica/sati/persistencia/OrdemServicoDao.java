@@ -19,4 +19,6 @@ public interface OrdemServicoDao extends Persistencia<OrdemServico>{
    public List<OrdemServico> listarPorOsAtendimento(Status estadoOsSelecionado,int idTecnico) throws SatiException;
    
    public List<OrdemServico> listarPorOsAtendimentoAdmin(Status estadoOsSelecionado) throws SatiException;
+   
+   public List<OrdemServico> listarPorTecnico(Integer id) throws SatiException;
 }

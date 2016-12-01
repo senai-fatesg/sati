@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 
@@ -187,6 +188,16 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 			UtilLog.getLog().error(e.getMessage(), e);
 			throw new SatiException(e.getMessage());
 		}
+	}
+
+	@Override
+	public List<OrdemServico> listarPorTecnico(Integer id) throws SatiException {
+		String jpql = "SELECT o FROM OrdemServico o WHERE tecnico_id = :idDoTecnico";
+		TypedQuery<OrdemServico> createQuery = em.createQuery(jpql, OrdemServico.class);
+		createQuery.setParameter("idDoTecnico", id);
+		List<OrdemServico> resultList = createQuery.getResultList();
+		
+		return resultList;
 	}
 
 }
