@@ -258,7 +258,7 @@
 			<p:commandButton value="Sim"
 				actionListener="#{OrdemServicoControl.alterar }"
 				oncomplete="emitirOs.hide();" />
-			<p:commandButton value="Não" onclick="emitirOs.hide();" type="button" />
+			<p:commandButton value="Não" onclick="PF('emitirOs').hide();" type="button" />
 		</p:confirmDialog>
 		<!-- FIM DIALOGO DE CONFIRMACAO DE ALTERACAO -->
 
