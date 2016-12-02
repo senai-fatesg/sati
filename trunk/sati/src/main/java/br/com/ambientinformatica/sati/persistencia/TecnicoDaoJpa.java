@@ -44,7 +44,7 @@ public class TecnicoDaoJpa extends PersistenciaJpa<Tecnico> implements
 
 			String sql = "select tec from Tecnico tec where tec.usuario.login =:user";
 
-			Query query = em.createQuery(sql);
+			Query query = em.createQuery(sql,Tecnico.class);
 			query.setParameter("user", usuario);
 			return (Tecnico) query.getSingleResult();
 
