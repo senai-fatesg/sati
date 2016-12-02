@@ -14,16 +14,16 @@ import javax.persistence.SequenceGenerator;
 @Entity
 public class Equipamento implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
 	@Id
 	@GeneratedValue(generator = "equipamento_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "equipamento_seq", sequenceName = "equipamento_seq", allocationSize = 1, initialValue = 1)
 	private Integer id = 0;
+	
 	private String nome;
 	
 	@Column(precision = 10, scale = 2)
 	private BigDecimal valor;
-
+	
 	@OneToOne
 	private Marca marca;
 

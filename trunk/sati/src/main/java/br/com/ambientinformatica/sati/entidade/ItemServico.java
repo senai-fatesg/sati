@@ -11,24 +11,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 @Entity
 public class ItemServico {
-	@JsonInclude(Include.NON_EMPTY)  
    @Id
    @GeneratedValue(strategy=SEQUENCE, generator = "geradorItemServico")
    @SequenceGenerator(name="geradorItemServico", sequenceName = "gerador_item_servico", allocationSize=1, initialValue=1)
-   private int id;
+   private Integer id;
    
-	@JsonInclude(Include.NON_EMPTY) 
    @ManyToOne
    private Servico servico;
    
    private Integer quantidade = 1;
    
-   @JsonInclude(Include.NON_EMPTY) 
    @Transient
    public BigDecimal getValorTotal(){
       return servico.getValor().multiply(BigDecimal.valueOf(quantidade));
@@ -76,7 +70,7 @@ public class ItemServico {
    public void setQuantidade(Integer quantidade) {
       this.quantidade = quantidade;
    }
-   public int getId() {
+   public Integer getId() {
       return id;
    }
 }

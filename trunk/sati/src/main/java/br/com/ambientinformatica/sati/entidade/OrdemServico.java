@@ -22,7 +22,6 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
@@ -30,27 +29,20 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class OrdemServico implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	@JsonInclude(Include.NON_NULL) 
 	@Id
 	@GeneratedValue(generator = "ordemServico_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "ordemServico_seq", sequenceName = "ordemServico_seq", allocationSize = 1, initialValue = 1)
-	private long id;
+	private Long id;
 	
-	@JsonInclude(Include.NON_NULL) 
 	@ManyToOne
 	private Cliente cliente;
 	
-	@JsonInclude(Include.NON_NULL) 
 	@ManyToOne
 	private Tecnico tecnico;
 	
-	@JsonInclude(Include.NON_NULL) 
-	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEmissao;
 	
-	@JsonInclude(Include.NON_NULL)
-	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFechamento;
 	
@@ -59,12 +51,10 @@ public class OrdemServico implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ordemservicoid")
-	@JsonInclude(Include.NON_EMPTY)  
 	private Set<ItemServico> itensServicos = new HashSet<ItemServico>();
 
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ordemservicoid")
-	@JsonInclude(Include.NON_EMPTY)
 	private Set<ItemEquipamento> itensEquipamentos = new HashSet<ItemEquipamento>();
 	
 	@Enumerated(EnumType.STRING)
@@ -232,7 +222,7 @@ public class OrdemServico implements Serializable {
 		this.descricaoProblema = descricaoProblema;
 	}
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
