@@ -20,7 +20,7 @@
 			</h:panelGrid>
 		</p:panel>
 
-		<p:dataTable id="dtMarca" var="marca" value="#{MarcaControl.marcas}"
+		<p:dataTable id="dtModelo" var="Modelo" value="#{ModeloControl.marcas}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="5,10,15">
@@ -42,14 +42,14 @@
 			<p:column headerText="Editar">
 				<p:commandButton icon="ui-icon-pencil" title="Alterar Marca"
 				immediate="true" actionListener="#{ModeloControl.preparaAlterar}" ajax="false">
-					<f:attribute name="marca" value="#{modelo}" />
+					<f:attribute name="modelo" value="#{modelo}" />
 				</p:commandButton>
 			</p:column>
 			<p:column headerText="Excluir">
 				<p:commandButton icon="ui-icon-closethick" title="Remover Marca"
 					immediate="true" actionListener="#{ModeloControl.excluir}"
 					ajax="false">
-					<f:attribute name="marca" value="#{modelo}" />
+					<f:attribute name="modelo" value="#{modelo}" />
 				</p:commandButton>
 			</p:column>
 			<f:facet name="footer">
@@ -79,8 +79,6 @@
 							style="width:125px" required="true" requiredMessage="Campo nome Obrigatório!">
 							
 							<f:selectItem itemLabel="Select One" itemValue="#{modelo.marca.nome}" />
-
-
 							
 						</p:selectOneMenu>
 
@@ -96,7 +94,7 @@
 					actionListener="#{ModeloControl.confirmar}" icon="ui-icon-check"
 					title="Salvar Modelo" />
 
-				<p:commandButton value="Cancelar" immediate="true" action="marca.jsf?faces-redirect=true"
+				<p:commandButton value="Cancelar" immediate="true" action="modelo.jsf?faces-redirect=true"
 					onclick="dlgmarca.close(),document.formCorpo.reset();" title="Cancelar" />
 			</h:panelGrid>
 		</p:dialog>
