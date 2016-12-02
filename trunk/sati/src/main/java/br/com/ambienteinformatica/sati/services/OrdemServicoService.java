@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.ambienteinformatica.sati.exceptions.OrdemDeServicoNaoEncontradaException;
 import br.com.ambienteinformatica.sati.exceptions.UsuarioNaoEncontradoException;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 import br.com.ambientinformatica.sati.entidade.Tecnico;
@@ -28,12 +29,24 @@ public class OrdemServicoService {
 		try {
 			tecnico = tecnicoDao.buscarTecnicoByUsuario(usuario);
 		} catch (SatiException e) {
-			throw new UsuarioNaoEncontradoException("Esse usuário não está cadastrado");
+			throw new UsuarioNaoEncontradoException("O usuário não está cadastrado");
 		}
 		
 		List<OrdemServico> ordensDeServico = ordemDeServicoDao.listar(tecnico.getId());
 		
 		return ordensDeServico;
+	}
+	
+	public OrdemServico buscarPor(Long id) {
+		try {
+			return ordemDeServicoDao.consultarPorId(id);
+		} catch (SatiException e) {
+			throw new OrdemDeServicoNaoEncontradaException("A ordem de serviço não foi encontrada");
+		}
+	}
+	
+	public void atualizar(OrdemServico ordemDeServico) {
+		ordemDeServicoDao.alterar(ordemDeServico);
 	}
 	
 }
