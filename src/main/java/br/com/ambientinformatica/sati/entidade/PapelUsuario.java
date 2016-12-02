@@ -17,24 +17,24 @@ public class PapelUsuario implements Comparable<PapelUsuario> {
 	private Long id;
 
 	@Enumerated(EnumType.STRING)
-	private Papel perfil;
+	private Papel papel;
 
 	public Long getId() {
 		return id;
 	}
 
-	public Papel getPerfil() {
-		return perfil;
+	public Papel getPapel() {
+		return papel;
 	}
 
-	public void setPerfil(Papel papel) {
-		this.perfil = papel;
+	public void setPapel(Papel papel) {
+		this.papel = papel;
 	}
 
 	@Override
 	public int compareTo(PapelUsuario papel) {
 		try {
-			return perfil.toString().compareTo(papel.perfil.toString());
+			return papel.toString().compareTo(papel.papel.toString());
 		} catch (Exception e) {
 			return 0;
 		}
