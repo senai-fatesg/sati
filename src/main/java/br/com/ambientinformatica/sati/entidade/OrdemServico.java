@@ -58,12 +58,15 @@ public class OrdemServico implements Serializable {
 
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ordemservicoid")
+	@JsonInclude(Include.NON_EMPTY)  
 	private Set<ItemServico> itensServicos = new HashSet<ItemServico>();
 
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
 	@JoinColumn(name = "ordemservicoid")
+	@JsonInclude(Include.NON_EMPTY)
 	private Set<ItemEquipamento> itensEquipamentos = new HashSet<ItemEquipamento>();
-
+	
+	@JsonInclude(Include.NON_NULL)
 	@Enumerated(EnumType.STRING)
 	private Status estado;
 
