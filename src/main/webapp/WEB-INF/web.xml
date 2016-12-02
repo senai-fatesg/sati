@@ -94,7 +94,7 @@
 
         <init-param>
             <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>br.com.ambientinformatica.sati.util</param-value>
+            <param-value>br.com.ambienteinformatica.sati.resources</param-value>
         </init-param>
 
         <load-on-startup>1</load-on-startup>
@@ -102,7 +102,7 @@
 
     <servlet-mapping>
         <servlet-name>Jersey Web Application</servlet-name>
-        <url-pattern>/ws/*</url-pattern>
+        <url-pattern>/rest/*</url-pattern>
     </servlet-mapping>
 <!-- Jedi !-->       	
 
