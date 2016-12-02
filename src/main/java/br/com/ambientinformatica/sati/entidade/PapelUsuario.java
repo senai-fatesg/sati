@@ -32,9 +32,9 @@ public class PapelUsuario implements Comparable<PapelUsuario> {
 	}
 
 	@Override
-	public int compareTo(PapelUsuario papel) {
+	public int compareTo(PapelUsuario p) {
 		try {
-			return papel.toString().compareTo(papel.papel.toString());
+			return papel.toString().compareTo(p.papel.toString());
 		} catch (Exception e) {
 			return 0;
 		}

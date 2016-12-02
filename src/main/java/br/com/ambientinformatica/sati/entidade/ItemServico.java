@@ -22,11 +22,13 @@ public class ItemServico {
    @SequenceGenerator(name="geradorItemServico", sequenceName = "gerador_item_servico", allocationSize=1, initialValue=1)
    private int id;
    
+	@JsonInclude(Include.NON_EMPTY) 
    @ManyToOne
    private Servico servico;
    
    private Integer quantidade = 1;
-
+   
+   @JsonInclude(Include.NON_EMPTY) 
    @Transient
    public BigDecimal getValorTotal(){
       return servico.getValor().multiply(BigDecimal.valueOf(quantidade));

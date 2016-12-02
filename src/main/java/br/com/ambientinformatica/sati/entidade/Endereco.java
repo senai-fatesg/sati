@@ -8,6 +8,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 
 @Entity
 public class Endereco implements Serializable{
@@ -19,12 +22,25 @@ public class Endereco implements Serializable{
 	@SequenceGenerator(name = "endreeducando_seq", sequenceName = "endreeducando_seq", allocationSize = 1, initialValue = 1)
 	private Integer id;
 	
+	@JsonInclude(Include.NON_NULL)
 	private String logradouro;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String complemento;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String setor;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String cidade;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String uf;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String cep;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String numero;
 	
 	public Endereco() {
