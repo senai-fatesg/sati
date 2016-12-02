@@ -22,6 +22,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 public class OrdemServico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -30,19 +34,26 @@ public class OrdemServico implements Serializable {
 	@GeneratedValue(generator = "ordemServico_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "ordemServico_seq", sequenceName = "ordemServico_seq", allocationSize = 1, initialValue = 1)
 	private long id;
-
+	
+	@JsonInclude(Include.NON_NULL) 
 	@ManyToOne
 	private Cliente cliente;
-
+	
+	@JsonInclude(Include.NON_NULL) 
 	@ManyToOne
 	private Tecnico tecnico;
-
+	
+	@JsonInclude(Include.NON_NULL) 
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataEmissao;
-
+	
+	@JsonInclude(Include.NON_NULL)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataFechamento;
-
+	
+	@JsonInclude(Include.NON_NULL)
 	private String descricaoProblema;
 
 	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
