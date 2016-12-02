@@ -48,7 +48,7 @@ public class TecnicoControl {
 		try {
 			if (!verificaLogin()) {
 				// INCLUIR TECNICO
-				usuario.setSenhaNaoCriptografada(usuario.getSenha());
+				usuario.setSenha(usuario.getSenha());
 				usuario.setNome(usuario.getLogin());
 				usuario.adicionar(Papel.USUARIO);
 				usuarioDao.incluir(usuario);
@@ -73,7 +73,7 @@ public class TecnicoControl {
 	public void alterar(ActionEvent evt) {
 		try {
 			if (!usuario.getSenha().isEmpty()) {
-				usuario.setSenhaNaoCriptografada(usuario.getSenha());
+				usuario.setSenha(usuario.getSenha());
 				usuarioDao.alterar(usuario);
 			}
 			tecnicoDao.alterar(tecnico);
@@ -153,7 +153,7 @@ public class TecnicoControl {
 			String login = external.getRemoteUser();
 
 			usuario.setLogin(login);
-			usuario.setSenhaNaoCriptografada(usuario.getSenha());
+			usuario.setSenha(usuario.getSenha());
 			usuarioDao.alterar(usuario);
 			usuario = new Usuario();
 			FacesContext.getCurrentInstance().getExternalContext()

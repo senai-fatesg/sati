@@ -71,7 +71,7 @@ public class Usuario extends Entidade {
 		return senha;
 	}
 
-	public void setSenhaNaoCriptografada(String senha) {
+	public void setSenha(String senha) {
 		this.senha = UtilHash.gerarStringHash(senha, Algoritimo.MD5);
 	}
 
