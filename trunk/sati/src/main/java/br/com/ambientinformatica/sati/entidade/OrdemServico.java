@@ -30,6 +30,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class OrdemServico implements Serializable {
 	private static final long serialVersionUID = 1L;
 
+	@JsonInclude(Include.NON_NULL) 
 	@Id
 	@GeneratedValue(generator = "ordemServico_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "ordemServico_seq", sequenceName = "ordemServico_seq", allocationSize = 1, initialValue = 1)

@@ -120,7 +120,7 @@ public class Usuario extends Entidade {
 	public void adicionar(Papel pefil) {
 		if (!existe(pefil)) {
 			PapelUsuario perfilDoUsuario = new PapelUsuario();
-			perfilDoUsuario.setPerfil(pefil);
+			perfilDoUsuario.setPapel(pefil);
 			papeis.add(perfilDoUsuario);
 		}
 	}
@@ -128,7 +128,7 @@ public class Usuario extends Entidade {
 	public boolean existe(Papel p) {
 		
 		for (PapelUsuario papel : papeis) {
-			if (papel.getPerfil() == p) {
+			if (papel.getPapel() == p) {
 				return true;
 			}
 		}
