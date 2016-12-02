@@ -44,7 +44,7 @@ public class ModeloControl {
 				modeloDao.alterar(modelo);
 				listar(evt);
 				inicialize(null);
-				FacesContext.getCurrentInstance().getExternalContext().redirect("marca.jsf");
+				FacesContext.getCurrentInstance().getExternalContext().redirect("modelo.jsf");
 			}
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
@@ -64,7 +64,7 @@ public class ModeloControl {
 			modelo = (Modelo) evt.getComponent().getAttributes().get("modelo");
 			modelo = modeloDao.consultar(modelo.getId());
 			FacesContext.getCurrentInstance().getExternalContext()
-					.redirect("marcaupdate.jsf");
+					.redirect("modeloupdate.jsf");
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
 		}

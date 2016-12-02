@@ -10,16 +10,16 @@
 		<h2 style="margin-top: 0" align="center">Atualizar Dados do Modelo</h2>
 		<h:form prependId="false">
 			<p:panel>
-				<p:tabView id="tbMarca">
+				<p:tabView id="tbModelo">
 					<!-- 			DESCRIÇÃO -->
 					<p:tab title="Descrição">
 						<h:panelGrid columns="1">
 							<p:outputLabel for="nome" value="Nome: " />
-							<p:inputText id="nome" value="#{MarcaControl.marca.nome}"
+							<p:inputText id="nome" value="#{ModeloControl.nome.marca}"
 								size="70" required="true"
 								requiredMessage="Nome: Campo Obrigatório!" />
 							<p:outputLabel for="modelo" value="Modelo: " />
-							<p:inputText id="modelo" value="#{MarcaControl.marca.modelo}"
+							<p:inputText id="modelo" value="#{ModeloControl.modelo.marca}"
 								size="70" required="true"
 								requiredMessage="Campo modelo Obrigatório!" />
 						</h:panelGrid>
@@ -27,10 +27,10 @@
 				</p:tabView>
 				<p:panelGrid columns="2">
 					<p:commandButton value="Confirmar"
-						actionListener="#{MarcaControl.confirmar}" icon="ui-icon-check"
-						process="" title="Salvar Marca" />
+						actionListener="#{ModeloControl.confirmar}" icon="ui-icon-check"
+						process="" title="Salvar Modelo" />
 					<p:commandButton value="Cancelar"
-						actionListener="#{MarcaControl.inicialize}" action="marca.jsf"
+						actionListener="#{ModeloControl.inicialize}" action="modelo.jsf"
 						title="Cancelar alteração" icon="ui-icon-closethick"/>
 				</p:panelGrid>
 			</p:panel>

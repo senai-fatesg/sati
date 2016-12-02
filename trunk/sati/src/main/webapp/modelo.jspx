@@ -27,29 +27,29 @@
 			<f:facet name="header">
 						Lista de Modelos
 			</f:facet>
-			<p:column headerText="Marca" sortBy="#{marca.nome}"
-				filterBy="#{marca.nome}" footerText="resultado"
+			<p:column headerText="Modelo" sortBy="#{modelo.marca}"
+				filterBy="#{modelo.marca}" footerText="resultado"
 				filterMatchMode="contains">
-				<h:outputText value="#{marca.nome}" />
+				<h:outputText value="#{modelo.marca}" />
 			</p:column>
 
-			<p:column headerText="Modelo" sortBy="#{marca.modelo}"
-				filterBy="#{marca.modelo}" footerText="resultado"
+			<p:column headerText="Modelo" sortBy="#{modelo.modelo}"
+				filterBy="#{modelo.modelo}" footerText="resultado"
 				filterMatchMode="contains">
-				<h:outputText value="#{marca.modelo}" />
+				<h:outputText value="#{modelo.modelo}" />
 			</p:column>
 
 			<p:column headerText="Editar">
 				<p:commandButton icon="ui-icon-pencil" title="Alterar Marca"
-				immediate="true" actionListener="#{MarcaControl.preparaAlterar}" ajax="false">
-					<f:attribute name="marca" value="#{marca}" />
+				immediate="true" actionListener="#{ModeloControl.preparaAlterar}" ajax="false">
+					<f:attribute name="marca" value="#{modelo}" />
 				</p:commandButton>
 			</p:column>
 			<p:column headerText="Excluir">
 				<p:commandButton icon="ui-icon-closethick" title="Remover Marca"
-					immediate="true" actionListener="#{MarcaControl.excluir}"
+					immediate="true" actionListener="#{ModeloControl.excluir}"
 					ajax="false">
-					<f:attribute name="marca" value="#{marca}" />
+					<f:attribute name="marca" value="#{modelo}" />
 				</p:commandButton>
 			</p:column>
 			<f:facet name="footer">
@@ -57,7 +57,9 @@
 			</f:facet>
 		</p:dataTable>
 
-		<!-- Tela de Dialog de inclusao de Marca -->
+
+
+		<!-- Tela de Dialog de inclusao do Modelo -->
 		<p:dialog widgetVar="dlgmarca" resizable="false"
 			header="Incluir Modelo"  wappendToBody="true"
 			width="500" modal="true" id="dialog2" hideEffect="fade">
@@ -73,11 +75,13 @@
 
 						<p:outputLabel for="console" value="Marca:" />
 						<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
+						
 							style="width:125px" required="true" requiredMessage="Campo nome Obrigatório!">
-							<f:selectItem itemLabel="Select One" itemValue="" />
-							<f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-							<f:selectItem itemLabel="PS4" itemValue="PS4" />
-							<f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+							
+							<f:selectItem itemLabel="Select One" itemValue="#{modelo.marca.nome}" />
+
+
+							
 						</p:selectOneMenu>
 
 						<p:outputLabel for="modelo" value="Modelo: " />
@@ -89,8 +93,8 @@
 			</p:tabView>
 			<h:panelGrid columns="2">
 				<p:commandButton value="Confirmar"
-					actionListener="#{MarcaControl.confirmar}" icon="ui-icon-check"
-					title="Salvar Marca" />
+					actionListener="#{ModeloControl.confirmar}" icon="ui-icon-check"
+					title="Salvar Modelo" />
 
 				<p:commandButton value="Cancelar" immediate="true" action="marca.jsf?faces-redirect=true"
 					onclick="dlgmarca.close(),document.formCorpo.reset();" title="Cancelar" />
