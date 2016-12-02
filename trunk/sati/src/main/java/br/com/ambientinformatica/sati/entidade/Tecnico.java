@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 public class Tecnico implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,12 +23,23 @@ public class Tecnico implements Serializable {
 	private Integer id;
 
 	private String nome;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String apelido;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String telefone;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String telefone_dois;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String celular;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String email;
-
+	
+	@JsonInclude(Include.NON_NULL)
 	@JoinColumn(name = "userid")
 	@OneToOne
 	private Usuario usuario;

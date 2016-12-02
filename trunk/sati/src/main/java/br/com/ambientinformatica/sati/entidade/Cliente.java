@@ -12,6 +12,10 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 @Entity
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,17 +24,29 @@ public class Cliente implements Serializable {
 	@GeneratedValue(generator = "cliente_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "cliente_seq", sequenceName = "cliente_seq", allocationSize = 1, initialValue = 1)
 	private long id;
-
+	
 	private String nomecliente;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String razaoSocial;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String telefone;
+	
+	@JsonInclude(Include.NON_NULL) 
 	private String celular;
+	
+	@JsonInclude(Include.NON_NULL)
 	private String email;
+	
 	private String cpfCnpj;
-
+	
+	@JsonInclude(Include.NON_NULL)
 	@OneToOne
 	private Endereco endereco;
-
+	
+	@JsonInclude(Include.NON_NULL)
+	@JsonFormat(pattern = "dd/MM/yyyy")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataCadastramento = new Date();
 

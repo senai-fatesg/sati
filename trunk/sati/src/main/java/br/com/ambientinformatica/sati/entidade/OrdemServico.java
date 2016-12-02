@@ -67,7 +67,6 @@ public class OrdemServico implements Serializable {
 	@JsonInclude(Include.NON_EMPTY)
 	private Set<ItemEquipamento> itensEquipamentos = new HashSet<ItemEquipamento>();
 	
-	@JsonInclude(Include.NON_NULL)
 	@Enumerated(EnumType.STRING)
 	private Status estado;
 
