@@ -10,36 +10,22 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonInclude.Include;
-
 @Entity
 public class Tecnico implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
 	@GeneratedValue(generator = "tecnico_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "tecnico_seq", sequenceName = "tecnico_seq", allocationSize = 1, initialValue = 1)
 	private Integer id;
-
-	private String nome;
 	
-	@JsonInclude(Include.NON_NULL)
-	private String apelido;
-	
-	@JsonInclude(Include.NON_NULL)
-	private String telefone;
-	
-	@JsonInclude(Include.NON_NULL)
+	private String nome;	
+	private String apelido;	
+	private String telefone;	
 	private String telefone_dois;
-	
-	@JsonInclude(Include.NON_NULL)
 	private String celular;
-	
-	@JsonInclude(Include.NON_NULL)
 	private String email;
 	
-	@JsonInclude(Include.NON_NULL)
 	@JoinColumn(name = "userid")
 	@OneToOne
 	private Usuario usuario;
