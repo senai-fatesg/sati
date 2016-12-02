@@ -22,6 +22,7 @@
 </head>
 <body>
 	<!-- Java Script de Verificao de Dispositvo Movel -->
+	<!--  
 	<script language="JavaScript">
 		function isMobile() {
 			var a = navigator.userAgent || navigator.vendor || window.opera;
@@ -52,6 +53,7 @@
 			document.getElementById("usuario").focus();
 		}
 	</script>
+	-->
 	<form action="j_spring_security_check" method="post">
 		<div class="wrapper">
 			<div class="header">
