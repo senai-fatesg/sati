@@ -96,7 +96,7 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 				perfilDoUsuario = usuario.obterListaDePerfis().get(i);
 				
 				//PRIMEIRA EXCLUSAO DO PAPEL DO USUARIO
-				String sql1 ="delete from papelusuario p where p.id = :idPerfilDoUsuario";
+				String sql1 ="delete from PapelUsuario p where p.id = :idPerfilDoUsuario";
 				Query query = em.createQuery(sql1);
 				query.setParameter("idPerfilDoUsuario", perfilDoUsuario.getId());
 				@SuppressWarnings("unused")

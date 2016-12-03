@@ -105,6 +105,7 @@ public class TecnicoControl {
 					.get("tecnico");
 			tecnico = tecnicoDao.consultar(tecnico.getId());
 			tecnicoDao.excluirPorId(tecnico.getId());
+		  
 			usuarioDao.excluirUsuario(tecnico.getUsuario());
 			
 			listar(evt);
