@@ -9,9 +9,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="corpo">
-
-		<h2 style="margin-top: 0" align="center">Atualizar Dados do
-			Cliente</h2>
+		<h2 style="margin-top: 0" align="center">Atualizar Dados do Cliente</h2>
 		<h:form prependId="false">
 			<p:panel>
 				<p:tabView>
@@ -121,7 +119,7 @@
 					</p:tab>
 				</p:tabView>
 				<h:panelGrid columns="2">
-					<p:commandButton actionListener="#{ClienteControl.confirmar }"
+					<p:commandButton actionListener="#{ClienteControl.alterar}"
 						value="Confirmar"></p:commandButton>
 					<p:commandButton actionListener="#{ClienteControl.inicialize}"
 						value="Cancelar" action="cliente.jsf" immediate="true"/>
