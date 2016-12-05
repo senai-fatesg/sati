@@ -23,7 +23,8 @@
 
 		</p:panel>
 
-		<p:dataTable id="dtTecnico" var="tecnico" value="#{TecnicoControl.tecnicos}"
+		<p:dataTable id="dtTecnico" var="tecnico"
+			value="#{TecnicoControl.tecnicos}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="5,10,15">
@@ -65,7 +66,7 @@
 					<f:attribute name="tecnico" value="#{tecnico}" />
 				</p:commandButton>
 			</p:column>
-			
+
 			<!-- CAMPO DE LINHA DE EXPANSAO -->
 			<p:rowExpansion>
 				<p:panelGrid columns="2" columnClasses="label,value"
@@ -84,8 +85,8 @@
 					<h:outputText value="Email:" />
 					<h:outputText value="#{tecnico.email}" />
 				</p:panelGrid>
-			</p:rowExpansion>			
-			
+			</p:rowExpansion>
+
 			<f:facet name="footer">
 				<p:outputLabel value="# Registro(s)" />
 			</f:facet>
@@ -101,17 +102,27 @@
 				widgetVar="wiz" nextLabel="Próximo" backLabel="Anterior" id="wizard">
 				<p:tab id="personal" title="Pessoal">
 					<h:panelGrid columns="2">
+
 						<p:outputLabel for="nome" value="Nome:" />
 						<p:inputText id="nome" value="#{TecnicoControl.tecnico.nome}"
 							size="50" required="true"
 							requiredMessage="Campo nome é Obrigatório!"
 							onkeyup="this.value = this.value.toUpperCase();" />
-						<p:outputLabel value="Apelido: *" />
-						<p:inputText value="#{TecnicoControl.tecnico.apelido}" size="30" />
+
+						<p:outputLabel for="apelido" value="Apelido:" />
+						<p:inputText id="apelido"
+							value="#{TecnicoControl.tecnico.apelido}" size="30"
+							required="true" requiredMessage="Campo apelido é Obrigatório!"
+							onkeyup="this.value = this.value.toUpperCase();" />
+
+
+
 						<p:outputLabel for="telefone1" value="Telefone (1): " />
 						<p:inputMask id="telefone1"
 							value="#{TecnicoControl.tecnico.telefone}" mask="(99)9999-9999"
 							required="true" requiredMessage="Campo Telefone é Obrigatório!" />
+
+
 						<p:outputLabel value="Telefone (2): " />
 						<p:inputMask value="#{TecnicoControl.tecnico.telefone_dois}"
 							mask="(99)9999-9999" />
@@ -199,7 +210,8 @@
 							title="Salvar Técnico" update=":formCorpo:dtTecnico" />
 
 						<p:commandButton value="Cancelar" immediate="true"
-							title="Cancelar" actionListener="#{TecnicoControl.inicialize}" action="tecnico.jsf?faces-redirect=true"/>
+							title="Cancelar" actionListener="#{TecnicoControl.inicialize}"
+							action="tecnico.jsf?faces-redirect=true" />
 
 						<p:messages id="meslogin" showDetail="true" autoUpdate="true" />
 					</h:panelGrid>
