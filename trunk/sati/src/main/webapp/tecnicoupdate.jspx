@@ -19,8 +19,14 @@
 								size="50" required="true"
 								requiredMessage="Nome: Campo Obrigátorio!"
 								onkeyup="this.value = this.value.toUpperCase();" />
-							<p:outputLabel value="Apelido: *" />
-							<p:inputText value="#{TecnicoControl.tecnico.apelido}" size="30" />
+
+							<p:outputLabel for="apelido" value="Apelido:" />
+							<p:inputText id="apelido"
+								value="#{TecnicoControl.tecnico.apelido}" size="30"
+								required="true" requiredMessage="Campo apelido é Obrigatório!"
+								onkeyup="this.value = this.value.toUpperCase();" />
+
+
 							<p:outputLabel for="telefone1" value="Telefone (1): " />
 							<p:inputMask id="telefone1"
 								value="#{TecnicoControl.tecnico.telefone}" mask="(99)9999-9999"
@@ -35,7 +41,8 @@
 								required="true" requiredMessage="Celular: Campo Obrigátorio!" />
 							<p:outputLabel for="email" value="Email: " />
 							<p:inputText id="email" value="#{TecnicoControl.tecnico.email}"
-								size="50" required="true" validatorMessage="Formato de Email inválido"
+								size="50" required="true"
+								validatorMessage="Formato de Email inválido"
 								requiredMessage="Email: Campo Obrigátorio!">
 								<f:validateRegex
 									pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
