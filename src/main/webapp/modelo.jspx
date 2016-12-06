@@ -12,41 +12,44 @@
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Modelo" id="cadmodelo" immediate="true"
 					image="ui-icon-document"
-					actionListener="#{ModeloControl.inicialize}"
-					onclick="PF('dlgmodelo').show(),document.formCorpo.reset();"/>
+					actionListener="#{ModeloControl.listarMarcas}"
+					oncomplete="PF('dlgmarca').show();" />
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
 			</h:panelGrid>
 		</p:panel>
 
-		<p:dataTable id="dtModelo" var="Modelo" value="#{ModeloControl.marcas}"
+		<p:dataTable id="dtModelo" var="modelo"
+			value="#{ModeloControl.modelos}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
 			paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
 			rowsPerPageTemplate="5,10,15">
 			<f:facet name="header">
 						Lista de Modelos
 			</f:facet>
-			<p:column headerText="Modelo" sortBy="#{modelo.marca}"
-				filterBy="#{modelo.marca}" footerText="resultado"
+
+			<p:column headerText="Marca" sortBy="#{modelo.marcaEquipamento}"
+				filterBy="#{modelo.marcaEquipamento}" footerText="resultado"
 				filterMatchMode="contains">
-				<h:outputText value="#{modelo.marca}" />
+				<h:outputText value="#{modelo.marcaEquipamento}" />
 			</p:column>
 
-			<p:column headerText="Modelo" sortBy="#{modelo.modelo}"
-				filterBy="#{modelo.modelo}" footerText="resultado"
+			<p:column headerText="Modelo" sortBy="#{modelo.modeloEquipamento}"
+				filterBy="#{modelo.modeloEquipamento}" footerText="resultado"
 				filterMatchMode="contains">
-				<h:outputText value="#{modelo.modelo}" />
+				<h:outputText value="#{modelo.modeloEquipamento}" />
 			</p:column>
 
 			<p:column headerText="Editar">
 				<p:commandButton icon="ui-icon-pencil" title="Alterar Marca"
-				immediate="true" actionListener="#{ModeloControl.preparaAlterar}" ajax="false">
+					immediate="true" actionListener="#{ModeloControl.preparaAlterar}"
+					ajax="false">
 					<f:attribute name="modelo" value="#{modelo}" />
 				</p:commandButton>
 			</p:column>
 			<p:column headerText="Excluir">
-				<p:commandButton icon="ui-icon-closethick" title="Remover Modelo"
+				<p:commandButton icon="ui-icon-closethick" title="Remover Marca"
 					immediate="true" actionListener="#{ModeloControl.excluir}"
 					ajax="false">
 					<f:attribute name="modelo" value="#{modelo}" />
@@ -57,47 +60,34 @@
 			</f:facet>
 		</p:dataTable>
 
+		<p:dialog widgetVar="dlgmarca" resizable="false"
+			header="Incluir Modelo" wappendToBody="true" width="500" modal="true"
+			id="dialog2" hideEffect="fade">
 
-
-		<!-- Tela de Dialog de inclusao do Modelo -->
-		<p:dialog widgetVar="dlgmodelo" resizable="false"
-			header="Incluir Modelo"  wappendToBody="true"
-			width="500" modal="true" id="dialog2" hideEffect="fade">
-			<!--DadosPessoais-->
-			<p:tabView id="tbModelo">
-				<!-- 			DESCRIÇÃO -->
+			<p:tabView id="tbMarca">
 				<p:tab title="Descrição">
 					<h:panelGrid columns="2">
 						<p:outputLabel for="nome" value="Nome: " />
-						<p:inputText id="nome" value="#{ModeloControl.modelo.nome}"
+						<p:inputText id="nome" value="#{MarcaControl.marca.nome}"
 							size="70" required="true"
 							requiredMessage="Campo nome Obrigatório!" />
 
 						<p:outputLabel for="console" value="Marca:" />
-						<p:selectOneMenu id="console" value="#{selectOneMenuView.console}"
-						
-							style="width:125px" required="true" requiredMessage="Campo nome Obrigatório!">
-							
-							<f:selectItem itemLabel="Select One" itemValue="#{modelo.marca.nome}" />
-							
+						<p:selectOneMenu id="console" value="#{ModeloControl.marcaEquipamentoSelecionada}"
+							style="width:170px;">
+							<f:selectItems value="#{ModeloControl.marcas}" />
 						</p:selectOneMenu>
-
-						<p:outputLabel for="modelo" value="Modelo: " />
-						<p:inputText id="modelo" value="#{ModeloControl.modelo.marca}"
-							size="70" required="true"
-							requiredMessage="Campo modelo Obrigatório!" />
+					
 					</h:panelGrid>
 				</p:tab>
 			</p:tabView>
+			
 			<h:panelGrid columns="2">
 				<p:commandButton value="Confirmar"
-					actionListener="#{ModeloControl.confirmar}" icon="ui-icon-check"
-					title="Salvar Modelo" />
-
-				<p:commandButton value="Cancelar" immediate="true" action="modelo.jsf?faces-redirect=true"
-					onclick="dlgmodelo.close(),document.formCorpo.reset();" title="Cancelar" />
+					actionListener="#{ModeloControl.confirmar}" icon="ui-icon-check" title="Salvar Modelo" />
 			</h:panelGrid>
+
 		</p:dialog>
+
 	</ui:define>
 </ui:composition>
-<!-- By Thayro Rodrigues -->
