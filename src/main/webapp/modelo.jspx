@@ -12,8 +12,8 @@
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Modelo" id="cadmodelo" immediate="true"
 					image="ui-icon-document"
-					actionListener="#{MarcaControl.inicialize}"
-					onclick="PF('dlgmarca').show(),document.formCorpo.reset();"/>
+					actionListener="#{ModeloControl.inicialize}"
+					onclick="PF('dlgmodelo').show(),document.formCorpo.reset();"/>
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
@@ -46,7 +46,7 @@
 				</p:commandButton>
 			</p:column>
 			<p:column headerText="Excluir">
-				<p:commandButton icon="ui-icon-closethick" title="Remover Marca"
+				<p:commandButton icon="ui-icon-closethick" title="Remover Modelo"
 					immediate="true" actionListener="#{ModeloControl.excluir}"
 					ajax="false">
 					<f:attribute name="modelo" value="#{modelo}" />
@@ -60,16 +60,16 @@
 
 
 		<!-- Tela de Dialog de inclusao do Modelo -->
-		<p:dialog widgetVar="dlgmarca" resizable="false"
+		<p:dialog widgetVar="dlgmodelo" resizable="false"
 			header="Incluir Modelo"  wappendToBody="true"
 			width="500" modal="true" id="dialog2" hideEffect="fade">
 			<!--DadosPessoais-->
-			<p:tabView id="tbMarca">
+			<p:tabView id="tbModelo">
 				<!-- 			DESCRIÇÃO -->
 				<p:tab title="Descrição">
 					<h:panelGrid columns="2">
 						<p:outputLabel for="nome" value="Nome: " />
-						<p:inputText id="nome" value="#{MarcaControl.marca.nome}"
+						<p:inputText id="nome" value="#{ModeloControl.modelo.nome}"
 							size="70" required="true"
 							requiredMessage="Campo nome Obrigatório!" />
 
@@ -83,7 +83,7 @@
 						</p:selectOneMenu>
 
 						<p:outputLabel for="modelo" value="Modelo: " />
-						<p:inputText id="modelo" value="#{MarcaControl.marca.modelo}"
+						<p:inputText id="modelo" value="#{ModeloControl.modelo.marca}"
 							size="70" required="true"
 							requiredMessage="Campo modelo Obrigatório!" />
 					</h:panelGrid>
@@ -95,7 +95,7 @@
 					title="Salvar Modelo" />
 
 				<p:commandButton value="Cancelar" immediate="true" action="modelo.jsf?faces-redirect=true"
-					onclick="dlgmarca.close(),document.formCorpo.reset();" title="Cancelar" />
+					onclick="dlgmodelo.close(),document.formCorpo.reset();" title="Cancelar" />
 			</h:panelGrid>
 		</p:dialog>
 	</ui:define>
