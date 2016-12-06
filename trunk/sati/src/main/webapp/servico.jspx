@@ -12,7 +12,7 @@
 				<p:commandButton value="Novo Serviço" id="cadserviço"
 					immediate="true" image="ui-icon-document"
 					actionListener="#{ServicoControl.inicialize}"
-					onclick="dlservico.show(),document.formCorpo.reset();" />
+					onclick="PF('dlservico').show(),document.formCorpo.reset();" />
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
@@ -116,10 +116,11 @@
 
 				<p:commandButton value="Cancelar" immediate="true"
 					action="servico.jsf?faces-redirect=true"
-					onclick="dlservico.close(),document.formCorpo.reset();"
+					onclick="PF('dlservico').close(),document.formCorpo.reset();"
 					title="Cancelar" />
 			</h:panelGrid>
 		</p:dialog>
 	</ui:define>
 </ui:composition>
 <!-- By Silas A. -->
+<!-- 2016 Gustavo Augusto. -->
