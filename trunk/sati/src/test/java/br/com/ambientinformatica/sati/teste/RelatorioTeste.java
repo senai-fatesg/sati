@@ -38,7 +38,7 @@ public class RelatorioTeste {
 			clientes.add(Cliente3);
 
 			Relatorio relatorio = new Relatorio();
-			relatorio.imprimir(clientes);
+			relatorio.imprimirRelatorioClientes(clientes);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
