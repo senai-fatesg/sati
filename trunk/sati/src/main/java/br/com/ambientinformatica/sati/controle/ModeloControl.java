@@ -72,7 +72,7 @@ public class ModeloControl {
 	
 	public void excluir(ActionEvent evt) throws PersistenciaException {
 		try {
-			modelo = (Modelo) evt.getComponent().getAttributes().get("marca");
+			modelo = (Modelo) evt.getComponent().getAttributes().get("modelo");
 			modelo = modeloDao.consultar(modelo.getId());
 			modeloDao.excluirPorId(modelo.getId());
 			listar(evt);
