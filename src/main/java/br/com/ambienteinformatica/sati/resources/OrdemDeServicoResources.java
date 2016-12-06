@@ -20,7 +20,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import br.com.ambienteinformatica.sati.services.OrdemServicoService;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 
-@Path(value = "/ordem")
+@Path("/ordem")
 public class OrdemDeServicoResources {
 	
 	@Autowired
@@ -37,7 +37,8 @@ public class OrdemDeServicoResources {
 		return Response.status(Status.OK).entity(ordensDeServico).build();
 	}
 	
-	@PUT @Path("/{id}")
+	@PUT
+	@Path("/{id}")
     @Consumes("application/json")
     public void atualizar(@PathParam("id") Long id, OrdemServico os) { 
 		
