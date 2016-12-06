@@ -13,7 +13,7 @@
 				<p:commandButton value="Novo Equipamento" id="cadeqp"
 					immediate="true" image="ui-icon-document"
 					actionListener="#{EquipamentoControl.inicialize}"
-					onclick="dlgequip.show(),document.formCorpo.reset();" />
+					onclick="PF('dlgequip').show(),document.formCorpo.reset();" />
 
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
