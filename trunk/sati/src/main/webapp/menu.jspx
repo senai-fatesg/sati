@@ -67,6 +67,7 @@
 	</div>
 
 	<!-- Java Script de Verificao de Dispositvo Movel -->
+	<!--
 	<script language="JavaScript">
 		function isMobile() {
 			var a = navigator.userAgent || navigator.vendor || window.opera;
@@ -84,6 +85,7 @@
 			location.href = 'iniciomobile.jsf';
 		}
 	</script>
+	-->
 </body>
 </html>
 <!-- By Silas A. -->
