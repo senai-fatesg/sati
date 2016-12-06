@@ -62,7 +62,7 @@ public class OrdemServico implements Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL,orphanRemoval = false, fetch=FetchType.EAGER)
 	@JoinColumn(name = "OrdemServico_codigo", referencedColumnName = "id")
-	public  Set<ObservacaoOrdemServico> observacaoSobreOrdemServico = new HashSet<ObservacaoOrdemServico>();
+	private  Set<ObservacaoOrdemServico> observacaoSobreOrdemServico = new HashSet<ObservacaoOrdemServico>();
 
 	// /CONTRUTOR
 	public OrdemServico() {
