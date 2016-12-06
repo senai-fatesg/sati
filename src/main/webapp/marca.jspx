@@ -33,7 +33,7 @@
 				<h:outputText value="#{marca.nome}" />
 			</p:column>
 
-			<p:column headerText="Modelo" sortBy="#{marca.modelo}"
+			<p:column headerText="Marca" sortBy="#{marca.modelo}"
 				filterBy="#{marca.modelo}" footerText="resultado"
 				filterMatchMode="contains">
 				<h:outputText value="#{marca.modelo}" />
@@ -71,7 +71,7 @@
 							size="70" required="true"
 							requiredMessage="Campo nome Obrigatório!" />
 
-						<p:outputLabel for="modelo" value="Modelo: " />
+						<p:outputLabel for="modelo" value="Marca: " />
 						<p:inputText id="modelo" value="#{MarcaControl.marca.modelo}"
 							size="70" required="true"
 							requiredMessage="Campo modelo Obrigatório!" />
