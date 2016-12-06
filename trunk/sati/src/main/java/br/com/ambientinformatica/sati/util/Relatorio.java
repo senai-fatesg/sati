@@ -3,6 +3,7 @@ package br.com.ambientinformatica.sati.util;
 import java.util.List;
 
 import br.com.ambientinformatica.sati.entidade.Cliente;
+import br.com.ambientinformatica.sati.entidade.Equipamento;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -29,16 +30,33 @@ public class Relatorio {
 	}
 	
 	/**
-	 * Imprime / Gera uma lista de Clientes
+	 * Imprime / Gera um Relatorio de Clientes
 	 * @param clientes
 	 * @throws Exception
 	 */
-	public void imprimir(List<Cliente> clientes) throws Exception {
-		JasperReport report = JasperCompileManager.compileReport(PATH_TO_JASPER_REPORTS_PACKAGE + "Clientes.jrxml");
+	public void imprimirRelatorioClientes(List<Cliente> clientes) throws Exception {
+		JasperReport report = JasperCompileManager.compileReport(
+				PATH_TO_JASPER_REPORTS_PACKAGE + "RelatorioClientes.jrxml");
 
 		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(clientes));
 
 		JasperExportManager.exportReportToPdfFile(print, PATH_TO_REPORTS_PACKAGE + "Relatorio_de_Clientes.pdf");
+		
+		System.out.println("Relatório gerado com sucesso em " + PATH_TO_REPORTS_PACKAGE);
+	}
+	
+	/**
+	 * Imprime / Gera um Relatorio de Equipamentos
+	 * @param clientes
+	 * @throws Exception
+	 */
+	public void imprimirRelatorioEquipamentos(List<Equipamento> equipamentos) throws Exception {
+		JasperReport report = JasperCompileManager.compileReport(
+				PATH_TO_JASPER_REPORTS_PACKAGE + "RelatorioEquipamentos.jrxml");
+
+		JasperPrint print = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(equipamentos));
+
+		JasperExportManager.exportReportToPdfFile(print, PATH_TO_REPORTS_PACKAGE + "Relatorio_de_Equipamentos.pdf");
 		
 		System.out.println("Relatório gerado com sucesso em " + PATH_TO_REPORTS_PACKAGE);
 	}
