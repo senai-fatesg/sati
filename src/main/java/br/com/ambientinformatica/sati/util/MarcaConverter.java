@@ -5,52 +5,31 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
-import br.com.ambientinformatica.jpa.exception.PersistenciaException;
-import br.com.ambientinformatica.jpa.util.FabricaAbstrata;
 import br.com.ambientinformatica.sati.entidade.Marca;
-import br.com.ambientinformatica.sati.persistencia.MarcaDao;
 
 
 @FacesConverter("marcaConverter")
 public class MarcaConverter implements Converter {
-	
-	private MarcaDao marcaDao = (MarcaDao) FabricaAbstrata
-			.criarObjeto("marcaDao");
 
 	@Override
-	public String getAsString(FacesContext facesContext, UIComponent component,
-			Object value) {
-		if (value == null || value.equals("")) {
-			return "";
-		} else {
-			return String.valueOf(((Marca) value).getId());
+	public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
+		if(value != null && !value.isEmpty()){
+			return (Marca) uiComponent.getAttributes().get(value);
 		}
+		return null;
 	}
 
 	@Override
-	public Object getAsObject(FacesContext context, UIComponent component,
-			String value) {
-		if (value != null && !value.trim().equals("")) {
-			Marca marca = new Marca();
-			try {
-				int id = Integer.parseInt(value);
-
-				try {
-					marca = marcaDao.consultar(id);
-				} catch (PersistenciaException e) {
-					e.printStackTrace();
-				}
-			} catch (NumberFormatException exception) {
-				// throw new ConverterException(new
-				// FacesMessage(FacesMessage.SEVERITY_ERROR, "Conversion Error",
-				// "Message"));
-				return null;
+	public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
+		if(value instanceof Marca){
+			Marca entity = (Marca) value;
+			if(entity != null && entity instanceof Marca && entity.getId() != null){
+				uiComponent.getAttributes().put(entity.getId().toString(), entity);
+				return entity.getId().toString();
 			}
-			return marca;
-		} else {
-			return null;
 		}
+		return "";
 	}
+	
 
 }
-//by Silas A.

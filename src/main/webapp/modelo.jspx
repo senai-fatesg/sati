@@ -68,12 +68,12 @@
 				<p:tab title="Descrição">
 					<h:panelGrid columns="2">
 						<p:outputLabel for="nome" value="Nome: " />
-						<p:inputText id="nome" value="#{MarcaControl.marca.nome}"
+						<p:inputText id="nome" value="#{ModeloControl.modelo.modeloEquipamento}"
 							size="70" required="true"
 							requiredMessage="Campo nome Obrigatório!" />
 
 						<p:outputLabel for="console" value="Marca:" />
-						<p:selectOneMenu id="console" value="#{ModeloControl.marcaEquipamentoSelecionada}"
+						<p:selectOneMenu id="console" value="#{ModeloControl.modelo.marcaEquipamento}" converter="marcaConverter"
 							style="width:170px;">
 							<f:selectItems value="#{ModeloControl.marcas}" />
 						</p:selectOneMenu>

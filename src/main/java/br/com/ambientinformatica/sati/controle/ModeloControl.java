@@ -48,8 +48,8 @@ public class ModeloControl {
 				FacesContext.getCurrentInstance().addMessage("Ambient Informatica",
 						new FacesMessage(FacesMessage.SEVERITY_INFO, "É preciso digitar o nome!", null));
 			} else {
-				modelo.setMarcaEquipamento(marcaEquipamentoSelecionada);
 				modeloDao.alterar(modelo);
+				modelo = new Modelo();
 				listar(evt);
 				inicialize(null);
 				FacesContext.getCurrentInstance().getExternalContext().redirect("modelo.jsf");
@@ -75,6 +75,7 @@ public class ModeloControl {
 		try {
 			modelo = (Modelo) evt.getComponent().getAttributes().get("modelo");
 			modelo = modeloDao.consultar(modelo.getId());
+			listarMarcas(null);
 			FacesContext.getCurrentInstance().getExternalContext().redirect("modeloupdate.jsf");
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
