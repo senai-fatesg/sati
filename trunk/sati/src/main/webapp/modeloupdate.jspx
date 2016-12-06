@@ -14,14 +14,20 @@
 					<!-- 			DESCRIÇÃO -->
 					<p:tab title="Descrição">
 						<h:panelGrid columns="1">
-							<p:outputLabel for="nome" value="Nome: " />
-							<p:inputText id="nome" value="#{ModeloControl.nome.marca}"
+							<p:outputLabel for="id" value="ID: " />
+							<p:inputText id="id" value="#{ModeloControl.modelo.id}" disabled="true"
 								size="70" required="true"
 								requiredMessage="Nome: Campo Obrigatório!" />
-							<p:outputLabel for="modelo" value="Modelo: " />
-							<p:inputText id="modelo" value="#{ModeloControl.modelo.marca}"
+							<p:outputLabel for="nome" value="Modelo: " />
+							<p:inputText id="nome" value="#{ModeloControl.modelo.modeloEquipamento}"
 								size="70" required="true"
-								requiredMessage="Campo modelo Obrigatório!" />
+								requiredMessage="Nome: Campo Obrigatório!" />
+							<p:outputLabel for="modelo" value="Marca: " />
+							<p:selectOneMenu id="modelo"
+								value="#{ModeloControl.modelo.marcaEquipamento}"
+								converter="marcaConverter" style="width:170px;">
+								<f:selectItems value="#{ModeloControl.marcas}" />
+							</p:selectOneMenu>
 						</h:panelGrid>
 					</p:tab>
 				</p:tabView>
