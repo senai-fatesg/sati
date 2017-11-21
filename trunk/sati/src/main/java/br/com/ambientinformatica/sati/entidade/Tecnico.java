@@ -12,8 +12,9 @@ import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Tecnico implements Serializable {
-	private static final long serialVersionUID = 1L;
 	
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(generator = "tecnico_seq", strategy = GenerationType.SEQUENCE)
 	@SequenceGenerator(name = "tecnico_seq", sequenceName = "tecnico_seq", allocationSize = 1, initialValue = 1)
