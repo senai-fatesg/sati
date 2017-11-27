@@ -8,11 +8,7 @@
 	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
 
-  
-    
-      
-         
-         
+
 	<ui:define name="corpo">
 		<p:panel header="CLIENTES" id="panel">
 
@@ -195,7 +191,7 @@
 				<p:tab id="address" title="Endereço">
 					<h:panelGrid id="pnCEP" columns="3">
 						<h:outputText value="CEP: " />
-						<p:inputMask mask="99999-999" value="#{ClienteControl.cliente.endereco.cep}" />
+						<p:inputMask mask="99999-999" value="#{ClienteControl.cep}" />
 
 						<p:commandButton value="Pesquisar" icon="ui-icon-search"
 							actionListener="#{ClienteControl.encontraCEP}"
@@ -250,7 +246,7 @@
 										styleClass="outputLabel" />
 
 									<h:outputText style="font-weight: bold;" value="Celular:" />
-									<h:outputText value="#{ClienteControl.cliente.telefone}"
+									<h:outputText value="#{ClienteControl.cliente.celular}"
 										styleClass="outputLabel" />
 
 									<h:outputText style="font-weight: bold;" value="Email: " />
