@@ -42,7 +42,7 @@ html,body,hr {
 }
 
 .header .nav-tabs {
-	border-bottom: 1px solid #A76161;
+	border-bottom: 1px solid #000099;
 }
 
 .header .nav-tabs>li {
@@ -195,7 +195,6 @@ html,body,hr {
 
 .nav li:hover .submenu {
 	display: block;
-	z-index: 999;
 }
 
 .submenu li a:link,.submenu li a:visited {
