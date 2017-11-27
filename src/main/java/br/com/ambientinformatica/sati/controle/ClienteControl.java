@@ -31,7 +31,7 @@ public class ClienteControl {
 	private Cliente cliente = new Cliente();
 	private Boolean tipocliente;
 	private Endereco endereco = new Endereco();
-	private String cep = null;
+	private String cep = null; 
 	private String nomedoCliente; // filtro mobile
 	private String cpfCnpjPertence;
 	private List<Cliente> clientes = new ArrayList<Cliente>();
@@ -243,7 +243,7 @@ public class ClienteControl {
 			// VERIFICA SE JA EXISTE O MESMO CPF
 			try {
 				exist = clienteDao.verificaCpfCnpjExistente(cliente.getCpfCnpj(), cpfCnpjPertence);
-				if (exist == true) {
+				if (exist == false) {
 					UtilFaces.addMensagemFaces("Já Existe este CPF no Sistema!");
 				}
 			} catch (SatiException e) {
@@ -311,5 +311,3 @@ public class ClienteControl {
 	}
 
 }
-
-// by Silas A.

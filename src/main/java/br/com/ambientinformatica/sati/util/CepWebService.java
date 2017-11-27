@@ -21,9 +21,10 @@ public class CepWebService {
 
 		try {
 			URL url = new URL(
-					"http://cep.republicavirtual.com.br/web_cep.php?cep=" + cep
-							+ "&formato=xml");
-
+					"http://cep.republicavirtual.com.br/web_cep.php?cep="
+						+cep+
+						"&formato=xml");
+			
 			Document document = getDocumento(url);
 
 			Element root = document.getRootElement();

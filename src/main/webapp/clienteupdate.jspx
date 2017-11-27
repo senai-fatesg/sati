@@ -87,29 +87,39 @@
 
 						<p:outputPanel id="buscaend">
 							<h:panelGrid columns="2">
+							
 								<h:outputText for="logradouro" value="Logradouro: " />
 								<p:inputText id="logradouro"
-									value="#{ClienteControl.cliente.endereco.logradouro}" size="40"
-									required="false"
+									value="#{ClienteControl.cliente.endereco.logradouro}" 
+									size="40" required="false"
 									requiredMessage="Logradouro: Campo Obrigatório!" />
+								
 								<h:outputText for="bairro" value="Bairro: " />
 								<p:inputText id="bairro"
 									value="#{ClienteControl.cliente.endereco.setor}"
 									required="false" requiredMessage="Bairro: Campo Obrigatório!" />
+								
+								
 								<h:outputText for="complemento" value="Complemento: " />
 								<p:inputText id="complemento"
 									value="#{ClienteControl.cliente.endereco.complemento}"
 									size="40" required="false"
 									requiredMessage="Complemento: Campo Obrigatório!" />
+								
+								
 								<h:outputText value="Número: " />
 								<p:inputText id="numero"
 									onkeypress="return SomenteNumero(event);"
 									value="#{ClienteControl.cliente.endereco.numero}" />
+								
+								
 								<h:outputText for="municipio" value="Municipio" />
 								<p:inputText id="municipio"
 									value="#{ClienteControl.cliente.endereco.cidade}"
 									required="false"
 									requiredMessage="Municipio: Campo Obrigatório!" />
+								
+								
 								<h:outputText for="estado" value="Estado: " />
 								<p:inputText id="estado" onkeyup="this.value = this.value.toUpperCase();"
 									value="#{ClienteControl.cliente.endereco.uf}" required="false"
