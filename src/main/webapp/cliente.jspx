@@ -8,10 +8,10 @@
 	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
 
-
 	<ui:define name="corpo">
+		<div class="espaco"></div>
+		
 		<p:panel header="CLIENTES" id="panel">
-
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Cliente" id="cadastrar"
 					image="ui-icon-document" immediate="true"
@@ -21,8 +21,9 @@
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
 					action="inicio.jsf" />
 			</h:panelGrid>
-
 		</p:panel>
+
+		<div class="espaco"></div>
 
 		<p:dataTable id="clientes" value="#{ClienteControl.clientes}"
 			var="cli" width="100%" emptyMessage="Sem registros" paginator="true"
@@ -34,20 +35,20 @@
 				<h:outputText value="Lista de Clientes"></h:outputText>
 			</f:facet>
 
-			<p:column style="width:16px" headerText="Detalhes">
+			<p:column style="width:16px" headerText="">
 				<p:rowToggler />
 			</p:column>
 
-			<p:column sortBy="#{cli.nomecliente }" filterBy="#{cli.nomecliente}"
-				headerText="Nome" footerText="resultado" filterMatchMode="contains">
+			<p:column style="text-align: center" sortBy="#{cli.nomecliente }" filterBy="#{cli.nomecliente}"
+				headerText="Nome"  filterMatchMode="contains">
 				<f:facet name="header">
 					<h:outputText value="Nome"></h:outputText>
 				</f:facet>
 				<h:outputText value="#{cli.nomecliente}"></h:outputText>
 			</p:column>
 
-			<p:column sortBy="#{cli.cpfCnpj}" filterBy="#{cli.cpfCnpj}"
-				headerText="CPF/CNPJ" footerText="resultado"
+			<p:column style="width:20%;text-align: center" sortBy="#{cli.cpfCnpj}" filterBy="#{cli.cpfCnpj}"
+				headerText="CPF/CNPJ" 
 				filterMatchMode="contains">
 				<f:facet name="header">
 					<h:outputText value="CPF/CNPJ"></h:outputText>
@@ -55,16 +56,17 @@
 				<h:outputText value="#{cli.cpfCnpj}"></h:outputText>
 			</p:column>
 
-			<p:column sortBy="#{cli.telefone}" filterBy="#{cli.telefone}"
-				headerText="Telefone" footerText="resultado"
+			<p:column style="width:20%;text-align: center" sortBy="#{cli.telefone}" filterBy="#{cli.telefone}"
+				headerText="Telefone" 
 				filterMatchMode="contains">
 				<f:facet name="header">
 					<h:outputText value="Telefone"></h:outputText>
 				</f:facet>
 				<h:outputText value="#{cli.telefone}"></h:outputText>
 			</p:column>
+			
 			<!-- CAMPO DE EDITAR DADOS -->
-			<p:column headerText="Editar">
+			<p:column headerText="" style="width:32px;text-align: center">
 				<p:commandButton icon="ui-icon-pencil" title="Alterar Cliente"
 					id="updatecliente" image="ui-icon-arrowrefresh-1-w"
 					actionListener="#{ClienteControl.preparaAlterar}" immediate="true"
@@ -72,7 +74,7 @@
 					<f:attribute name="cliente" value="#{cli}" />
 				</p:commandButton>
 			</p:column>
-			<p:column headerText="Excluir">
+			<p:column headerText="" style="width:32px;text-align: center">
 				<p:commandButton icon="ui-icon-closethick" title="Remover Cliente"
 					immediate="true" actionListener="#{ClienteControl.excluir}"
 					ajax="false">
@@ -83,7 +85,7 @@
 			<!-- CAMPO DE LINHA DE EXPANSAO -->
 			<p:rowExpansion>
 				<p:panelGrid columns="2" columnClasses="label,value"
-					style="width:300px">
+					style="width:80%">
 
 					<h:outputText value="Nome:" />
 					<h:outputText value="#{cli.nomecliente}" />
@@ -114,9 +116,7 @@
 				</p:panelGrid>
 			</p:rowExpansion>
 
-			<f:facet name="footer">
-				<p:outputLabel value="# Registro(s)" />
-			</f:facet>
+			
 		</p:dataTable>
 
 		<!-- Tela de Dialog de inclusao de Cliente -->
@@ -126,6 +126,7 @@
 			<p:wizard flowListener="#{ClienteControl.proximaTela}"
 				widgetVar="wiz" nextLabel="Próximo" backLabel="Anterior" id="wizard">
 				<p:tab id="personal" title="Pessoal">
+				<div class="espaco"></div>
 					<p:panel header="Dados pessoais">
 						<h:panelGrid columns="2">
 							<p:outputLabel for="Nome" value="Nome: " />
@@ -168,13 +169,13 @@
 							<p:outputLabel />
 							<h:outputLabel for="telefone" value="Telefone: " />
 							<p:inputMask id="telefone"
-								value="#{ClienteControl.cliente.telefone}" mask="(99)9999-9999"
+								value="#{ClienteControl.cliente.telefone}" mask="(99)99999-9999"
 								required="true"
 								requiredMessage="Campo Telefone Residencial é Obrigatório!" />
 
 							<p:outputLabel for="celular" value="Telefone Celular: " />
 							<p:inputMask id="celular"
-								value="#{ClienteControl.cliente.celular}" mask="(99)9999-9999"
+								value="#{ClienteControl.cliente.celular}" mask="(99)99999-9999"
 								required="true"
 								requiredMessage="Campo Telefone Celular é Obrigatório!" />
 							<h:outputLabel for="email" value="Email:" />
@@ -189,10 +190,10 @@
 					</p:panel>
 				</p:tab>
 				<p:tab id="address" title="Endereço">
+				<div class="espaco"></div>
 					<h:panelGrid id="pnCEP" columns="3">
 						<h:outputText value="CEP: " />
 						<p:inputMask mask="99999-999" value="#{ClienteControl.cep}" />
-
 						<p:commandButton value="Pesquisar" icon="ui-icon-search"
 							actionListener="#{ClienteControl.encontraCEP}"
 							update=":formCorpo:dadosend" />
@@ -222,16 +223,19 @@
 								value="#{ClienteControl.cliente.endereco.cidade}"
 								required="false" requiredMessage="Municipio: Campo Obrigatório!" />
 							<h:outputText for="estado" value="Estado: " />
-							<p:inputText id="estado" onkeyup="this.value = this.value.toUpperCase();"
+							<p:inputText id="estado"
+								onkeyup="this.value = this.value.toUpperCase();"
 								value="#{ClienteControl.cliente.endereco.uf}" required="false"
 								requiredMessage="Estado: Campo Obrigatório!" maxlength="2" />
 						</h:panelGrid>
 					</p:outputPanel>
 				</p:tab>
 				<p:tab id="confirm" title="Confirmação">
+				<div class="espaco"></div>
 					<p:panel header="Confirmação">
 						<p:accordionPanel>
 							<p:tab title="Dados Pessoais">
+							<div class="espaco"></div>
 								<h:panelGrid columns="4" cellpadding="5">
 									<h:outputText style="font-weight: bold;" value="NOME: " />
 									<h:outputText value="#{ClienteControl.cliente.nomecliente}"
@@ -245,9 +249,8 @@
 									<h:outputText value="#{ClienteControl.cliente.telefone}"
 										styleClass="outputLabel" />
 
-
 									<h:outputText style="font-weight: bold;" value="Celular:" />
-									<h:outputText value="#{ClienteControl.cliente.celular}"     
+									<h:outputText value="#{ClienteControl.cliente.celular}"
 										styleClass="outputLabel" />
 
 									<h:outputText style="font-weight: bold;" value="Email: " />
