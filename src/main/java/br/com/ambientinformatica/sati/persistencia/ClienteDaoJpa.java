@@ -74,6 +74,7 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 	}
 
 	// VERIFICA SE JA EXISTE O CPF OU CNPJ DO CLIENTE
+	
 	public boolean verificaCpfCnpjExistente(String cpfCnpj, String cpfCnpjPertence)
 			throws SatiException {
 		Cliente cliente = new Cliente();
@@ -89,18 +90,18 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 			} else {
 				exist = false;
 			}*/
+			
 			CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-			CriteriaQuery<Cliente> query = criteriaBuilder
-					.createQuery(Cliente.class);
+			CriteriaQuery<String> query = criteriaBuilder.createQuery(String.class);
 			Root<Cliente> root = query.from(Cliente.class);
 
 			Path<String> cnpj = root.<String> get("cpfCnpj");
 						
 			List<Predicate> predicates = new ArrayList<Predicate>();		
-
+			
 			query.where((Predicate[]) predicates.toArray(new Predicate[0]));
 
-			TypedQuery<Cliente> typedQuery = em.createQuery(query);
+			TypedQuery<String> typedQuery = em.createQuery(query);
 			typedQuery.setHint("org.hibernate.cacheable", "true");
 
 			if ( typedQuery.getResultList().size() != 0){
@@ -117,7 +118,6 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 			
 
 	}
-
 
 	@Override
 	public Cliente selecionarPorId(Long id) throws SatiException {
@@ -142,4 +142,3 @@ public class ClienteDaoJpa extends PersistenciaJpa<Cliente> implements ClienteDa
 	
 
 }
-//by Silas A.

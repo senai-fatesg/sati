@@ -73,6 +73,8 @@ public class ClienteControl {
 				}
 				inicialize(null);
 				FacesContext.getCurrentInstance().getExternalContext().redirect("cliente.jsf");
+			}else {
+				UtilFaces.addMensagemFaces("Não Foi possivel Realizar cadastro!");
 			}
 		} catch (Exception e) {
 			UtilFaces.addMensagemFaces(e);
@@ -243,7 +245,7 @@ public class ClienteControl {
 			// VERIFICA SE JA EXISTE O MESMO CPF
 			try {
 				exist = clienteDao.verificaCpfCnpjExistente(cliente.getCpfCnpj(), cpfCnpjPertence);
-				if (exist == false) {
+				if (!exist == false) {
 					UtilFaces.addMensagemFaces("Já Existe este CPF no Sistema!");
 				}
 			} catch (SatiException e) {
