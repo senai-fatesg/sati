@@ -245,8 +245,9 @@
 									<h:outputText value="#{ClienteControl.cliente.telefone}"
 										styleClass="outputLabel" />
 
+
 									<h:outputText style="font-weight: bold;" value="Celular:" />
-									<h:outputText value="#{ClienteControl.cliente.celular}"
+									<h:outputText value="#{ClienteControl.cliente.celular}"     
 										styleClass="outputLabel" />
 
 									<h:outputText style="font-weight: bold;" value="Email: " />
