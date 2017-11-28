@@ -3,6 +3,7 @@ package br.com.ambientinformatica.sati.entidade;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,7 +26,8 @@ public class Cliente implements Serializable {
 	private String razaoSocial;	
 	private String telefone;
 	private String celular;
-	private String email;
+	private String email;	
+	@Column(unique = true)
 	private String cpfCnpj;
 	
 	@OneToOne
@@ -121,5 +123,7 @@ public class Cliente implements Serializable {
 	public void setDataCadastramento(Date dataCadastramento) {
 		this.dataCadastramento = dataCadastramento;
 	}
+
+	
 
 }
