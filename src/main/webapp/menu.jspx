@@ -8,62 +8,64 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <body>
-	<div class="wrapper">
-		<div class="header">
-			<div class="container">
-				<div class="span6"></div>
-				<div class="row navigation">
-					<div class="span12">
-						<ul class="nav nav-tabs">
-							<h3>
-								<a href="inicio.jsf"><strong><img
-										src="imagens\satilogomarca.png" width="260" height="120"
-										title="Ir pra página Incial" /></strong></a>
-							</h3>
 
-							<li><a href="inicio.jsf">Home</a></li>
-							<li><a href="#">Clientes</a>
-								<ul class="submenu">
-									<li><a href="cliente.jsf">Cadastro de Clientes</a></li>
-								</ul></li>
-							<li><a href="#">Tecnicos</a>
-								<ul class="submenu">
-									<li><a href="tecnico.jsf">Cadastro de Técnicos</a></li>
-								</ul></li>
-							<li><a href="#">Equipamentos</a>
-								<ul class="submenu">
-									<li><a href="equipamento.jsf">Cadastro de Equipamentos</a></li>
-									<li><a href="marca.jsf">Cadastro de Marcas</a></li>
-									<li><a href="modelo.jsf">Cadastro de Modelos</a></li>
-								</ul></li>
-							<li><a href="#">Serviços</a>
-								<ul class="submenu">
-									<li><a href="servico.jsf">Cadastro de Serviços</a></li>
-								</ul></li>
-							<li><a href="#">Ordem de Serviço</a>
-								<ul class="submenu">
-									<li><p:commandLink value="Consultar Ordem de Serviço"
-											action="ordemServicolista.jsf?faces-redirect=true"
-											actionListener="#{OrdemServicoControl.inicialize}"
-											immediate="true">
-										</p:commandLink></li>
-									<li><p:commandLink value="Nova Ordem de Serviço"
-											actionListener="#{OrdemServicoControl.inicialize}"
-											immediate="true"
-											action="ordemServico.jsf?faces-redirect=true"></p:commandLink></li>
-								</ul></li>
-							<li><p:commandLink value="Sair" id="exit" immediate="true"
-									oncomplete="javascript:location.reload(true)"
-									actionListener="#{LoginControl.logout}" /></li>
 
-							<li><p:commandLink style="background-color: #580000"
-									value="#{LoginControl.primeiroNome}" title="Usuario Logado"
-									immediate="true" id="linkuser" /></li>
-						</ul>
-					</div>
-				</div>
-			</div>
+
+	<!-- inicial -->
+
+
+	<div class="container">
+
+		<div class="logo">
+			<a href="inicio.jsf"><strong><img
+					src="imagens\logomarca.png" width="200" height="120"
+					title="Ir pra página Incial" /></strong></a>
 		</div>
+
+		<h:form>
+			<p:growl id="messages" />
+
+			<p:menubar>
+				<p:menuitem value="Home" url="inicio.jsf" icon="ui-icon-home" />
+				<p:submenu label="Clientes" icon="ui-icon-person">
+					<p:menuitem value="Cadastro de Clientes" url="cliente.jsf" />
+				</p:submenu>
+
+				<p:submenu label="Técnicos" icon="ui-icon-pencil">
+					<p:menuitem value="Cadastro de Técnicos" url="tecnico.jsf" />
+				</p:submenu>
+
+				<p:submenu label="Equipamentos" icon="ui-icon-wrench">
+					<p:menuitem value="Cadastro de Equipamentos" url="equipamento.jsf" />
+					<p:menuitem value="Cadastro de Marcas" url="marca.jsf" />
+					<p:menuitem value="Cadastro de Modelos" url="modelo.jsf" />
+				</p:submenu>
+
+				<p:submenu label="Serviços" icon="ui-icon-gear">
+					<p:menuitem value="Cadastro de Serviços" url="servico.jsf" />
+				</p:submenu>
+
+				<p:submenu label="Ordem de Serviço" icon="ui-icon-clipboard">
+					<p:menuitem value="Consultar Ordem de Serviços"
+						action="ordemServicolista.jsf?faces-redirect=true"
+						actionListener="#{OrdemServicoControl.inicialize}"
+						immediate="true" />
+					<p:menuitem value="Nova Ordem de Serviços"
+						actionListener="#{OrdemServicoControl.inicialize}"
+						immediate="true" action="ordemServico.jsf?faces-redirect=true" />
+				</p:submenu>
+				<f:facet name="options">
+					<p:menuitem value="#{LoginControl.primeiroNome}"
+						title="Usuario Logado" immediate="true" id="linkuser" />
+					<p:commandButton type="button" value="Logout"
+						icon="ui-icon-extlink" id="exit" immediate="true"
+						oncomplete="javascript:location.reload(true)"
+						actionListener="#{LoginControl.logout}" />
+				</f:facet>
+			</p:menubar>
+		</h:form>
+
+
 	</div>
 
 	<!-- Java Script de Verificao de Dispositvo Movel -->
