@@ -89,9 +89,9 @@ public class UsuarioDaoJpa extends PersistenciaJpa<Usuario> implements
 
 	@Override
 	public void excluirUsuario(Usuario usuario) throws SatiException {
+		
 		try {
 			PapelUsuario perfilDoUsuario = new PapelUsuario();
-			
 			for(int i = 0; i < usuario.obterListaDePerfis().size(); i++){
 				perfilDoUsuario = usuario.obterListaDePerfis().get(i);
 				
