@@ -1,4 +1,4 @@
-package br.com.ambienteinformatica.sati.services;
+package br.com.ambienteinformatica.rest;
 
 import java.util.List;
 

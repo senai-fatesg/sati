@@ -1,4 +1,4 @@
-package br.com.ambienteinformatica.domain;
+package br.com.ambienteinformatica.rest;
 
 public class DetalhesDoErro {
 	private String titulo;

@@ -1,4 +1,4 @@
-package br.com.ambienteinformatica.sati.resources;
+package br.com.ambienteinformatica.rest;
 
 import java.util.Date;
 import java.util.List;
@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import br.com.ambienteinformatica.sati.services.OrdemServicoService;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 
 @Path("/ordem")
