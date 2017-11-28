@@ -40,7 +40,7 @@
 									forceSelection="true"  
 									required="true"
 									requiredMessage="O Campo Cliente é Obrigatório!"
-									onkeyup="this.value = this.value.toLowerCase();"/>
+									onkeypress="this.value = this.value.toLowerCase();"/>
 									
 					<p:message for="consCliente" />
 					<p:tooltip for="consCliente"
@@ -82,7 +82,7 @@
 										maxResults="10" 
 										effect="fade"
 										forceSelection="true" 
-										onkeyup="this.value = this.value.toLowerCase();"/>
+										onkeypress="this.value = this.value.toLowerCase();"/>
 						<p:tooltip for="consServico"
 							value="Informe o Serviço que foi executado." showEffect="fade"
 							hideEffect="fade" />
@@ -153,7 +153,7 @@
 							itemLabel="#{equipa.nome}" itemValue="#{equipa}"
 							completeMethod="#{OrdemServicoControl.buscaEquipamentoporNome}"
 							forceSelection="true" size="42"
-							onkeyup="this.value = this.value.toLowerCase();"
+							onkeypress="this.value = this.value.toLowerCase();"
 							converter="objectConverter" />							
 						<p:tooltip for="consEquipamento"
 							value="Informe o equipamento que foi utilizado" showEffect="fade"
