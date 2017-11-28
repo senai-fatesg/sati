@@ -1,4 +1,4 @@
-package br.com.ambienteinformatica.handler;
+package br.com.ambienteinformatica.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
@@ -6,7 +6,6 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import br.com.ambienteinformatica.domain.DetalhesDoErro;
 import br.com.ambienteinformatica.sati.exceptions.OrdemDeServicoNaoEncontradaException;
 import br.com.ambienteinformatica.sati.exceptions.UsuarioNaoEncontradoException;
 
