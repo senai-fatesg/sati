@@ -8,16 +8,10 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <body>
-
-
-
 	<!-- inicial -->
-
-
 	<div class="container">
-
 		<div class="logo">
-			<a href="inicio.jsf"><strong><img
+			<a  href="inicio.jsf"><strong><img class="logomarca"
 					src="imagens\logomarca.png" width="200" height="120"
 					title="Ir pra página Incial" /></strong></a>
 		</div>
