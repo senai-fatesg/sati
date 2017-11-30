@@ -8,7 +8,7 @@
       maxActive="10" 
       maxIdle="3" 
       name="jdbc/sati" 
-      password="9788"
+      password="123456"
       type="javax.sql.DataSource" 
       url="jdbc:postgresql://localhost/sati"
       username="postgres" />

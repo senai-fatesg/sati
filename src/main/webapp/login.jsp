@@ -10,6 +10,7 @@
 <link href="css/bootstrap.css" rel="stylesheet" />
 <link href="css/bootstrap-responsive.css" rel="stylesheet" />
 <link href="css/styles.css" rel="stylesheet" />
+<link href="css/personalizado.css" rel="stylesheet" />
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <meta http-equiv="Cache-Control"
@@ -20,6 +21,7 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/somentenumber.js"></script>
 </head>
+
 <body>
 	<!-- Java Script de Verificao de Dispositvo Movel -->
 	<!--  
@@ -54,83 +56,182 @@
 		}
 	</script>
 	-->
-	<form action="j_spring_security_check" method="post">
-		<div class="wrapper">
-			<div class="header">
-				<div class="container">
-					<div class="row branding">
-						<div class="span6">
-							<h1 class="pull-left">
-								<a href="#"><strong><img
-										src="imagens\satilogomarca.png"></strong></a>
-							</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="container content">
-				<div class="row">
-					<div class="span8 leftContent">
-						<h2>Seja Bem Vindo!</h2>
-						<div class="row">
-							<div class="span4">
-								<p class="cntPara simpleDesign" align="justify">
-									<strong class="lead">Cadastros</strong> Clientes <br />
-									Técnicos<br />Contatos
-								</p>
-							</div>
+	<div
+		style="background-image: url(imagens/background.png); height: 800px; width: 100%;">
 
-							<div class="span4">
-								<p class="cntPara itsFree" align="justify">
-									<strong class="lead">Cadastro de Equipamentos</strong>
-									Equipamentos <br /> Marcas<br />Modelos
-								</p>
-							</div>
-						</div>
-						<hr />
-						<div class="row">
-							<div class="span4">
-								<p class="cntPara secureApp" align="justify">
-									<strong class="lead">O.S</strong> Cadastro Ordem de Serviço<br />Impressão
-									de O.S<br />Consulta de O.S
-							</div>
-
-							<div class="span4">
-								<p class="cntPara easyUse">
-									<strong class="lead">Sati System Mobile</strong> Gerenciador de Ordem de Servico<br/>
-									Cadastro Ordem de Serviço<br/>Consulta de O.S<br/>Consulta de Clientes
-								</p>
-							</div>
-						</div>
-						<hr />
-						<div class="row">
-							<div class="span8">
-								<h3 class="quickTour"></h3>
-								© 2014/02 Senai.fatesg by: Silas Andre, Luiz Fernando Fiuza
-							</div>
-						</div>
-					</div>
-
-					<div class="span4 sidebar">
-						<h2></h2>
-						<div class="well quickSignupForm">
-							<h3>Acesso ao Sistema</h3>
-							<%
-								if (request.getParameter("msg") != null) {
-									out.print("<span style='color: red;font-weight: bold;'>Usuário ou senha incorretos</span>");
-								}
-							%>
-							<label>Login</label> <input type="text" id="usuario"	
-							  name="j_username" class="span3" /> 
-							 <label>Senha</label> <input
-								name="j_password" type="password" class="span3" /> <input
-								class="btn btn-large btn-success btnSignup" type="submit"
-								value="Entrar"> </input>
-						</div>
+		<div align="right">
+			<div class="container">
+				<div class="row branding">
+					<div class="span6">
+						<h1>
+							<a href="#"><strong><img src="imagens\logomarca.png"></strong></a>
+						</h1>
 					</div>
 				</div>
 			</div>
 		</div>
+
+		<form action="j_spring_security_check" method="post">
+
+
+
+			<div class="wrapper">
+
+
+
+				<!----------------------------------------------------------->
+				<div class="container content">
+
+					<!----------------------------------------------------------->
+					<div class="row">
+
+
+
+						<!----------------------------------------------------------->
+						<div class="span4 sidebar">
+							<h1>Seja Bem Vindo!</h1>
+
+
+							<div class="well quickSignupForm">
+
+								<h3 align="center">Acesso ao Sistema</h3>
+								<%
+									if (request.getParameter("msg") != null) {
+										out.print("<span style='color: red;font-weight: bold;'>Usuário ou senha incorretos</span>");
+									}
+								%>
+								<label>Login</label> <input type="text" id="usuario"
+									name="j_username" class="span3" /> <label>Senha</label> <input
+									name="j_password" type="password" class="span3" />
+								<div align="center">
+									<input class="btn btn-large btn-success btnSignup"
+										type="submit" value="Entrar"> </input>
+								</div>
+							</div>
+							<!-- FIM class="well quickSignupForm" -->
+						</div>
+						<!-- FIM class="span4 sidebar" -->
+
+
+						<!----------------------------------------------------------->
+						<div class="span8 leftContent">
+
+
+
+							<!----------------------------------------------------------->
+
+
+							<div class="row">
+								<div class="span4">
+									<p class="cntPara simpleDesign" align="center">
+										<strong class="lead">Cadastros </strong>
+										<table class="table table-hover" >
+											<tr >
+												<td>Clientes</td>
+											</tr>
+											<tr>
+												<td>Técnicos</td>
+											</tr>
+											<tr>
+												<td>Contatos</td>
+											</tr>
+										</table>
+									</p>
+								</div>
+
+								<div class="span4">
+									<p class="cntPara itsFree" align="justify">
+										<strong class="lead">Cadastro de Equipamentos</strong>
+										<table class="table table-hover">
+											<tr>
+												<td>Equipamentos</td>
+											</tr>
+											<tr>
+												<td>Marcas</td>
+											</tr>
+											<tr>
+												<td>Modelos</td>
+											</tr>
+										</table>
+									</p>
+								</div>
+							</div>
+
+
+
+							<hr />
+
+							<!----------------------------------------------------------->
+							<div class="row">
+								<div class="span4">
+									<p class="cntPara secureApp" align="justify">
+										<strong class="lead">O.S</strong>
+										<table class="table table-hover">
+											<tr>
+												<td>Cadastro Ordem de Serviço</td>
+											</tr>
+											<tr>
+												<td>Impressão de O.S</td>
+											</tr>
+											<tr>
+												<td>Consulta de O.S</td>
+											</tr>
+										</table>
+										
+								</div>
+
+								<div class="span4">
+									<p class="cntPara easyUse">
+										<strong class="lead">Sati System Mobile</strong>
+										<table class="table table-hover">
+											<tr>
+												<td>Gerenciador	de Ordem de Servico</td>
+											</tr>
+											<tr>
+												<td>Cadastro Ordem de Serviço</td>
+											</tr>
+											<tr>
+												<td>Consulta de O.S</td>
+											</tr>
+											<tr>
+												<td>Consulta de Clientes</td>
+											</tr>
+										</table>
+										
+									</p>
+								</div>
+							</div>
+
+							<hr />
+
+							<!----------------------------------------------------------->
+
+						</div>
+						<!-- FIM class="span8 leftContent" -->
+
+						<div class="row">
+							<div class="span8" align="center">
+								<h3 class="quickTour"></h3>
+								© 2014/02 Senai.fatesg by: Turma ADS 2017-2
+							</div>
+						</div>
+
+
+					</div>
+					<!-- FIM class="span8 leftContent" -->
+
+				</div>
+				<!-- FIM class="row" -->
+
+			</div>
+			<!-- FIM class="container content" -->
+	</div>
+	<!-- FIM class="wrapper" -->
+
 	</form>
+
+
+	</div>
+
 </body>
 </html>
