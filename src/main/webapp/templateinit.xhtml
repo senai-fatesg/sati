@@ -15,10 +15,13 @@
 	<link href="css/bootstrap.css" rel="stylesheet" />
 	<link href="css/bootstrap-responsive.css" rel="stylesheet" />
 	<link href="css/styles.css" rel="stylesheet" />
+	<!-- CSS DO PAINEL BEM VINDO -->
+	<link rel="stylesheet" href="css/painelbemvindo.css" />
 	<!-- CSS DO SLIDER -->
 	<link rel="stylesheet" href="css/normalize.css" />
 	<link rel="stylesheet" href="css/gallery.prefixed.css" />
-	<link rel="stylesheet" href="css/dist/gallery.theme.css" />
+	<!-- CSS DO DASHBOARD -->
+	<link rel="stylesheet" href="css/dashboard.css" />
 
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<meta http-equiv="Cache-Control"
@@ -30,6 +33,10 @@
 
 	<ui:insert name="menu">
 		<ui:include src="menu.jspx" />
+	</ui:insert>
+	
+	<ui:insert name="bem-vindo">
+		<ui:include src="painelbemvindo.jspx" />
 	</ui:insert>
 
 	<ui:insert name="slider">

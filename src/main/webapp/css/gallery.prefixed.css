@@ -32,6 +32,11 @@
   transition: opacity .5s;
 }
 
+.gallery .item img.slider-img {
+	width: auto;
+	height: 400px;
+}
+
 .gallery .control-operator {
   display: none;
 }

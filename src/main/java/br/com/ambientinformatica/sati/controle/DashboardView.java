@@ -1,11 +1,12 @@
 package br.com.ambientinformatica.sati.controle;
  
 import java.io.Serializable;
-
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-
+ 
 import org.primefaces.event.CloseEvent;
 import org.primefaces.event.DashboardReorderEvent;
 import org.primefaces.event.ToggleEvent;
@@ -15,7 +16,7 @@ import org.primefaces.model.DefaultDashboardColumn;
 import org.primefaces.model.DefaultDashboardModel;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
-
+ 
 @Controller("dashboardView")
 @Scope("conversation")
 public class DashboardView implements Serializable {
@@ -27,16 +28,16 @@ public class DashboardView implements Serializable {
         model = new DefaultDashboardModel();
         DashboardColumn column1 = new DefaultDashboardColumn();
         DashboardColumn column2 = new DefaultDashboardColumn();
-        DashboardColumn column3 = new DefaultDashboardColumn();
+        DashboardColumn column3 = new DefaultDashboardColumn();        
+        
+        column1.addWidget("clientes");
+        column1.addWidget("tecnicos");
          
-        column1.addWidget("Clientes");
-        column1.addWidget("Técnicos");
+        column2.addWidget("equipamentos");
+        column2.addWidget("servicos");
          
-        column2.addWidget("Equipamentos");
-        column2.addWidget("Serviços");
-         
-        column3.addWidget("Mensagens");
-        column3.addWidget("Novidades");
+        column3.addWidget("mensagens");
+        column3.addWidget("noticias");
  
         model.addColumn(column1);
         model.addColumn(column2);
