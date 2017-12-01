@@ -1,4 +1,4 @@
-package br.com.ambienteinformatica.rest;
+package br.com.ambientinformatica.sati.rest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.Response;
