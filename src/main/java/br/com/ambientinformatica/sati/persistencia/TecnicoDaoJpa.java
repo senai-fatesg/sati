@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
@@ -14,8 +15,7 @@ import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
 
 @Repository("tecnicoDao")
-public class TecnicoDaoJpa extends PersistenciaJpa<Tecnico> implements
-		TecnicoDao {
+public class TecnicoDaoJpa extends PersistenciaJpa<Tecnico> implements TecnicoDao {
 
 	private static final long serialVersionUID = 1L;
 

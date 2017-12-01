@@ -162,4 +162,3 @@ public class Tecnico implements Serializable {
 	}
 
 }
-// by Silas A.

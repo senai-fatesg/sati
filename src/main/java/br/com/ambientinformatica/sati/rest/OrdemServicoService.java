@@ -10,6 +10,8 @@ import br.com.ambienteinformatica.sati.exceptions.UsuarioNaoEncontradoException;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 import br.com.ambientinformatica.sati.entidade.Tecnico;
 import br.com.ambientinformatica.sati.persistencia.OrdemServicoDao;
+import br.com.ambientinformatica.sati.persistencia.OrdemServicoDaoJpa;
+import br.com.ambientinformatica.sati.persistencia.TecnicoDao;
 import br.com.ambientinformatica.sati.persistencia.TecnicoDaoJpa;
 import br.com.ambientinformatica.sati.util.SatiException;
 
@@ -20,33 +22,49 @@ public class OrdemServicoService {
 	private OrdemServicoDao ordemDeServicoDao;
 	
 	@Autowired
-	private TecnicoDaoJpa tecnicoDao;
-	
+	private TecnicoDao tecnicoDao ;
+	 
 	public List<OrdemServico> listar(String usuario) {
-
-		Tecnico tecnico;
+		
+		Tecnico tecnico = new Tecnico();
 		
 		try {
-			tecnico = tecnicoDao.buscarTecnicoByUsuario(usuario);
+			tecnico = getTecnicoDao().buscarTecnicoByUsuario(usuario);
 		} catch (SatiException e) {
 			throw new UsuarioNaoEncontradoException("O usuário não está cadastrado");
 		}
 		
-		List<OrdemServico> ordensDeServico = ordemDeServicoDao.listar(tecnico.getId());
+		List<OrdemServico> ordensDeServico = getOrdemDeServicoDao().listar(tecnico.getId());
 		
 		return ordensDeServico;
 	}
 	
 	public OrdemServico buscarPor(Long id) {
 		try {
-			return ordemDeServicoDao.consultarPorId(id);
+			return getOrdemDeServicoDao().consultarPorId(id);
 		} catch (SatiException e) {
 			throw new OrdemDeServicoNaoEncontradaException("A ordem de serviço não foi encontrada");
 		}
 	}
 	
 	public void atualizar(OrdemServico ordemDeServico) {
-		ordemDeServicoDao.alterar(ordemDeServico);
+		getOrdemDeServicoDao().alterar(ordemDeServico);
 	}
-	
+
+	public OrdemServicoDao getOrdemDeServicoDao() {
+		if(ordemDeServicoDao == null){
+			ordemDeServicoDao = new OrdemServicoDaoJpa();
+		}
+		
+		return ordemDeServicoDao;
+	}
+
+	public TecnicoDao getTecnicoDao() {
+		
+		if(tecnicoDao == null){
+			tecnicoDao = new TecnicoDaoJpa();
+		}
+		
+		return tecnicoDao;
+	}
 }

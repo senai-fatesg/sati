@@ -16,6 +16,7 @@ import javax.ws.rs.core.Response.Status;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 
@@ -31,7 +32,7 @@ public class OrdemDeServicoResources {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String usuario = auth.getName();
 		
-		List<OrdemServico> ordensDeServico = ordemServicoService.listar(usuario);
+		List<OrdemServico> ordensDeServico = getOrdemServicoService().listar(usuario);
 		
 		return Response.status(Status.OK).entity(ordensDeServico).build();
 	}
@@ -41,7 +42,7 @@ public class OrdemDeServicoResources {
     @Consumes("application/json")
     public void atualizar(@PathParam("id") Long id, OrdemServico os) { 
 		
-		OrdemServico ordemDeServico = ordemServicoService.buscarPor(id);
+		OrdemServico ordemDeServico = getOrdemServicoService().buscarPor(id);
 		
 		if (br.com.ambientinformatica.sati.entidade.Status.ATENDENDO.equals(os.getEstado())) {
 			ordemDeServico.setEstado(br.com.ambientinformatica.sati.entidade.Status.ATENDENDO);
@@ -50,7 +51,18 @@ public class OrdemDeServicoResources {
 			ordemDeServico.setDataFechamento(new Date(System.currentTimeMillis()));
 		}
 		
-		ordemServicoService.atualizar(ordemDeServico);	
+		getOrdemServicoService().atualizar(ordemDeServico);	
 	}
+
+	public OrdemServicoService getOrdemServicoService() {
+
+		if(ordemServicoService == null){
+			ordemServicoService = new OrdemServicoService();
+		}
+		return ordemServicoService;
+	}
+
+
+	
 	
 }
