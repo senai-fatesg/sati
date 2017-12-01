@@ -8,36 +8,54 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <body>
-	<div style="height:500px">
-	    <h:form id="form_dashboard">
-	        <p:growl id="msgs" showDetail="true" />
-	 
-	        <p:dashboard id="board" model="#{dashboardView.model}">
-	            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
-	 
-	            <p:panel id="sports" header="Sports">
-	                <h:outputText value="Sports Content" />
-	            </p:panel>
-	 
-	            <p:panel id="finance" header="Finance">
-	                <h:outputText value="Finance Content" />
-	            </p:panel>
-	 
-	            <p:panel id="lifestyle" header="Lifestyle">
-	                <h:outputText value="Lifestyle Content"  />
-	            </p:panel>
-	 
-	            <p:panel id="weather" header="Weather">
-	                <h:outputText value="Weather Content" />
-	            </p:panel>
-	 
-	            <p:panel id="politics" header="Politics">
-	                <h:outputText value="Politics Content" />
-	            </p:panel>
-	        </p:dashboard>
-	 
-	        <div style="clear:both" />
-	    </h:form>
+	<div class="container">
+		<br/><br/><br/>
+	  	<hr id="linha-slider"></hr>
+	  	
+	  	<p:panel>
+	  		<div id="div-principal-dashboard" >
+			    <h:form id="form-dashboard">
+			        <p:growl id="msgs" showDetail="true" />
+			 
+			        <p:dashboard id="board" model="#{dashboardView.model}">
+			            <p:ajax event="reorder" listener="#{dashboardView.handleReorder}" update="msgs" />
+			 
+			            <p:panel id="clientes" header="Clientes">
+			                <h:outputText value="Clientes Content" />
+			            </p:panel>
+			            
+			            <p:panel id="tecnicos" header="Tecnicos">
+			                <h:outputText value="Tecnicos Content" />
+			            </p:panel>
+			 
+			            <p:panel id="equipamentos" header="Equipamentos">
+			                <h:outputText value="Equipamentos Content" />
+			            </p:panel>
+			 
+			            <p:panel id="servicos" header="Servicos">
+			                <h:outputText value="Lifestyle Content"  />
+			            </p:panel>
+			 
+			            <p:panel id="mensagens" header="Mensagens">
+			                <h:outputText value="Mensagens Content" />
+			            </p:panel>
+			 
+			            <p:panel id="noticias" header="Noticias">
+			                <h:outputText value="Noticias Content" />
+			            </p:panel>
+			        </p:dashboard>
+			 
+			        <div style="clear:both" />
+			    </h:form>
+			</div>
+	  	</p:panel>
+	  	
+		<hr id="linha-dashboard" />
+		<br/><br/><br/>
+		
+		<div id="panel-dashboard-presentation">
+			<h1 style="text-align: center;">IMAGEM AQUI</h1>
+		</div>
 	</div>
 </body>
 </html>
