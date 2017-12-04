@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import br.com.ambientinformatica.jpa.persistencia.PersistenciaJpa;
@@ -39,13 +38,13 @@ public class TecnicoDaoJpa extends PersistenciaJpa<Tecnico> implements TecnicoDa
 
 	// BUSCA TECNICO PELO USUARIO LOGADO
 	@Override
-	public Tecnico buscarTecnicoByUsuario(String usuario) throws SatiException {
+	public Tecnico buscarTecnicoByUsuario(String login) throws SatiException {
 		try {
 
-			String sql = "select tec from Tecnico tec where tec.usuario.login =:user";
+			String sql = "select tec from Tecnico tec where upper(tec.nome) = :user";
 
-			Query query = em.createQuery(sql,Tecnico.class);
-			query.setParameter("user", usuario);
+			Query query = em.createQuery(sql);
+			query.setParameter("user", login.toUpperCase());
 			return (Tecnico) query.getSingleResult();
 
 		} catch (NoResultException e) {
@@ -57,4 +56,3 @@ public class TecnicoDaoJpa extends PersistenciaJpa<Tecnico> implements TecnicoDa
 	}
 
 }
-//by Silas A.
