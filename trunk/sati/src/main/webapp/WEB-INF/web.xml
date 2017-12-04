@@ -92,26 +92,28 @@
       	<load-on-startup>1</load-on-startup>
    	</servlet>
 
-<!-- Rest-->
 
-    <servlet>
-        <servlet-name>Jersey Web Application</servlet-name>
-        <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+	<!-- Configura o WS REST -->
+  	<!-- O diretorio do pacote deve ser um nivel acima -->
+	<servlet>
+		<servlet-name>jersey-servlet</servlet-name>
+		<servlet-class>
+			com.sun.jersey.spi.spring.container.servlet.SpringServlet
+		</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>br.com.ambientinformatica.sati.rest</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+ 
+	<servlet-mapping>
+		<servlet-name>jersey-servlet</servlet-name>
+		<url-pattern>/service/*</url-pattern>
+	</servlet-mapping>
+		<!-- Fim ConfiguraÃ§Ã£o WS REST -->
 
-        <init-param>
-            <param-name>jersey.config.server.provider.packages</param-name>
-            <param-value>br.com.ambientinformatica.sati.rest</param-value>
-        </init-param>
 
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>Jersey Web Application</servlet-name>
-        <url-pattern>/rest/*</url-pattern>
-    </servlet-mapping>
-    
-<!-- Rest-->       	
 
 	<servlet-mapping>
 		<servlet-name>Resource Servlet</servlet-name>

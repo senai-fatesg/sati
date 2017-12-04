@@ -28,12 +28,16 @@ public class MarcaDaoJpa extends PersistenciaJpa<Marca> implements MarcaDao {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Marca> listarMarca() throws SatiException,
-			PersistenciaException {
+	public List<Marca> listarMarca() throws SatiException, PersistenciaException {
+	
+		
 		List<Marca> marcas = new ArrayList<Marca>();
+		
 		try {
 			String sql = "select m from Marca m order by m.nome asc";
+			
 			Query query = em.createQuery(sql);
+			
 			marcas = query.getResultList();
 			
 		} catch (Exception e) {

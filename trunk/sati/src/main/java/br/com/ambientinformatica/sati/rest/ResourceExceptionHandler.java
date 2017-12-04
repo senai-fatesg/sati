@@ -6,9 +6,6 @@ import javax.ws.rs.core.Response.Status;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 
-import br.com.ambienteinformatica.sati.exceptions.OrdemDeServicoNaoEncontradaException;
-import br.com.ambienteinformatica.sati.exceptions.UsuarioNaoEncontradoException;
-
 @ControllerAdvice
 public class ResourceExceptionHandler {
 	public Response handleUsuarioNaoEncontradoException(UsuarioNaoEncontradoException e, HttpServletRequest req) {

@@ -16,13 +16,13 @@ import br.com.ambientinformatica.sati.util.SatiException;
 import br.com.ambientinformatica.util.UtilLog;
 
 @Repository("OrdemServicoDao")
-public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
-		OrdemServicoDao {
+public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements OrdemServicoDao {
 
 	private static final long serialVersionUID = 1L;
 
 	// CONSUTA OS POR ID
 	public OrdemServico consultarPorId(Long id) throws SatiException {
+
 		try {
 			Query query = em
 					.createQuery("select os from OrdemServico os where os.id = :id");
@@ -122,11 +122,10 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	// LISTA AS ORDENS DE SERVICO EM ATENDIMENTO DO TECNICO
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<OrdemServico> listarPorOsAtendimentoAdmin(
-			Status estadoOsSelecionado) throws SatiException {
+	public List<OrdemServico> listarPorOsAtendimentoAdmin(Status estadoOsSelecionado) throws SatiException {
 		try {
 			String sql = "select distinct os from OrdemServico os "
-					+ "where 1 = 1";
+					   + "where 1 = 1";
 			if (estadoOsSelecionado != null) {
 				sql += " and os.estado = :estado";
 			}
@@ -201,4 +200,3 @@ public class OrdemServicoDaoJpa extends PersistenciaJpa<OrdemServico> implements
 	}
 
 }
-//by Silas A.
