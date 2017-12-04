@@ -32,7 +32,7 @@
 			                <h:outputText value="Equipamentos Content" />
 			            </p:panel>
 			 
-			            <p:panel id="servicos" header="Servicos">
+			            <p:panel id="servicos" header="Serviços">
 			                <h:outputText value="Lifestyle Content"  />
 			            </p:panel>
 			 
@@ -40,7 +40,7 @@
 			                <h:outputText value="Mensagens Content" />
 			            </p:panel>
 			 
-			            <p:panel id="noticias" header="Noticias">
+			            <p:panel id="noticias" header="Notícias">
 			                <h:outputText value="Noticias Content" />
 			            </p:panel>
 			        </p:dashboard>
@@ -54,7 +54,7 @@
 		<br/><br/><br/>
 		
 		<div id="panel-dashboard-presentation">
-			<h1 style="text-align: center;">IMAGEM AQUI</h1>
+			<h1 style="text-align: center;"><img src="imagens/ImagemPostSATI.jpg"></img></h1>
 		</div>
 	</div>
 </body>

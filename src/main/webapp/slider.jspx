@@ -8,6 +8,7 @@
 			<div id="item-2" class="control-operator"></div>
 			<div id="item-3" class="control-operator"></div>
 			<div id="item-4" class="control-operator"></div>
+			<div id="item-5" class="control-operator"></div>
 
 			<figure class="item"> <img class="slider-img"
 				src="imagens/slider001.jpg" /> </figure>
@@ -21,11 +22,15 @@
 			<figure class="item"> <img class="slider-img"
 				src="imagens/slider004.jpg" /> </figure>
 
+			<figure class="item"> <img class="slider-img"
+				src="imagens/slider005.jpg" /> </figure>
+
 			<div class="controls">
-				<a href="#item-1" class="control-button">•</a> <a href="#item-2"
-					class="control-button">•</a> <a href="#item-3"
-					class="control-button">•</a> <a href="#item-4"
-					class="control-button">•</a>
+				<a href="#item-1" class="control-button">•</a> 
+				<a href="#item-2" class="control-button">•</a> 
+				<a href="#item-3" class="control-button">•</a> 
+				<a href="#item-4" class="control-button">•</a> 
+				<a href="#item-5" class="control-button">•</a>
 			</div>
 		</div>
 	</div>
