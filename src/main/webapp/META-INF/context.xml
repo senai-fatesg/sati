@@ -8,9 +8,9 @@
       maxActive="10" 
       maxIdle="3" 
       name="jdbc/sati" 
-      password="esus"
+      password="123456"
       type="javax.sql.DataSource" 
-      url="jdbc:postgresql://localhost:5433/sati"
+      url="jdbc:postgresql://localhost:5432/sati"
       username="postgres" />
 
 </Context>
