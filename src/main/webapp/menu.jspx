@@ -49,8 +49,8 @@
 						immediate="true" action="ordemServico.jsf?faces-redirect=true" />
 				</p:submenu>
 				<f:facet name="options">
-					<p:commandLink 
-						value="  #{LoginControl.primeiroNome} | " title="Usuario Logado"
+					<p:commandLink
+						value="#{LoginControl.primeiroNome}" title="Usuario Logado"
 						immediate="true" id="linkuser" />
 					<p:commandLink type="button" value="Sair" icon="ui-icon-extlink"
 						id="exit" immediate="true"
