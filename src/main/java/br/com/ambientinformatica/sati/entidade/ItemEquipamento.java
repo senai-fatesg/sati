@@ -2,6 +2,7 @@ package br.com.ambientinformatica.sati.entidade;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Entity;
@@ -12,7 +13,12 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Transient;
 
 @Entity
-public class ItemEquipamento {
+public class ItemEquipamento implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = SEQUENCE, generator = "geradorItemEquipamento")
@@ -75,5 +81,12 @@ public class ItemEquipamento {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "ItemEquipamento [id=" + id + ", equipamento=" + equipamento + ", quantidade=" + quantidade + "]";
+	}
+	
+	
 
 }

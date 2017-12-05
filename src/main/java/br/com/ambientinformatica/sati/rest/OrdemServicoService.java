@@ -9,9 +9,7 @@ import org.springframework.stereotype.Service;
 import br.com.ambientinformatica.sati.entidade.OrdemServico;
 import br.com.ambientinformatica.sati.entidade.Tecnico;
 import br.com.ambientinformatica.sati.persistencia.OrdemServicoDao;
-import br.com.ambientinformatica.sati.persistencia.OrdemServicoDaoJpa;
 import br.com.ambientinformatica.sati.persistencia.TecnicoDao;
-import br.com.ambientinformatica.sati.persistencia.TecnicoDaoJpa;
 import br.com.ambientinformatica.sati.util.SatiException;
 @Component
 @Service
