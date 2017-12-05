@@ -11,7 +11,7 @@
 	<!-- inicial -->
 	<div class="container">
 		<div class="logo">
-			<a  href="inicio.jsf"><strong><img class="logomarca"
+			<a href="inicio.jsf"><strong><img class="logomarca"
 					src="imagens\logomarca.png" width="200" height="120"
 					title="Ir pra página Incial" /></strong></a>
 		</div>
@@ -49,10 +49,11 @@
 						immediate="true" action="ordemServico.jsf?faces-redirect=true" />
 				</p:submenu>
 				<f:facet name="options">
-					<p:menuitem value="#{LoginControl.primeiroNome}"
-						title="Usuario Logado" immediate="true" id="linkuser" />
-					<p:commandButton type="button" value="Logout"
-						icon="ui-icon-extlink" id="exit" immediate="true"
+					<p:commandLink 
+						value="  #{LoginControl.primeiroNome} | " title="Usuario Logado"
+						immediate="true" id="linkuser" />
+					<p:commandLink type="button" value="Sair" icon="ui-icon-extlink"
+						id="exit" immediate="true"
 						oncomplete="javascript:location.reload(true)"
 						actionListener="#{LoginControl.logout}" />
 				</f:facet>
