@@ -7,6 +7,7 @@
 	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="corpo">
+	<div class="espaco"></div>
 		<p:panel header="Consultar OrdemServico">
 			<h:panelGrid columns="3">
 				<p:commandButton value="Voltar" id="voltarinit" immediate="true"
@@ -56,7 +57,7 @@
 				</p:panel>
 			</p:dialog>
 		</p:panel>
-
+<div class="espaco"></div>
 		<!-- LISTAGEM DAS OS DE ACORDO COM STATUS -->
 		<p:dataTable id="ordemServicosList"
 			value="#{OrdemServicoControl.ordensServico }" var="os"

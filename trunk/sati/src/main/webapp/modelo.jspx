@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="corpo">
+	<div class="espaco"></div>
 		<p:panel header="MODELOS" id="panel">
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Modelo" id="cadmodelo" immediate="true"
@@ -19,7 +20,7 @@
 					action="inicio.jsf" />
 			</h:panelGrid>
 		</p:panel>
-
+<div class="espaco"></div>
 		<p:dataTable id="dtModelo" var="modelo"
 			value="#{ModeloControl.modelos}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
