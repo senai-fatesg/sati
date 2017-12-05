@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+
+#panel-dashboard-presentation.ui-panel {
+	margin: 0px !important; padding: 0px !important; overflow: hidden !important;
+}
+
+#panel-dashboard-presentation.ui-panel .ui-panel-content {
+	margin: 0px !important; padding: 0px !important;
+}
+
+#panel-dashboard-presentation.ui-panel .ui-panel-content img {
+	margin: 0px !important; padding: 0px !important; width: 100% !important;
+}

@@ -8,10 +8,8 @@
 	xmlns:p="http://primefaces.org/ui">
 
 <body>
+	<br/><br/><br/>
 	<div class="container">
-		<br/><br/><br/>
-	  	<hr id="linha-slider"></hr>
-	  	
 	  	<p:panel>
 	  		<div id="div-principal-dashboard" >
 			    <h:form id="form-dashboard">
@@ -22,26 +20,38 @@
 			 
 			            <p:panel id="clientes" header="Clientes">
 			                <h:outputText value="Clientes Content" />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Cadastrar mais" url="cliente.jsf" icon="ui-icon-cliente" /></p:menubar>
 			            </p:panel>
 			            
 			            <p:panel id="tecnicos" header="Tecnicos">
 			                <h:outputText value="Tecnicos Content" />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Cadastrar mais" url="tecnico.jsf" icon="ui-icon-tecnico" /></p:menubar>
 			            </p:panel>
 			 
 			            <p:panel id="equipamentos" header="Equipamentos">
 			                <h:outputText value="Equipamentos Content" />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Cadastrar mais" url="equipamento.jsf" icon="ui-icon-equipamento" /></p:menubar>
 			            </p:panel>
 			 
 			            <p:panel id="servicos" header="Serviços">
 			                <h:outputText value="Lifestyle Content"  />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Cadastrar mais" url="servico.jsf" icon="ui-icon-servico" /></p:menubar>
 			            </p:panel>
 			 
 			            <p:panel id="mensagens" header="Mensagens">
 			                <h:outputText value="Mensagens Content" />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Ver mais" url="#" icon="ui-icon-plus" /></p:menubar>
 			            </p:panel>
 			 
 			            <p:panel id="noticias" header="Notícias">
 			                <h:outputText value="Noticias Content" />
+			                <br/>
+			                <p:menubar class="menubar-dashboard"><p:menuitem class="menuitem-dashboard" value="Ver mais" url="#" icon="ui-icon-plus" /></p:menubar>
 			            </p:panel>
 			        </p:dashboard>
 			 
@@ -49,13 +59,7 @@
 			    </h:form>
 			</div>
 	  	</p:panel>
-	  	
-		<hr id="linha-dashboard" />
-		<br/><br/><br/>
-		
-		<div id="panel-dashboard-presentation">
-			<h1 style="text-align: center;"><img src="imagens/ImagemPostSATI.jpg"></img></h1>
-		</div>
 	</div>
+	
 </body>
 </html>
