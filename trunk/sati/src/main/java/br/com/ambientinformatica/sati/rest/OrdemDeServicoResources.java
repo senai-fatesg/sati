@@ -1,5 +1,6 @@
 package br.com.ambientinformatica.sati.rest;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -29,13 +30,17 @@ public class OrdemDeServicoResources {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response listar() {
+	public List<OrdemServico> listar() {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String usuario = auth.getName();
 		
-		List<OrdemServico> ordensDeServico = ordemServicoService.listar(usuario);
-		
-		return Response.status(Status.OK).entity(ordensDeServico).build();
+		List<OrdemServico> ordensDeServico = new ArrayList<>();
+		try {
+			ordensDeServico = ordemServicoService.listar(usuario);
+		} catch (Exception e) {
+			throw e;
+		}
+		return ordensDeServico;
 	}
 	
 	@PUT

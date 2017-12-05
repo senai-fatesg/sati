@@ -49,11 +49,11 @@ public class OrdemServico implements Serializable {
 	@JsonInclude(Include.NON_NULL)
 	private String descricaoProblema;
 
-	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "ordemservicoid")
 	private Set<ItemServico> itensServicos = new HashSet<ItemServico>();
 
-	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.LAZY)
+	@OneToMany(cascade = { CascadeType.ALL, CascadeType.REMOVE }, fetch = FetchType.EAGER)
 	@JoinColumn(name = "ordemservicoid")
 	private Set<ItemEquipamento> itensEquipamentos = new HashSet<ItemEquipamento>();
 	

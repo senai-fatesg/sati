@@ -109,12 +109,10 @@
  
 	<servlet-mapping>
 		<servlet-name>jersey-servlet</servlet-name>
-		<url-pattern>/service/*</url-pattern>
+		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>
 		<!-- Fim ConfiguraÃ§Ã£o WS REST -->
-
-
-
+	
 	<servlet-mapping>
 		<servlet-name>Resource Servlet</servlet-name>
 		<url-pattern>/primefaces_resource/*</url-pattern>
