@@ -9,7 +9,7 @@
 
 <body>
 	<!-- inicial -->
-	<div class="container">
+	<div class="container-fluid">
 		<div class="logo">
 			<a href="inicio.jsf"><strong><img class="logomarca"
 					src="imagens\logomarca.png" width="200" height="120"
@@ -50,7 +50,7 @@
 				</p:submenu>
 				<f:facet name="options">
 					<p:commandLink
-						value="#{LoginControl.primeiroNome}" title="Usuario Logado"
+						value="#{LoginControl.primeiroNome}  | " title="Usuario Logado"
 						immediate="true" id="linkuser" />
 					<p:commandLink type="button" value="Sair" icon="ui-icon-extlink"
 						id="exit" immediate="true"
