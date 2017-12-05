@@ -8,6 +8,7 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<ui:define name="corpo">
+	<div class="espaco"></div>
 		<p:panel header="MARCAS" id="panel">
 			<h:panelGrid columns="2">
 				<p:commandButton value="Nova Marca" id="cadmarca" immediate="true"
@@ -19,6 +20,7 @@
 					action="inicio.jsf" />
 			</h:panelGrid>
 		</p:panel>
+		<div class="espaco"></div>
 
 		<p:dataTable id="dtMarca" var="marca" value="#{MarcaControl.marcas}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"

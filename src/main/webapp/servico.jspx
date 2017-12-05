@@ -7,6 +7,7 @@
 	xmlns:a="http://www.ambientinformatica.com.br/jsf2"
 	xmlns:p="http://primefaces.org/ui">
 	<ui:define name="corpo">
+	<div class="espaco"></div>
 		<p:panel header="SERVIÇOS" id="panel">
 			<h:panelGrid columns="2">
 				<p:commandButton value="Novo Serviço" id="cadserviço"
@@ -19,7 +20,7 @@
 			</h:panelGrid>
 
 		</p:panel>
-
+<div class="espaco"></div>
 		<p:dataTable id="dtServico" var="servico"
 			value="#{ServicoControl.servicos}"
 			emptyMessage="Nenhum registro encontrado" paginator="true" rows="10"
