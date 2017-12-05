@@ -10,7 +10,7 @@
 <body>
 
 	<div class="container">
-		<p:panel header="BEM-VINDO!" id="painel-bem-vindo"></p:panel>	
+		<p:panel header="BEM VINDO #{LoginControl.primeiroNome}" id="painel-bem-vindo"></p:panel>	
 	</div>	
 	<br/>
 		
