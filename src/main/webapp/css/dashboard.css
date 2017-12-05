@@ -1,33 +1,46 @@
 @CHARSET "UTF-8";
 
 
+/*	
+ *	PAINEL DASHBOARD	
+ */
 #div-principal-dashboard {
  	height: 500px;
- 	padding: 0px;
+ 	padding: 0 181px;
 }
 
-#form-dashboard .ui-panel{
+#div-principal-dashboard #form-dashboard{
+ 	margin: 0px;
+ 	padding:  0;
+ 	height: inherit;
+ 	position: relative;
+}
+
+#div-principal-dashboard #form-dashboard .ui-dashboard .ui-dashboard-column {
+ 	float:left;
+ 	padding-bottom: 0px;
+ 	margin: 0 100px 0 0;
+}
+
+#div-principal-dashboard #form-dashboard .ui-dashboard .ui-dashboard-column:LAST-CHILD {
+ 	margin-right: 0;
+}
+
+#div-principal-dashboard .ui-dashboard-column .ui-panel {
 	margin-bottom: 100px;
 }
 
-#div-principal-dashboard .ui-dashboard-column{
- 	float:left; padding-bottom: 0px; margin: 100px 195px 50px 0px;
+#div-principal-dashboard .ui-dashboard-column .ui-panel:LAST-CHILD {
+	margin-bottom: 0px;
 }
 
-#div-principal-dashboard .ui-dashboard-column:FIRST-CHILD {
- 	margin-left: 100px;
-}
-
-#div-principal-dashboard .ui-dashboard-column:LAST-CHILD {
-	margin-right: 0px;
-}
-
-#panel-dashboard-presentation {
-	background: #6fb8d6;
-	margin: 0;
-	padding: 150px 0;
-}
-
-#panel-dashboard-presentation #panel-dashboard-panel {
-	background: #59bd2f; margin: 100px 10px;
-}
+/*	
+ *	MENUS DA DASHBOARD		
+ */
+ .menubar-dashboard {
+ 	margin: 20px 0 0 0; /*border: none;*/
+ }
+ 
+ .menubar-dashboard .menuitem-dashboard {
+ 	margin: 0; padding: ;
+ }
